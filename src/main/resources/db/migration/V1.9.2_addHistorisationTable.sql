@@ -9,23 +9,20 @@ CREATE TABLE appinfo_sch.historisation
     id_mail NUMBER(38),
     objet varchar2(200 char),
     distinataires varchar2(250 char),
-    a_la_une CLOB,
-    icone varchar2(25 char),
-    section NUMBER(19,0),
-    agenda_periode varchar2(255 char),
-    agenda_perimetre varchar2(150 char),
-    agenda_nature_intervention varchar2(40 char),
-    agenda_impact varchar2(90 char),
+    la_une_historisation CLOB,
+    icone_historisation varchar2(25 char),
+    section_historisation NUMBER(19,0),
+    agenda_periode_historisation varchar2(255 char),
+    agenda_perimetre_historisation varchar2(150 char),
+    agenda_nature_historisation varchar2(40 char),
+    agenda_impact_historisation varchar2(90 char),
     -- column for long texts
-    direction_activite CLOB,
-    direction_relation_client CLOB,
+    direction_activite_historisation CLOB,
+    direction_relation_client_historisation CLOB,
     date_Envoi DATE
 )
 
     TABLESPACE APPINFO_DATA;
-
-comment on table appinfo_sch.historisation is 'historisation des services IT notaires / historisation SI Groupe';
-
 
 -- CONSTRAINTS creation
 --

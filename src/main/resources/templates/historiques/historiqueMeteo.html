@@ -27,6 +27,7 @@
     <div class=" pt-5 pl-5 pr-5">
         <div class="d-flex mb-2">
             <label class="mr-3" for="historique-research" style="width:10vw" ><strong>Périmètre :</strong></label>
+            <h1 th:text="${meteoDto}"></h1>
             <div class="d-flex justify-content-between" >
                 <select  class="form-select" style="width: 9vw; margin-right: 2vw;height: 3.6vh;">
                     <option><strong>SI notaires </strong></option>
@@ -36,10 +37,10 @@
                 <input type="search"  style="width: 20vw;"  class="ml-2" id="historique-research">
             </div>
         </div>
-        <p class="text-center font-weight-bold mb-0" id="historique-meteo" >
+        <p class="text-center font-weight-bold mb-0" id="historisation-meteo" >
             Recherche(en jours ouvrés)
         </p>
-        <div class="d-flex" id="historique-table"  >
+        <div class="d-flex" id="historisation-table"  >
             <div class="meteo-history-day-div pl-2">
                 <a class="meteo-history-day-link">Actuelle</a>
             </div>

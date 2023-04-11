@@ -2,14 +2,12 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/html">
 <head>
-
     <link type="text/css"  th:href="@{css/mailIncident.css}" rel="stylesheet">
 </head>
 <body >
 <section >
     </br></br></br>
     <form action="#" th:object="${incidentDto}">
-
             <div class="container bleu-adsn">
                 <div class="d-flex incident-form-control">
                     <img  src="cid:declaration-inc.png" class="mr-1 ml-1 mb-5" th:if="${incidentDto.incidentGraphicalCharter == 'Déclaration d''incident'}"/>
@@ -17,18 +15,13 @@
                     <img  src="cid:suivi-inc.png" class="mr-1 ml-1 mb-5" th:if="${incidentDto.incidentGraphicalCharter == 'En cours de traitement'}"/>
                 </div>
                 <hr style="border :1px solid rgba(0, 0, 0, 0.1);">
-
                   </br>
                 <div style="white-space:break-spaces;margin-left: 80px;margin-top: 30px;margin-bottom: 30px;">
-                    <div  th:each ="description : ${descriptions}">
-                        <span style="color:#203864;font-size:13pt;marging-bottom:0px;height:20px;" th:text="${description}"></span><br>
+                    <div class="bottom" th:each ="description : ${descriptions}">
+                        <span style="color:#203864;font-size:13pt;height:20px;" th:text="${description}"></span><br>
                     </div>
                 </div>
-
-
                 </br>
-
-
                 <table>
                     <p style="font-size:11pt;font-family:Calibri,sans-serif;margin:0;">
                         <b>

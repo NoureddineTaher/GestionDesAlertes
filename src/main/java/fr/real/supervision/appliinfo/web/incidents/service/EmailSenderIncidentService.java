@@ -50,11 +50,12 @@ public class EmailSenderIncidentService {
         Mail mail = Mail.builder().htmlTemplate(new Mail.HtmlTemplate("mailIncident", properties)).build();
         // Recuperer incidentDto
         properties.put("incidentDto", mailIncidentDto);
+        // Recuperer description
         if (mailIncidentDto.getDescription() != null) {
             properties.put("descriptions", mailIncidentDto.getDescription().split("\r?\n"));
-        } else
+        } else {
             properties.put("descriptions", new ArrayList<>());
-
+        }
 
         String[] destinations = mailIncidentDto.getIncidentDestination().split(" ");
 

@@ -390,6 +390,14 @@ ul.nav ul.dropdown-menu {
     overflow-wrap: break-word;
 }
 
+#corps {
+    width: 900px;
+}
+
+#botom {
+    overflow-wrap: break-word;
+}
+
 #prelookForm {
     padding-bottom: 10vh
 }
@@ -505,7 +513,7 @@ ul.nav ul.dropdown-menu {
     border-radius: 3px;
 }
 
-#historique-meteo {
+#historisation-meteo {
     padding: 1vh;
     color: white;
     background-color: #0a3f70;
@@ -518,6 +526,16 @@ ul.nav ul.dropdown-menu {
 }
 
 #historique-table {
+    padding: 1vh;
+    display: grid;
+    justify-content: space-between;
+    border: solid;
+    padding: 0;
+
+
+}
+
+#historisation-table {
     padding: 1vh;
     display: grid;
     justify-content: space-between;

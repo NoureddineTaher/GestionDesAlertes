@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
 public class HistorisationService {
     private static final Logger LOGGER = LoggerFactory.getLogger(HistorisationService.class);
     private final HistorisationRepository historisationRepository;
-    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
     public HistorisationService(HistorisationRepository historisationRepository) {
         this.historisationRepository = historisationRepository;
@@ -39,7 +37,6 @@ public class HistorisationService {
         historisationRepository.saveAll(meteoList);
         LOGGER.info("Enregistrement  de {}", meteoList);
 
-
     }
 
     private List<Historisation> populateHistorisationFromMeteoDtoToHistorisation(MeteoDto meteoDto, long id) {
@@ -53,7 +50,6 @@ public class HistorisationService {
 
             meteoList.addAll(meteoDto.getSection3());
         }
-        //boucler sur meteoList pour convertir de Meteo à la Historisation et setter le champs idMail avec l'id
         for (Meteo meteo : meteoList) {
             historisationslist.add(fromMeteoToHistorisation(meteo, id));
         }
@@ -62,17 +58,17 @@ public class HistorisationService {
 
     private Historisation fromMeteoToHistorisation(Meteo meteo, long id) {
         Historisation historisation = new Historisation();
-        historisation.setSection(meteo.getSection());
+        historisation.setSectionHistorisation(meteo.getSection());
         //taguer la section avec l'id du mail dans le champs idMail
         historisation.setIdMail(id);
-        historisation.setSection(meteo.getSection());
-        historisation.setAgendaPeriode(meteo.getAgendaPeriode());
-        historisation.setAgendaPerimetre(meteo.getAgendaPerimetre());
-        historisation.setDirectionActivite(meteo.getDirectionActivite());
-        historisation.setDirectionRelationClient(meteo.getDirectionRelationClient());
-        historisation.setIcone(meteo.getIcone());
-        historisation.setAgendaImpact(meteo.getAgendaImpact());
-        historisation.setALaUne(meteo.getALaUne());
+        historisation.setSectionHistorisation(meteo.getSection());
+        historisation.setAgendaPeriodeHistorisation(meteo.getAgendaPeriode());
+        historisation.setAgendaPerimetreHistorisation(meteo.getAgendaPerimetre());
+        historisation.setDirectionActiviteHistorisation(meteo.getDirectionActivite());
+        historisation.setDirectionRelationClientHistorisation(meteo.getDirectionRelationClient());
+        historisation.setIconeHistorisation(meteo.getIcone());
+        historisation.setAgendaImpactHistorisation(meteo.getAgendaImpact());
+        historisation.setALaUneHistorisation(meteo.getALaUne());
         historisation.setDateEnvoi(LocalDateTime.now());
         return historisation;
     }

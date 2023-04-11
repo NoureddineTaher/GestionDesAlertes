@@ -27,41 +27,39 @@ public class HistorisationController {
     public ModelAndView getHistorisationPage(@ModelAttribute("mailDto") MailDto mailDto) {
         ModelAndView modelAndView = new ModelAndView("historiques/historiqueMeteo");
         List<Historisation> historisationList = new ArrayList<>();
-        Historisation historisation1 = historisationRepository.findTop1ByIdMailOrderByDateEnvoiDesc(0);
+        Historisation historisation = historisationRepository.findTop1ByIdMailOrderByDateEnvoiDesc(0);
 
-        if (historisation1 != null) {
-            historisationList.addAll(historisationRepository.findByIdMail(historisation1.getId()));
+        if (historisation != null) {
+            historisationList.addAll(historisationRepository.findByIdMail(historisation.getId()));
         }
-
         MeteoDto meteoDto = new MeteoDto();
-        meteoDto.setTo(historisation1.getDistinataires());
-        meteoDto.setSubjectMail(historisation1.getObjet());
-
+        meteoDto.setTo(historisation.getDistinataires());
+        meteoDto.setSubjectMail(historisation.getObjet());
         List<Meteo> section1 = new ArrayList<>();
         List<Meteo> section2 = new ArrayList<>();
         List<Meteo> section3 = new ArrayList<>();
         List<Meteo> section4 = new ArrayList<>();
-        for (Historisation historisation : historisationList) {
-            if (historisation.getSection() != null && historisation.getSection() == 1) {
-                section1.add(fromHistorisationToMeteoDtoSection1(historisation));
+        for (Historisation historisationMeteo : historisationList) {
+            if (historisationMeteo.getSectionHistorisation() != null && historisationMeteo.getSectionHistorisation() == 1) {
+                section1.add(fromHistorisationToMeteoDtoSection1(historisationMeteo));
                 meteoDto.setSection1(section1);
             }
         }
-        for (Historisation historisation : historisationList) {
-            if (historisation.getSection() != null && historisation.getSection() == 2) {
-                section2.add(fromHistorisationToMeteoDtoSection1(historisation));
+        for (Historisation historisationMeteo : historisationList) {
+            if (historisationMeteo.getSectionHistorisation() != null && historisationMeteo.getSectionHistorisation() == 2) {
+                section2.add(fromHistorisationToMeteoDtoSection1(historisationMeteo));
                 meteoDto.setSection2(section2);
             }
         }
-        for (Historisation historisation : historisationList) {
-            if (historisation.getSection() != null && historisation.getSection() == 3) {
-                section3.add(fromHistorisationToMeteoDtoSection1(historisation));
+        for (Historisation historisationMeteo : historisationList) {
+            if (historisationMeteo.getSectionHistorisation() != null && historisationMeteo.getSectionHistorisation() == 3) {
+                section3.add(fromHistorisationToMeteoDtoSection1(historisationMeteo));
                 meteoDto.setSection3(section3);
             }
         }
-        for (Historisation historisation : historisationList) {
-            if (historisation.getSection() != null && historisation.getSection() == 4) {
-                section4.add(fromHistorisationToMeteoDtoSection1(historisation));
+        for (Historisation historisationMeteo : historisationList) {
+            if (historisationMeteo.getSectionHistorisation() != null && historisationMeteo.getSectionHistorisation() == 4) {
+                section4.add(fromHistorisationToMeteoDtoSection1(historisationMeteo));
                 meteoDto.setSection4(section4);
             }
         }
@@ -72,18 +70,18 @@ public class HistorisationController {
         return modelAndView;
     }
 
-    private Meteo fromHistorisationToMeteoDtoSection1(Historisation historisation) {
+    private Meteo fromHistorisationToMeteoDtoSection1(Historisation historisationMeteo) {
         Meteo meteo = new Meteo();
-        meteo.setId(historisation.getId());
-        meteo.setSection(historisation.getSection());
-        meteo.setALaUne(historisation.getALaUne());
-        meteo.setDirectionRelationClient(historisation.getDirectionRelationClient());
-        meteo.setIcone(historisation.getIcone());
-        meteo.setAgendaImpact(historisation.getAgendaImpact());
-        meteo.setDirectionActivite(historisation.getDirectionActivite());
-        meteo.setAgendaNatureIntervention(historisation.getAgendaNatureIntervention());
-        meteo.setAgendaPerimetre(historisation.getAgendaPerimetre());
-        meteo.setAgendaPeriode(historisation.getAgendaPeriode());
+        meteo.setId(historisationMeteo.getId());
+        meteo.setSection(historisationMeteo.getSectionHistorisation());
+        meteo.setALaUne(historisationMeteo.getALaUneHistorisation());
+        meteo.setDirectionRelationClient(historisationMeteo.getDirectionRelationClientHistorisation());
+        meteo.setIcone(historisationMeteo.getIconeHistorisation());
+        meteo.setAgendaImpact(historisationMeteo.getAgendaImpactHistorisation());
+        meteo.setDirectionActivite(historisationMeteo.getDirectionActiviteHistorisation());
+        meteo.setAgendaNatureIntervention(historisationMeteo.getAgendaNatureInterventionHistorisation());
+        meteo.setAgendaPerimetre(historisationMeteo.getAgendaPerimetreHistorisation());
+        meteo.setAgendaPeriode(historisationMeteo.getAgendaPeriodeHistorisation());
         return meteo;
     }
 }

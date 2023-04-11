@@ -27,32 +27,32 @@ public class Historisation implements Serializable {
     private String objet;
     @Column(name = "distinataires", length = 250)
     private String distinataires;
-    @Column(name = "SECTION", nullable = false)
-    private Long section;
+    @Column(name = "SECTION_HISTORISATION", nullable = false)
+    private Long sectionHistorisation;
 
-    @Column(name = "A_LA_UNE")
-    private String aLaUne;
+    @Column(name = "LA_UNE_HISTORISATION")
+    private String aLaUneHistorisation;
 
-    @Column(name = "ICONE", length = 25)
-    private String icone;
+    @Column(name = "ICONE_HISTORISATION", length = 25)
+    private String iconeHistorisation;
 
-    @Column(name = "DIRECTION_ACTIVITE")
-    private String directionActivite;
+    @Column(name = "DIRECTION_ACTIVITE_HISTORISATION")
+    private String directionActiviteHistorisation;
 
-    @Column(name = "DIRECTION_RELATION_CLIENT")
-    private String directionRelationClient;
+    @Column(name = "DIRECTION_RELATION_CLIENT_HISTORISATION")
+    private String directionRelationClientHistorisation;
 
-    @Column(name = "AGENDA_PERIODE")
-    private String agendaPeriode;
+    @Column(name = "AGENDA_PERIODE_HISTORISATION")
+    private String agendaPeriodeHistorisation;
 
-    @Column(name = "AGENDA_PERIMETRE")
-    private String agendaPerimetre;
+    @Column(name = "AGENDA_PERIMETRE_HISTORISATION")
+    private String agendaPerimetreHistorisation;
 
-    @Column(name = "AGENDA_NATURE_INTERVENTION")
-    private String agendaNatureIntervention;
+    @Column(name = "AGENDA_NATURE_HISTORISATION")
+    private String agendaNatureInterventionHistorisation;
 
-    @Column(name = "AGENDA_IMPACT")
-    private String agendaImpact;
+    @Column(name = "AGENDA_IMPACT_HISTORISATION")
+    private String agendaImpactHistorisation;
 
     @Column(name = "date_Envoi")
     private LocalDateTime dateEnvoi;
