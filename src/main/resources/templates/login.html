@@ -1,0 +1,105 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE html>
+
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<head>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+	
+</head>
+
+<body>
+
+	
+
+	<section layout:fragment="content">
+		
+	
+		<div class="container text-center my-4">
+	    	<div class="bg-adsn-blue rounded text-center text-white pt-2 pb-2">
+				<h1><span class="text-adsn-grey">F</span>LASH <span class="text-adsn-grey">I</span>NFO<span class="text-adsn-grey"> N</span>UMERIQUE</h1>
+			    <h2><span class="text-adsn-grey">Bienvenue sur l'outil d'hypervision.</span></h2>
+			</div>
+        </div>
+	
+		<div class="d-flex justify-content-center container my-5">
+			<div class="user_card my-5 p-3 w">
+			
+				<div class="d-flex justify-content-center h-25">
+					<div  class="brand_logo_container">
+						<img src="/images/logo-ADSN.png" class="brand_logo bg-white" alt="ADSN"/>
+					</div>
+				</div>
+			
+				<div th:if="${param.error}" class="d-flex justify-content-center" id="login-error-container">
+					<div class="alert alert-danger alert-dismissible fade show">
+						Nom d'utilisateur ou mot de passe invalide.
+						
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						    <span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+				
+				<div th:if="${param.logout}" class="d-flex justify-content-center" id="logout-container">
+					<div class="alert alert-info alert-dismissible fade show">
+						Vous avez ete deconnecte.
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						    <span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+				
+				<div class="d-flex justify-content-center h-100">
+					<form th:action="@{/login}" method="post">
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user fa-fw"></i></span>
+							</div>
+							<input type="text" id="username" name="username" class="form-control input_user" value="" autofocus="autofocus"/>
+						</div>
+						
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key fa-fw"></i></span>
+							</div>
+							<input type="password" id="password" name="password" class="form-control input_pass" value=""/>
+						</div>
+						
+						<div class="form-group mb-4">
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customControlInline"/>
+								<label class="custom-control-label" for="customControlInline">Se souvenir de moi</label>
+							</div>
+						</div>
+					
+						<div class="d-flex justify-content-center login_container">
+							<button type="submit" name="login-submit" id="login-submit" class="btn btn-primary w-100">Se connecter</button>
+						</div>
+						
+					</form>
+				</div>
+					
+<!-- 				<div class="mt-4"> -->
+<!-- 					<div class="d-flex justify-content-center links"> -->
+<!-- 						Veuillez vous connecter avec votre compte AD -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+				
+<!-- 				<br/> -->
+				
+			</div>
+		</div>
+		
+	</section>
+	<footer layout:fragment="footerContent" id="main-footer">
+		<div id="footer-legal" class="fixed-bottom">
+			© GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+		</div>
+	</footer>
+</body>
+</html>

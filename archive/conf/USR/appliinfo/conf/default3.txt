@@ -1,0 +1,70 @@
+COLS = 0
+
+TEST0
+
+TEST1
+* REAL_APPLI_Test_Minor
+* REAL_APPLI_Test_Warning
+* CLOUD_INOTR_Log_Critical
+* ADSN_NT_Process_CPU_Critical_Wa
+* Controle_Chaine_FCB_Warning
+* IPNonPresente
+* KLO_Log_Agent_Config_Error
+* Linux_Low_Percent_Space_2_Warni
+* Maintenance_BDD
+* MySQL_Status_Replication
+* NT_Logical_Disk_Space_Warning
+* NT_System_CPU_Critical
+* Ping
+* REAL_MUT_HABackend_Critical
+* REAL_PKI_ETAT_DOWN
+* REAL_PKI_ETAT_UP
+* REAL_WindowsOS_CPU_Critical
+* TEMS_Alert
+* REAL_ANF_Exploit_Critical
+
+TEST2
+* REAL_APPLI_Test_Minor
+* REAL_APPLI_Test_Warning
+* CLOUD_INOTR_Log_Critical
+* ADSN_NT_Process_CPU_Critical_Wa
+* Controle_Chaine_FCB_Warning
+* IPNonPresente
+* KLO_Log_Agent_Config_Error
+* CLOUD_PERVAL_Log_Critical
+
+TEST3
+* REAL_APPLI_Test_Minor
+* REAL_APPLI_Test_Warning
+* CLOUD_INOTR_Log_Critical
+* ADSN_NT_Process_CPU_Critical_Wa
+
+TEST4
+* Controle_Chaine_FCB_Warning
+* REAL_MICE_KAFKA_Critical
+
+TEST5
+* REAL_APPLI_Test_Minor
+* REAL_APPLI_Test_Warning
+
+TEST6
+* IPNonPresente
+
+TEST7
+* REAL_APPLI_Test_Minor
+* REAL_APPLI_Test_Warning
+* IPNonPresente
+
+ABCDEFGHIJKLMNOPQRST
+* REAL_APPLI_Test_Fatal
+* REAL_APPLI_Test_Critical
+* REAL_APPLI_Test_Minor
+* REAL_APPLI_Test_Warning
+* REAL_PKI_ETAT_DOWN
+* REAL_Splunk_Agent_Critical
+
+TEST9
+* Maintenance_BDD
+* TEMS_Alert
+* REAL_PKI_ETAT_UP
+* REAL_3Par_Critical

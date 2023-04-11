@@ -1,0 +1,140 @@
+@startuml
+
+!define table(x) class x << (T,#ffebf3) >>
+hide methods
+hide stereotypes
+skinparam classFontColor #3b0018
+skinparam classArrowColor #ff0066
+skinparam classBorderColor #ff0066
+skinparam classBackgroundColor ##f6f4ee
+skinparam shadowing false
+
+table(alarm) {
+    {field} +id			bigint(20)
+    {field} description	?varchar(255)
+    {field} name		varchar(255)
+    {field} weight		int(11)
+}
+
+
+table(alarm_event) {
+    {field} +id				bigint(20)
+    {field} start			?datetime
+    {field} alarm_id		?bigint(20)
+    {field} alert_job_id	?bigint(20)
+}
+
+alarm <-- alarm_event : on alarm_id = id
+job_event <-- alarm_event : on alert_job_id = id
+
+table(alert) {
+    {field} +id				bigint(20)
+    {field} description		?varchar(255)
+    {field} last_mail_sent	?datetime
+    {field} last_sms_sent	?datetime
+    {field} mailjno			?bit(1)
+    {field} mailjo			?bit(1)
+    {field} name			?varchar(255)
+    {field} smsjno			?bit(1)
+    {field} smsjo			?bit(1)
+    {field} application_id	?bigint(20)
+}
+
+category <-- alert : on application_id = id
+
+table(alert_alarms) {
+    {field} +alerts_id	bigint(20)
+    {field} +alarms_id	bigint(20)
+}
+
+alert <-- alert_alarms : on alerts_id = id
+alarm <-- alert_alarms : on alarms_id = id
+
+table(alert_diffusion_groups) {
+    {field} +alert_id			bigint(20)
+    {field} +diffusion_groups_id	bigint(20)
+}
+
+alert <-- alert_diffusion_groups : on alert_id = id
+diffusion_group <-- alert_diffusion_groups : on diffusion_groups_id = id
+
+table(alert_event) {
+    {field} +id				bigint(20)
+    {field} mail_sent		?datetime
+    {field} sms_sent		?datetime
+    {field} start			?datetime
+    {field} weight_sum		?int(11)
+    {field} alert_id		?bigint(20)
+    {field} alert_job_id	?bigint(20)
+}
+
+alert <-- alert_event : on alert_id = id
+job_event <-- alert_event : on alert_job_id = id
+
+table(category) {
+    {field} +id			bigint(20)
+    {field} description	?varchar(255)
+    {field} name		varchar(255)
+}
+
+
+table(contact) {
+    {field} +id			bigint(20)
+    {field} email		?varchar(255)
+    {field} firstname	varchar(255)
+    {field} name		varchar(255)
+    {field} phone		?varchar(255)
+}
+
+
+table(diffusion_group) {
+    {field} +id			bigint(20)
+    {field} description	?varchar(255)
+    {field} name		varchar(255)
+}
+
+
+table(diffusion_group_contacts) {
+    {field} +diffusion_groups_id	bigint(20)
+    {field} +contacts_id			bigint(20)
+}
+
+diffusion_group <-- diffusion_group_contacts : on diffusion_groups_id = id
+contact <-- diffusion_group_contacts : on contacts_id = id
+
+table(flyway_schema_history) {
+    {field} +installed_rank	int(11)
+    {field} version			?varchar(50)
+    {field} description		varchar(200)
+    {field} type			varchar(20)
+    {field} script			varchar(1000)
+    {field} checksum		?int(11)
+    {field} installed_by	varchar(100)
+    {field} installed_on	timestamp
+    {field} execution_time	int(11)
+    {field} success			tinyint(1)
+}
+
+
+table(hibernate_sequence) {
+    {field} next_val	?bigint(20)
+}
+
+
+table(job_event) {
+    {field} +id		bigint(20)
+    {field} end		?datetime
+    {field} start	?datetime
+    {field} type	?varchar(255)
+}
+
+
+table(mail_template) {
+    {field} +id			bigint(20)
+    {field} name		varchar(255)
+    {field} subject		?varchar(255)
+    {field} template	?varchar(255)
+}
+
+
+@enduml

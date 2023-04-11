@@ -1,0 +1,1 @@
+ALTER TABLE appinfo_sch.alert_event ADD (ALERT_EVENT_END TIMESTAMP);

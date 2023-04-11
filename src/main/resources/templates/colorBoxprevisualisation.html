@@ -1,0 +1,6 @@
+<div th:fragment="myColorBoxPrelook(couleurs)" class="meteo-aplat">
+    <img th:align="right" th:if="${couleurs}=='rouge'" th:src="@{'/images/Picto-Rouge.png'}" />
+    <img th:align="right" th:if="${couleurs}=='jaune'" th:src="@{'/images/Picto-Jaune.png'}" />
+    <img th:align="right" th:if="${couleurs}=='vert'" th:src="@{'/images/Picto-vert.png'}" />
+
+</div>

@@ -1,0 +1,9 @@
+
+<div  th:fragment="myPictogramBoxPrelook(icone)">
+    <img th:align="right" th:if="${icone}=='rouge'" th:src="@{'/images/Picto-Rouge.png'}" />
+    <img th:align="right" th:if="${icone}=='jaune'" th:src="@{'/images/Picto-Jaune.png'}" />
+    <img th:align="right" th:if="${icone}=='vert'" th:src="@{'/images/Picto-vert.png'}" />
+    <img th:align="right" th:if="${icone}=='gris'" th:src="@{'/images/Picto-Gris.png'}" />
+    <img th:align="right" th:if="${icone}=='bleu'" th:src="@{'/images/Picto-Bleu.png'}" />
+    <img th:align="right" th:if="${icone}=='violet'" th:src="@{'/images/Picto-violet.png'}" />
+</div>

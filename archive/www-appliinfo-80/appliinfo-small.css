@@ -1,0 +1,14 @@
+div.app {
+   height: 20px;
+   font-size: 100%;
+}
+div.app > img {
+   width: 20px;
+   height: 20px;
+}
+#banner {
+height: 100px;
+}
+#banner img {
+height: 100px;
+}

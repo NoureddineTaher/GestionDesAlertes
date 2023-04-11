@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+
+<body >
+<section layout:fragment="content">
+    </br></br></br>
+    <form action="#" th:action="@{/meteos/send}" th:object="${meteodto}" method="post">
+    <div class="container bleu-adsn">
+        <div class="row">
+            <div class="form-group col-md-2 ">
+                <label class="col-form-label h7 ">Emetteur : </label>
+            </div>
+            <div class="form-group col-md-10 ">
+                <input class="form-control bleu-adsn" th:field="*{from}" readonly>
+            </div>
+            </br>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-2 ">
+                <label class="col-form-label h7 ">Liste de diffusion  : </label>
+            </div>
+            <div class="form-group col-md-10" id="diffusion-group-div">
+                <textarea id="list-diffusion" rows="3"  class="form-control bleu-adsn"  th:field="*{to}" th:oninput="onInputDiffusionList()" required></textarea>
+            </div>
+            <small id="diffusionGroupError">Une adresse mail ou un groupe de diffusion n'est pas au bon format</small>
+            </br>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-2 ">
+                <label class="col-form-label h7 ">Objet : </label>
+            </div>
+            <div class="form-group col-md-10 ">
+                <input class="form-control bleu-adsn"  th:field="*{subjectMail}" required>
+            </div>
+            </br>
+        </div>
+    </div>
+
+<!--    <form action="#" th:action="@{/meteos/saveall}" th:object="${meteodto}" method="post">-->
+        <br />
+        <div class="container">
+            <img src="/images/meteo.png" class="mr-1 ml-1 mb-5" alt="Groupe ADSN" /></span>
+            <h2>A LA UNE </h2>
+            <div class="row" th:each="meteo1  : ${meteodto.section1}">
+
+                <div class="form-group col-md-9 ">
+                    <div  rows="12" type="text" style="border: none; height: auto;" class="form-control bleu-adsn"
+
+                             >
+                        [(${meteo1.aLaUne})]
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h2>METEO DU JOUR</h2>
+            <div>
+                <img src="/images/img_1.png" class="mr-1 ml-1" alt="Groupe ADSN" />
+
+            </div></br>
+
+            <div class="row meteo-aplat" th:onclick="|window.location.href='/meteos'|"
+                 th:each="meteo2 : ${meteodto.section2}">
+                <div class="form-group col-md-2 "></br>
+                    <div th:replace="colorBoxprevisualisation :: myColorBoxPrelook(${meteo2.icone})"></div>
+                </div>
+                <div class="form-group col-md-10 ">
+                    <label class="col-form-label h7">Direction des Activités :</label></br>
+
+                    <div  rows="12" type="text" style="border: none; height: auto;background-color: #F3F3F3;" class="form-control bleu-adsn"
+
+                    >
+                        [(${meteo2.directionActivite})]
+
+                    </div>
+                </div>
+            </div>
+            <div class="row meteo-aplat" th:onclick="|window.location.href='/meteos'|"
+                 th:each="meteo4 : ${meteodto.section4}">
+                <div class="form-group col-md-2 ">
+                    <div th:replace="colorBoxprevisualisation :: myColorBoxPrelook(${meteo4.icone})"></div>
+
+                </div>
+                <div class="form-group col-md-10 ">
+                    <label class="col-form-label h7">Direction de la relation client:</label></br>
+                    <div  rows="12" type="text" style="border: none; height: auto;background-color: #F3F3F3;" class="form-control bleu-adsn"
+
+                    >
+                        [(${meteo4.directionRelationClient})]
+
+                    </div>
+                </div>
+            </div>
+            </br><!--<img src="/images/legende_meteo.png" class="mr-1 ml-1" alt="Groupe ADSN" width="601"
+                      height="138" /></br></br>-->
+            <table class="meteo-history-table">
+                <tr>
+                    <td class="legende-image">
+                        <img  th:align="right" src="/images/Picto-vert-resized.png"  />
+                    </td>
+                    <td >
+                        <p  class="legend-description">Toutes les applications sont disponibles</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td  class="legende-image">
+                        <img  th:align="right" src="/images/Picto-Jaune-resized.png"  />
+                    </td>
+                    <td>
+                        <p  class="legend-description">Applications ou fonctionnalités disponibles en mode dégradé</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td  class="legende-image">
+                        <img  th:align="right" src="/images/Picto-Rouge-resized.png"   />
+                    </td>
+                    <td>
+                        <p class="legend-description">Applications ou fonctionnalités indisponibles</p>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <br>
+        </div>
+        <div class="container">
+            <h2>AGENDA DES OPERATIONS </h2>
+            <div class="row" th:each="meteo3 : ${meteodto.section3}">
+                <div class="form-group col-md-2  bleu-adsn">
+                    <div th:replace="pictogramBoxPrevisualisation :: myPictogramBoxPrelook(${meteo3.icone})"></div>
+                </div>
+                <div class="form-group col-md-10 bleu-adsn">
+                    <label class="h8" th:text="${meteo3.agendaPeriode}"></label></br>
+                    <label class="col-form-label" th:text="${meteo3.agendaPerimetre}"></label></br>
+                    <label class="h7">Nature d’intervention : </label>
+                    <label class="col-form-label" th:text="${meteo3.agendaPerimetre}"></label></br>
+                    <label class="h7">Impact : </label>
+                    <label class="col-form-label" th:text="${meteo3.agendaImpact}"></label>
+                    </br>
+                </div>
+            </div>
+            </br>
+            <table class="meteo-history-table">
+                <tr>
+                    <td class="legende-image">
+                        <img  th:align="right" src="/images/Picto-vert-resized.png"  />
+                    </td>
+                    <td >
+                        <p  class="legend-description">Opération réalisée avec succès</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td  class="legende-image">
+                        <img  th:align="right" src="/images/Picto-Jaune-resized.png"  />
+                    </td>
+                    <td>
+                        <p  class="legend-description">Opération en cours</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td  class="legende-image">
+                        <img  th:align="right" src="/images/Picto-Bleu-resized.png"   />
+                    </td>
+                    <td>
+                        <p class="legend-description">Opération en cours - dépassement de l'heure prévue</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td  class="legende-image">
+                        <img  th:align="right" src="/images/Picto-violet-resized.png"   />
+                    </td>
+                    <td>
+                        <p class="legend-description">Opération reportée ou annulée</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td  class="legende-image">
+                        <img  th:align="right" src="/images/Picto-Gris-resized.png"   />
+                    </td>
+                    <td>
+                        <p class="legend-description">Opération ayant nécessité un retour arrière</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td  class="legende-image">
+                        <img  th:align="right" src="/images/Picto-Rouge-resized.png"   />
+                    </td>
+                    <td>
+                        <p class="legend-description">Opération ayant provoqué un incident</p>
+                    </td>
+                </tr>
+            </table>
+            </br>
+            </br></br>
+        </div>
+        <Button th:onclick="|window.location.href='/meteos'|" type="button" name="action" class="btn btn-success mb-3"
+                value="save">Revenir au mode édition</Button>
+        <Button type="submit" name="action" class="btn btn-success mb-3" id="send-mail-button" value="send">Envoyer</Button>
+    </form>
+
+</section>
+<section layout:fragment="javascripts">
+</section>
+
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+TITLE = Pôle Communication
+COLS = 1
+
+COEUR DE METIER
+* CLOUD_CDM_Robot_Fatal
+
+INSTITUT DU DEVELOPPEMENT
+* CLOUD_IDD_Robot_Fatal
+* CLOUD_IDD_TestLogin_Critical
+
+KCN
+* CLOUD_KCN_Robot_Fatal
+
+MEDIATION
+* CLOUD_MEDIATION_Robot_Fatal
+
+PRISME OFFICE
+* Test_Exploit_Prisme
+* CLOUD_PRISME_CIFS_Critical
+* CLOUD_PRISME2_Robot_Fatal
+* CLOUD_PRISME2_Cluster_Critical
+
+SITE GROUPE ADSN
+* CLOUD_SiteWebADSN_Robot_Fatal
+* CLOUD_SiteWebADSN_TCPBDD_Critic
+* CLOUD_SiteWebADSN_BDD_Critical
+* CLOUD_SiteWebADSN_Apache_Critic
+
+SITE MEDIATEUR CONSO
+* CLOUD_MDLC_Robot_Fatal
+
+SITE PARLEMENTAIRE
+* CLOUD_SPA_Robot_Fatal
+* CLOUD_SPA_Apache_Critical
+* CLOUD_SPA_TestBDD_Critical
+

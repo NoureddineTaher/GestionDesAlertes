@@ -1,0 +1,602 @@
+.font-small {
+    font-size: small;
+}
+
+.fa-check-circle {
+    color: green;
+}
+
+.fa-exclamation-triangle {
+    color: orange;
+}
+
+.fa-times-circle {
+    color: red;
+}
+
+/* Needed for composition of FontAwesome icons */
+.fa-stack {
+    font-size: 0.5em;
+}
+
+
+.error-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.error-actions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.error-actions .btn {
+    margin-right: 10px;
+}
+
+table.dataTable {
+    margin-top: 0px !important;
+}
+
+td.min {
+    width: 1%;
+    white-space: nowrap;
+}
+
+table .btn-sm, .btn-group-sm > .btn {
+    padding: 0.00rem 0.5rem;
+}
+
+table.table-hover tbody tr .glyphicon {
+    visibility: hidden;
+    border: 1px solid;
+
+}
+
+table.table-hover tbody tr:hover .glyphicon {
+    visibility: visible;
+    border: 1px solid;
+}
+
+.title_information {
+    font-size: 1.2em;
+}
+
+.sms_creneau {
+    margin-top: 205px;
+}
+
+.astreinte_creneau {
+    margin-top: 280px;
+}
+
+.liste_diffusion {
+    margin-top: 80px;
+}
+
+p.lastupdate {
+    font-size: 80%;
+    border-top: 1px #909090 dotted;
+    color: #909090;
+    text-align: center;
+    padding-top: 5px;
+}
+
+
+h1 {
+    font-size: 200%;
+    color: #007fbc;
+    margin-top: 0;
+    margin-bottom: 9px;
+}
+
+h2 {
+    font-size: 130%;
+    color: #0a3f70;
+    margin-top: 0;
+    margin-bottom: 9px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #1f9bd5;
+}
+
+.h7 {
+    font-size: 110%;
+    color: #0a3f70;
+    margin-top: 0;
+    margin-bottom: 9px;
+    font-weight: bolder;
+    font-family: Tahoma;
+}
+
+.h8 {
+
+    font-size: 110%;
+    color: #cdc0a2e6;
+    margin-top: 0;
+    margin-bottom: 9px;
+    font-weight: bolder;
+    font-family: Tahoma;
+
+}
+
+.bg-grey {
+    background-color: #dedede;
+}
+
+.navbar-nav li:hover > ul.dropdown-menu {
+    display: block;
+}
+
+.label1 {
+    color: #0a3f70;
+
+    font-size: 14px;
+!important;
+
+    font-family: sans-serif;
+}
+
+.bleu-adsn {
+    color: #0a3f70;
+}
+
+div#save {
+    position: fixed;
+    bottom: 35px;
+
+}
+
+#status-submenu {
+    padding-bottom: 0px;
+    padding-top: 0px
+}
+
+#status {
+    width: 50% !important
+}
+
+#information {
+    padding-right: 23px
+}
+
+.statusIcon {
+    width: 20px;
+    height: 20px;
+}
+
+
+.inactive-grey {
+    background-color: #dfd8cce6 !important;
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+.grey {
+    background-color: #dfd8cce6 !important;
+}
+
+.toast {
+    padding: 0 !important;
+    position: fixed;
+    top: 10vh;
+    right: 2.5vw;
+    z-index: 100;
+}
+
+.statusIcon {
+    width: 20px;
+    height: 20px;
+
+}
+
+#domain-name {
+    font-family: Georgia, serif;
+    font-weight: bold;
+    color: #0a3f70;
+}
+
+#information-section {
+    padding-bottom: 30vh;
+}
+
+.date-footer {
+    opacity: 1;
+    position: fixed;
+    bottom: 0px;
+    background-color: #cccca9;
+    height: 4.2vh;
+    width: 100vw !important;
+    z-index: 205;
+    font-weight: 600;
+}
+
+#information-date-text {
+    padding-left: 40vw;
+    margin-bottom: 0;
+    color: #414a92;
+    width: 100vw !important;
+}
+
+#statut-meteo {
+    text-transform: none !important
+}
+
+.hideticket {
+    display: none;
+}
+
+.alerts-div {
+
+    padding-left: 10vw;
+    min-height: 25vh
+}
+
+.application-status {
+    background-color: #E6D1F2;
+    border-radius: 10px;
+    margin-bottom: 0;
+    height: fit-content;
+
+}
+
+.icones-div {
+    text-align: center;
+    padding-top: 7vh
+}
+
+.tool {
+    cursor: pointer;
+}
+
+.dropdown-menu .nav-link:hover {
+    background-color: #0a3f70 !important;
+    color: #d0d0d0 !important
+
+}
+
+.meteo-aplat {
+    background-color: #F3F3F3
+}
+
+.versionApps {
+    float: right !important;
+    font-weight: bold;
+    color: #304575;
+}
+
+.mail-titles {
+    font-size: 130%;
+    color: #0a3f70;
+    margin-top: 0;
+    margin-bottom: 9px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.legende-image {
+    padding-right: 10px
+}
+
+.legend-description {
+    font-size: 1em;
+    color: #C0C0C0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+#diffusionGroupError {
+    display: none;
+    color: red;
+    padding-left: 13.5vw
+}
+
+
+.legende-image {
+    padding-right: 10px
+}
+
+.legend-description {
+    font-size: 1em;
+    color: #C0C0C0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+#diffusionGroupError {
+    display: none;
+    color: red;
+    padding-left: 13.5vw
+}
+
+.adsn-domain-titles {
+    font-family: Georgia, serif;
+    text-decoration: none;
+    color: #0a3f70;
+    padding-bottom: 1vh;
+}
+
+.arrow-head {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #ffa500;
+    position: relative;
+}
+
+.left-arrow {
+    width: 2vw;
+    height: 8vh;
+    background-color: #0a3f70;
+    border-left: 0.1rem solid #ffa500;
+    border-bottom: 0.1rem solid #ffa500;
+}
+
+.right-arrow {
+    width: 2vw;
+    height: 8vh;
+    background-color: #0a3f70;
+    border-right: 0.1rem solid #e0b462;
+    border-bottom: 0.1rem solid #e0b462;
+}
+
+.arrow-index-text {
+    margin-bottom: 0;
+
+}
+
+ul.nav ul.dropdown-menu {
+    width: 9.5vw;
+}
+
+#communication, #configuration {
+    width: 9.5vw;
+}
+
+#navbar-lien-maintenances {
+    width: 7.5vw
+}
+
+.incident-form-control {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    width: 55vw;
+}
+
+.incident-input {
+    width: max-content;
+}
+
+#previsual-incident {
+    background-color: #304575;
+    color: #ebe2c9;
+    width: 10vw;
+}
+
+#prelook-incident-details-div {
+    cursor: pointer;
+}
+
+.bottom {
+    overflow-wrap: break-word;
+}
+
+#prelookForm {
+    padding-bottom: 10vh
+}
+
+.incident-details-interruption {
+    padding-left: 4vw;
+    padding-top: 2vh;
+    padding-bottom: 6vh
+}
+
+.ticket-date {
+    margin-bottom: 0;
+    padding-left: 0.5vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    border: 0.5px solid #32a1ce;
+    border-radius: 50%;
+}
+
+.dot-cg {
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    border: 0.5px solid #32a1ce;
+    border-radius: 50%;
+    position: relative;
+    left: 8px;
+    top: 12px;
+}
+
+.orange-cg {
+
+    height: 55px;
+    width: 55px;
+    background-color: #cd5f0a;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.red-cg {
+
+    height: 55px;
+    width: 55px;
+    background-color: #FF3333;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+#incident-prelook-details {
+    background-color: #dadada;
+    padding-left: 1vw;
+    padding-bottom: 0.5vh;
+    padding-top: 0.5vh;
+
+}
+
+.prelook-button {
+    height: 4vh;
+    width: 12vw;
+}
+
+.incident-chart-label {
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 2px;
+    padding-left: 1vw;
+}
+
+.choosed-chart {
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 2px;
+    padding-left: 1vw;
+    opacity: 1 !important;
+}
+
+.incident-chart-label {
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 2px;
+    padding-left: 1vw;
+}
+
+.choosed-chart {
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 2px;
+    padding-left: 1vw;
+    opacity: 1 !important;
+}
+
+#historique-title {
+    width: 100%;
+    padding: 1vh;
+    color: white;
+    background-color: #0a3f70;
+    border-radius: 3px;
+}
+
+#historique-meteo {
+    padding: 1vh;
+    color: white;
+    background-color: #0a3f70;
+    border-radius: 3px;
+}
+
+.meteo-history-day-link {
+    font-size: smaller;
+    font-weight: 600;
+}
+
+#historique-table {
+    padding: 1vh;
+    display: grid;
+    justify-content: space-between;
+    border: solid;
+    padding: 0;
+
+
+}
+
+.meteo-history-day-div {
+    border-right: 0.2rem solid #acd4f4;
+    padding-right: 0.2vw;
+
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+#historique-research-input {
+    width: 100%;
+    border-radius: 3px;
+    height: 5vh;
+
+}
+
+#historique-table-body td {
+    text-align: center;
+}
+
+#historique-table-body p {
+    margin-bottom: 0;
+}
+
+.maintenance-id {
+    display: none;
+}
+
+.trash-group-icon {
+    cursor: pointer;
+}
+
+#statut-si {
+    text-transform: none !important
+}
+
+.incidentEmailError {
+    display: none;
+    color: red;
+    padding-left: 3vw;
+    padding-bottom: 1vh;
+}
+
+#prelook-destinaion-div {
+    height: 2.2vh;
+}
+
+#aide {
+    width: 4.5vw;
+}
+
+.meteo-history-table td {
+    border: none;
+}
+
+
+@media only screen and (min-width: 1200px) and (min-height: 900px) {
+    .bandeau {
+
+        top: 87vh !important;
+
+    }
+
+    #diffusionGroupError {
+        padding-left: 10.6vw
+    }
+}

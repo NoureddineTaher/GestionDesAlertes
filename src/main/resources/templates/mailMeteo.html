@@ -1,0 +1,176 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Appli INFO</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo-ADSN.png" />
+    <!-- Precharger la font pour éviter le lag d'affichage des icones au chargement des pages -->
+    <link rel="preload" as="font" href="/css/fontawesome-free/webfonts/fa-solid-900.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/fonts/open-sans-v17-latin-regular.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/fontawesome-free/css/all.min.css" th:href="@{css/fontawesome-free/css/all.min.css}" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"  th:href="@{css/bootstrap.min.css}" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/site.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-duallistbox.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/slider.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/dataTables.bootstrap4.min.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{css/style.css}" />
+
+</head>
+<body >
+<form action="#"  th:object="${meteodto}">
+        <div class="container">
+            <img src="cid:meteo.png" class="mr-1 ml-1 mb-5"  /></span>
+            <h2 style="font-size: 130%;color: #0a3f70;margin-top: 0;margin-bottom: 9px;text-decoration: underline;font-weight: bold;">A LA UNE </h2>
+            <div  class="row" th:each="meteo1  : ${meteodto.section1}">
+                <div class="form-group col-md-9 ">
+                    <div  style="border: none; height: auto;color: #0a3f70;margin-left:20px" >
+                        [(${meteo1.aLaUne})]
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br />
+    <br />
+
+        <div class="container" style="">
+            <h2 style="font-size: 130%;color: #0a3f70;margin-top: 0;margin-bottom: 9px;text-decoration: underline;font-weight: bold;" >METEO DU JOUR</h2>
+            <div>
+                <img  src="cid:img_1.png" class="mr-1 ml-1"  />
+            </div></br>
+            <table style="background-color: #F3F3F3;padding-top:10px;">
+            <tr  th:each="meteo2 : ${meteodto.section2}" >
+                <td style="padding-left:80px">
+                    <img th:align="right" th:if="${meteo2.icone}=='rouge'" src="cid:Picto-Rouge.png" />
+                    <img style="" th:align="right" th:if="${meteo2.icone}=='jaune'" src="cid:Picto-Jaune.png" />
+                    <img th:align="right" th:if="${meteo2.icone}=='vert'" src="cid:Picto-vert.png" />
+                </td>
+                <td style="padding-left:20px ; padding-right:60px">
+                    <h2 style="font-size: 110%;color: #0a3f70;margin-top: 0;margin-bottom: 9px;font-weight: bold;">Direction des Activités :</h2></br>
+                    <div  style="border: none; height: auto;color: #0a3f70;margin-left:10px;" >
+                        [(${meteo2.directionActivite})]
+                    </div>
+                </td>
+            </tr>
+            <tr style="padding-top:30px;padding-bottom:20px" th:each="meteo4 : ${meteodto.section4}">
+                <td style="padding-left:80px;">
+                    <img th:align="right" th:if="${meteo4.icone}=='rouge'"  src="cid:Picto-Rouge.png" />
+                    <img  th:align="right" th:if="${meteo4.icone}=='jaune'" src="cid:Picto-Jaune.png"  />
+                    <img th:align="right" th:if="${meteo4.icone}=='vert'" src="cid:Picto-vert.png"  />
+                </td>
+                <td style="padding-left:20px;padding-right:60px">
+                    <h2 style="font-size: 110%;color: #0a3f70;margin-top: 0;margin-bottom: 9px;font-weight: bold;font-family: Tahoma;">Direction de la relation client:</h2></br>
+                    <div  rows="12" type="text" style="border: none; height: auto;color: #0a3f70;margin-left:10px;" >
+                        [(${meteo4.directionRelationClient})]
+                    </div>
+                </td>
+            </tr></table>
+            </br>
+           </br></br>
+
+            <table>
+                <tr>
+                    <td style="padding-right: 10px">
+                        <img style="i" th:align="right" src="cid:Picto-vert-resized.png"  />
+                    </td>
+                    <td >
+                        <p  style="font-size: 1.2em;color:#C0C0C0;margin-top: 0;margin-bottom:0;font-weight: bolder;font-style: italic;">Toutes les applications sont disponibles</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" padding-right: 10px">
+                        <img  th:align="right" src="cid:Picto-Jaune-resized.png"  />
+                    </td>
+                    <td>
+                        <p  style="font-size: 1.2em;color:#C0C0C0;margin-top: 0;margin-bottom:0;font-weight: bolder;font-style: italic;">Applications ou fonctionnalités disponibles en mode dégradé</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" padding-right: 10px">
+                        <img height="50px" width="50px" th:align="right" src="cid:Picto-Rouge-resized.png"   />
+                    </td>
+                    <td>
+                        <p  style="font-size: 1.2em;color:#C0C0C0;margin-top: 0;margin-bottom:0;font-weight: bolder;font-style: italic;">Applications ou fonctionnalités indisponibles</p>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <br>
+        </div>
+
+
+        <h2 style="font-size: 130%;color: #0a3f70;margin-top: 0;margin-bottom: 9px;text-decoration: underline;font-weight: bold;">AGENDA DES OPERATIONS </h2>
+            <table>
+            <tr class="row" th:each="meteo3 : ${meteodto.section3}">
+                <td style="padding-left:60px;margin-bottom:100px">
+                    <img  th:if="${meteo3.icone}=='rouge'"   src="cid:Picto-Rouge.png" />
+                    <img  th:if="${meteo3.icone}=='jaune'" src="cid:Picto-Jaune.png" />
+                    <img  th:if="${meteo3.icone}=='vert'" src="cid:Picto-vert.png" />
+                    <img  th:if="${meteo3.icone}=='bleu'" src="cid:Picto-Bleu.png" />
+                    <img  th:if="${meteo3.icone}=='gris'" src="cid:Picto-Gris.png" />
+                    <img  th:if="${meteo3.icone}=='violet'" src="cid:Picto-violet.png" />
+                </td>
+                <td style="padding-left:20px">
+                    <p  style="font-size: 1.2em;color: #cdc0a2;margin-top: 0;margin-bottom:20px;font-weight: bolder;" th:text="${meteo3.agendaPeriode}"></p>
+                    <span style="color: #0a3f70;font-size: 1.2em"   th:utext="${meteo3.agendaPerimetre}"></span><br/><br/>
+                    <span  style="font-size: 1.2em; color: #0a3f70; margin-top: 0; margin-bottom: 0px; font-weight: bolder;">Nature d’intervention : </span>
+                    <span style="color: #0a3f70;font-size: 1.2em"  th:text="${meteo3.agendaPerimetre}"></span><br/><br/>
+                    <span  style="font-size: 1.2em; color: #0a3f70; margin-top: 0; margin-bottom: 0px; font-weight: bolder;">Impact : </span>
+                    <span style="color: #0a3f70;font-size: 1.2em"   th:text="${meteo3.agendaImpact}"></span><br/><br/>
+
+                </td>
+            </tr></table>
+            </br></br>
+    <table>
+        <tr>
+            <td style="padding-right: 10px">
+                <img style="i" th:align="right" src="cid:Picto-vert-resized.png"  />
+            </td>
+            <td >
+                <p  style="font-size: 1.2em;color:#C0C0C0;margin-top: 0;margin-bottom:0;font-weight: bolder;font-style: italic;">Opération réalisée avec succès</p>
+            </td>
+        </tr>
+        <tr>
+            <td style=" padding-right: 10px">
+                <img  th:align="right" src="cid:Picto-Jaune-resized.png"  />
+            </td>
+            <td>
+                <p  style="font-size: 1.2em;color:#C0C0C0;margin-top: 0;margin-bottom:0;font-weight: bolder;font-style: italic;">Opération en cours</p>
+            </td>
+        </tr>
+        <tr>
+            <td style=" padding-right: 10px">
+                <img height="50px" width="50px" th:align="right" src="cid:Picto-Bleu-resized.png"   />
+            </td>
+            <td>
+                <p  style="font-size: 1.2em;color:#C0C0C0;margin-top: 0;margin-bottom:0;font-weight: bolder;font-style: italic;">Opération en cours - dépassement de l'heure prévue</p>
+            </td>
+        </tr>
+        <tr>
+            <td style=" padding-right: 10px">
+                <img height="50px" width="50px" th:align="right" src="cid:Picto-violet-resized.png"   />
+            </td>
+            <td>
+                <p  style="font-size: 1.2em;color:#C0C0C0;margin-top: 0;margin-bottom:0;font-weight: bolder;font-style: italic;">Opération reportée ou annulée</p>
+            </td>
+        </tr>
+        <tr>
+            <td style=" padding-right: 10px">
+                <img height="50px" width="50px" th:align="right" src="cid:Picto-Gris-resized.png"   />
+            </td>
+            <td>
+                <p  style="font-size: 1.2em;color:#C0C0C0;margin-top: 0;margin-bottom:0;font-weight: bolder;font-style: italic;">Opération ayant nécessité un retour arrière</p>
+            </td>
+        </tr>
+        <tr>
+            <td style=" padding-right: 10px">
+                <img height="50px" width="50px" th:align="right" src="cid:Picto-Rouge-resized.png"   />
+            </td>
+            <td>
+                <p  style="font-size: 1.2em;color:#C0C0C0;margin-top: 0;margin-bottom:0;font-weight: bolder;font-style: italic;">Opération ayant provoqué un incident</p>
+            </td>
+        </tr>
+    </table>
+        </div>
+</form>
+</body>
+</html>

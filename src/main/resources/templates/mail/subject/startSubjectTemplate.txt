@@ -1,0 +1,1 @@
+[AppliInfo] Début d'alerte [(${alertEvent.alert.name})]

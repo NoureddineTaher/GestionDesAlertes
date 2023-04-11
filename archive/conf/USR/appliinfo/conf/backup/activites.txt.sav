@@ -1,0 +1,140 @@
+TITLE = Applications Métier 
+COLS = 1
+
+ANFI
+* REAL_ANF_WS_Robot_Fatal
+* REAL_ANF_Portail_Robot_Fatal
+
+ARCHIVE-BOX
+* REAL_ARCBOX_Exploit_Critical
+
+CJN
+* Real_PortailCJN_Exploit_Critica
+* Real_SatelliteCJN_Exploit_Criti
+* Real_SatCJN_Robot_Critical
+* Real_PortailCJN_Robot_Critical
+* REAL_PortailCJN_Ftp_Critical
+
+ETAT CIVIL
+* REAL_EtatCivil_Robot_Fatal
+* REAL_SatEC_LogANTS_Fatal
+* REAL_SatEC_Log_Critical
+
+FCD2I
+* REAL_FCD2I_Exploit_Critical
+
+FCDDV
+* REAL_FCDDV_Robot_Fatal
+* REAL_FCDDV_Exploit_Critical
+* REAL_FCDDV3_Exploit_Critical
+* FCDDVSSLFormationAccueil_Critic
+* FCDDVSSLFormationAccueil_Warnin
+* REAL_FCDDV_SQL01_Critical
+* REAL_FCDDV_SQL02_Critical
+* REAL_FCDDV_SQL03_Critical
+* REAL_FCDDV_LOG06_Critical
+* REAL_FCDDV_LOG07_Critical
+* REAL_RTFRANCE_LOG08_Critical
+
+FCDDVP
+* REAL_FCDDVP_Acc_Robot_Fatal
+* FCDDVPublicAccueil_Warning
+* REAL_FCDDVP_FCX03_Critical
+
+FIDELIO/LAA
+* REAL_LAA_TestURL_Critical
+* REAL_LAA_Log_Fatal
+
+GESCOD
+* REAL_Gescod_Robot_Fatal
+
+MICEN
+* MicenSSLSupervisionPortailAAE
+* MicenSSLSupervisionPortailAAE_W
+* MicenExploitCritical
+* MicenExploitWarning
+* Test_Exploit_Micen
+* SSLMicenAccueil_Critical
+* MicenSSLAccueil_Warning
+* MicenSSLSupervision_Critical
+* MicenSSLSupervision_Warning
+* TestExploitPosh_Micen
+* TestExploitPosh_MicenArchive
+* TestExploitPosh_MicenMetier_Cri
+* TestExploitPosh_MicenPortail_Cr
+* TestExploitPosh_MicenSupervisio
+* SVSUMICENExploit_Critical
+* REAL_SVSU_MICEN_Log_Critical
+* REAL_MICEN_Process_HTTPD
+* SVSUFOBOMICENExploit_Critical
+
+MICEN FORMATION
+* MicenFormExploit_Critical
+* MicenFormExploit_Warning
+* MicenFormationSSLAccueil_Critic
+* MicenFormationSSLAccueil_Warnin
+* SSLMicenFormationSupervision_Cr
+* MicenFormationSSLSupervision_Wa
+
+PACSen
+* REAL_PACS_Exploit_Critical
+* REAL_PACS_Robot_Fatal
+* PACSSSL_Critical
+
+PLANETE
+* REAL_PlaneteExpl_Robot_Fatal
+* Test_Exploit_PlaneteFacturation
+* REAL_WSFACT_Exploit_Critical
+* Real_PlaneteV3_Exploit_Critical
+* TestExploitPosh_Teleprocedures
+* Test_Exploit_Satellite_WSDgme
+* TestExploitPosh_Satellite_wsDgm
+* TestExploitPosh_Solr_Critical
+* REAL_HAPLANETE_Stats_Critical
+* REAL_Planete_TestES_Critical
+
+PRC
+* REAL_PRC_Robot_Fatal
+* REAL_SatTAC_SFTP_Critical
+
+RERT
+* REAL_RERT_Robot_Fatal
+* REAL_RERT_FCX01_Critical
+
+RMN
+* REAL_RMN_Exploit_Critical
+
+SASI
+* REAL_SASI_Portail_Robot_Fatal
+
+SATELLITE TELEACTE
+* Satellite_si_count
+* Satellite_si_count_daily
+* Satellite_ri_count
+* REAL_SatTAC_Exploit_Critical
+* REAL_SatTAC_Robot_Fatal
+* REAL_SatelliteTAC_NbFT_Critical
+* REAL_SatelliteTac_100_Critical
+
+SATELLITE SAFER
+* Safer_Erreur
+* Safer_poste_restante
+* satellite_safer_critical
+* Test_Exploit_Satellite_Safer
+* REAL_SatelliteSAFER_100_Critical
+
+TDT
+* REAL_TDT_TestRobot_Critical
+* REAL_TDT_TestBatch_Critical
+* REAL_TDT_TestServeur_Critical
+* REAL_TDT_LogException_Critical
+* REAL_SatTAC_SFTP_Critical
+
+EVALUATION
+* WsRmn_Micen_Eval_Critical
+* Micen_Ecaase_Eval_Critical
+* WsRmn_Iban_Eval_Critical
+* WsOid_Eval_Critical
+* Tts_Proxy_Eval_Critical
+* REAL_MicenV4_Exploit_Critical
+

@@ -1,0 +1,117 @@
+#red-chart {
+  width: 11vw;
+  height: 26px;
+  position: relative;
+  background: #D34040;
+  cursor : pointer;
+  opacity:0.5;
+  position: relative;
+  left: 0.5vw;
+}
+#red-chart:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid white;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+}
+#red-chart:before {
+  content: "";
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #D34040;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  }
+
+
+#yellow-chart {
+    width: 11vw;
+    height: 26px;
+    position: relative;
+    left: 1.3vw;
+    background: #F1C40F;
+    cursor : pointer;
+    opacity:0.5;
+}
+#yellow-chart:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid white;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+}
+#yellow-chart:before {
+  content: "";
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #F1C40F;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  }
+
+#green-chart {
+  width: 11vw;
+  height: 26px;
+  position: relative;
+   left: 1.9vw;
+  background: #73b726;
+  cursor : pointer;
+  opacity:0.5;
+}
+#green-chart:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid white;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+}
+#green-chart:before {
+  content: "";
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #73b726;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  }
+  .radio-chart{
+    display:none;
+  }
+
+  .preview-incident-detail{
+      width : 25vw;
+      font-weight : 600;
+  }
+
+  .preview-incident-detail-value{
+        width : 50vw
+  }
+
+  #prelook-details-div{
+    background-color: #F3F3F3;
+    color:#203864;
+    font-family:Tahoma,sans-serif;
+    font-size:11p
+  }
+

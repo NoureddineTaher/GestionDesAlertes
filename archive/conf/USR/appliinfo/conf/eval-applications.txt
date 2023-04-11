@@ -1,0 +1,75 @@
+TITLE = Applications Métier
+COLS = 1
+
+ANFI
+* REAL_ANF_Exploit_Eval
+* REAL_ANF_WS_Robot_Eval
+
+CJN
+* REAL_PortailCJN_Exploit_Eval
+* REAL_SatelliteCJN_Exploit_Eval
+
+ETAT CIVIL
+* REAL_SatEC_Exploit_Eval
+
+FRONTAL
+* REAL_FRONTAL_Service_Eval
+* REAL_PEP_HAPROXY_Eval
+* REAL_PEP_KEEPALIVED_Eval
+* REAL_PEP_HTTPD_Eval
+* REAL_HANOTMUT_HAPROXY_Eval
+* REAL_HANOTMUT_KEEPALIVED_Eval
+
+MICEN
+* REAL_MicenEval_Exploit_Critical
+* WsRmn_Micen_Eval_Critical
+* Micen_Ecaase_Eval_Critical
+
+PLANETE
+* REAL_PlaneteV3_TestNFS_Eval
+* REAL_PlaneteV3_Log_Eval
+* REAL_PlaneteV3_Exploit_Eval
+* REAL_PlaneteV3_Robot_Eval
+
+PLANETE EXPLOITATION
+* REAL_PlaneteExpl_Exploit_Eval
+* REAL_PlaneteExpl_ProcES_Eval
+
+PRISE RDV EnLigne
+* Pas_de_situation_appli
+
+SAPEPS
+* REAL_SAPEPS_JAVA_Eval
+* REAL_SAPEPS_EXPLOIT_Eval
+* REAL_ESSAP_ELASTICSEARCH_Eval
+* REAL_ESSAP_ELASTICSEARCH_XPACK_Eval
+* REAL_ESSAP_KIBANA_Eval
+
+SATELLITE SAFER
+* REAL_SatelliteSafer_Exploit_Eva
+* REAL_SatSAFER_JAVA_Eval
+
+SATELLITE TELEACTE
+* REAL_SatTAC_Exploit_Eval
+* REAL_SatTAC_JAVA_Eval
+
+SVSU
+* REAL_SVSU_Exploit_Eval
+* REAL_SVSU_Log_Eval
+* REAL_SVSU_Robot_Eval
+
+TDT
+* REAL_TDT_TestExploit_Eval
+* REAL_TDT_TestProcess_Eval
+
+TTS_PROXY
+* Tts_Proxy_Eval_Critical
+
+WSRMN IBAN
+* WsRmn_Iban_Eval_Critical
+
+WSOID
+* REAL_WSOID_Exploit_Eval
+* REAL_WSOID_LogFile_Eval
+* REAL_WSOID_Robot_Eval
+

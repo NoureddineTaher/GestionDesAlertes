@@ -1,0 +1,45 @@
+TITLE = Applications Réseau 
+
+APPLICATIONS RR3
+* CheckRadius_Critical
+* CheckRadius_Warning
+* REAL_TACACSS_Etat_Critical
+
+DECO
+* REAL_DECO_Robot_Fatal
+
+MA MIGRATION
+* REAL_MAMIGRATION_Robot_Fatal
+
+MON ESPACE REAL
+* REAL_MERExploit_Robot_Fatal
+* REAL_MERAuth_Robot_Fatal
+
+ONE PROVISIO
+* OneProvisioLogin2
+
+PIMS
+* PimsHome_Critical
+* PimsAuth
+* Test_Exploit_Pims
+
+RDV EN LIGNE
+* REAL_HABMUT_HAPROXY_Critical
+* REAL_HABMUT_KA_Critical
+* REAL_HANOTMUT_HAPROXY_Critical
+* REAL_HANOTMUT_HTTPD_Critical
+* REAL_HANOTMUT_KA_Critical
+* REAL_RDV_Adonix_Critical
+* REAL_RDV_Agendize_Critical
+* REAL_RDV_Database_Critical
+* REAL_RDV_IDnot_Critical
+* REAL_RDV_JAVA_Critical
+* REAL_RDV_Robot_Critical
+
+SI GESTION
+* REAL_SIGestion_Robot_Fatal
+* REAL_SIGestion_Exploit_Critical
+
+VISIO
+* REAL_VISIO_Robot_Critical
+* REAL_VISIO_SIP_Critical

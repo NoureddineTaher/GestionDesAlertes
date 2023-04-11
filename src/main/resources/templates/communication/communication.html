@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<body>
+<section layout:fragment="content">
+    <div class="container my-5">
+        <div class="my-4 d-flex mb-3 align-items-center rounded text-white bg-adsn-blue w-100">
+            <div class="p-1 ml-3">
+                <span class="h4"><span class="text-adsn-grey">C</span>ommunication</span>
+            </div>
+        </div>
+        <form action="#" th:action="@{/communication/send}" th:object="${communicationDto}" method="post">
+            <div class="row">
+                <div class="col-md-12 text-center  "><h5>Liste de Diffusion</h5>
+                    <div class="row d-flex justify-content-center"><input type="hidden" id="listDiffusionGroups"
+                                                                          name="listDiffusionGroups"
+                                                                          th:field="*{diffusionGroups}"/>
+                        <div class="col-md-12 ">
+                            <select id="duallistbox_diffusionGroups" multiple="multiple" size="15"
+                                    name="duallistbox_diffusionGroups" title="duallistbox_diffusionGroups">
+                                <option th:each="diffGroup : ${listDiffusionGroups}"
+                                        th:value="${diffGroup.id}"
+                                        th:selected="${communicationDto.diffusionGroups.contains(diffGroup)}"
+                                        th:text="${diffGroup.name}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <span th:if="${#fields.hasErrors('diffusionGroups')}" th:errors="*{diffusionGroups}"
+                                  class="text-danger mt-2 d-block text-left"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="form-group col-md-6 border_right">
+                    <div class="row">
+                        <div class="form-group col-md-1">
+                            <input type="checkbox" name="sendSMS" th:field="*{sendSMS}" class="form-control "
+                                   id="sendSMS" onclick="smsCheck(this)"/>
+                        </div>
+                        <div class="form-group col-md-11">
+                            <span class="d-block">SMS</span>
+                            <span th:if="${#fields.hasErrors('sendSMS')}" th:errors="*{sendSMS}"
+                                  class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="smsContent" class="col-form-label">Corps du SMS</label>
+                            <textarea name="smsContent" rows="2" th:field="*{smsContent}" class="form-control "
+                                      id="smsContent"
+                                      maxlength="512" th:disabled="!*{sendSMS}"/>
+                            <span th:if="${#fields.hasErrors('smsContent')}" th:errors="*{smsContent}"
+                                  class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 ">
+                    <div class="row">
+                        <div class="form-group col-md-1">
+                            <input type="checkbox" name="sendMail" th:field="*{sendMail}" class="form-control "
+                                   id="sendMail" onclick="mailCheck(this)"/>
+                        </div>
+                        <div class="form-group col-md-11">
+                            <span class="d-block">Mail</span>
+                            <span th:if="${#fields.hasErrors('sendMail')}" th:errors="*{sendMail}"
+                                  class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="emailObject" class="col-form-label">Objet du Mail</label>
+                            <input type="text" th:field="*{emailObject}" class="form-control " id="emailObject"
+                                   maxlength="512" th:disabled="!*{sendMail}"/>
+                            <span th:if="${#fields.hasErrors('emailObject')}" th:errors="*{emailObject}"
+                                  class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="smsContent" class="col-form-label">Corps du Mail</label>
+                            <textarea name="emailContent" rows="2" th:field="*{emailContent}" class="form-control "
+                                      id="emailContent" maxlength="512" th:disabled="!*{sendMail}"/>
+                            <span th:if="${#fields.hasErrors('emailContent')}" th:errors="*{emailContent}"
+                                  class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mt-5">
+                    <Button type="submit" name="action" class="btn btn-success" value="save">Envoyer</Button>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="formModal" tabindex="-1" role="dialog"
+                 aria-labelledby="formModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="formModalLabel">Formulaire envoye</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div th:if="${messageSMS != null && messageSMS.length() > 0}" id="sms">
+                                <p class="text-success" th:if="${successSMS}" th:text="${messageSMS}"/>
+                                <p class="text-danger" th:if="!${successSMS}" th:text="${messageSMS}"/>
+                            </div>
+                            <div th:if="${messageMail != null && messageMail.length() > 0}" id="mail">
+                                <p class="text-success" th:if="${successMail}" th:text="${messageMail}"/>
+                                <p class="text-danger" th:if="!${successMail}" th:text="${messageMail}"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<footer layout:fragment="footerContent" id="main-footer">
+    <div id="footer-legal" class="fixed-bottom">
+        © GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+    </div>
+</footer>
+
+<section layout:fragment="javascripts">
+    <script>
+        var duallistbox = $('select[name="duallistbox_diffusionGroups"]')
+            .bootstrapDualListbox({
+                nonSelectedListLabel: 'Non selectionne',
+                selectedListLabel: 'Selectionne',
+                moveOnSelect: false,
+                moveOnDoubleClick: false
+            });
+
+        $("form").submit(
+            function (event) {
+                $("#listDiffusionGroups").val(
+                    $("#duallistbox_diffusionGroups").val());
+            });
+
+        function smsCheck(sendSMS) {
+            document.getElementById("smsContent").disabled = !sendSMS.checked;
+        }
+
+        function mailCheck(sendMail) {
+            document.getElementById("emailObject").disabled = !sendMail.checked;
+            document.getElementById("emailContent").disabled = !sendMail.checked;
+        }
+
+    </script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function () {
+
+
+            var processDone = /*[[${processDone}]]*/ false;
+
+            if(processDone) {
+                $("#formModal").modal();
+            }
+
+        });
+        /*]]>*/
+    </script>
+
+</section>
+
+</body>
+</html>

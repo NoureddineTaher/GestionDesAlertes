@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+<head>
+
+</head>
+
+
+<body>
+
+    <section class="ctnr" layout:fragment="content" style="height: 80vh" >
+        <div class="container pt-5 mt-5 " style="height: 100% ">
+           <form th:action="@{/bdalerte/creationFormSubmit}" th:object="${bandeauAlerteMessage}" method="post" id="creationForm">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-lg bdaCreation" maxlength="200" th:field="*{bandeauAlertemesssage}" th:oninput="onInputTexteAlerte()" id="miseAjourInput" >
+                <small class="form-text text-muted float-right">/200</small><small id="counter" class="form-text text-muted float-right">0</small>
+            </div>
+            <button type="submit" class="btn btn-danger" disabled="true"  id="submit-alerte">Créer le bandeau d'alerte</button>
+           </form>
+        </div>
+    </section>
+
+</body>
+
+</html>

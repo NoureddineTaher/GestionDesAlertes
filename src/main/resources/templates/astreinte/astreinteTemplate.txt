@@ -1,0 +1,1 @@
+[AppliInfo] Astreinte [(${alertEvent.alert.name})]

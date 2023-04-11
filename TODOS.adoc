@@ -1,0 +1,57 @@
+## TODOS (28/05/2019) 
+
+### DEV
+
+* [ ] finir dossier d'architecture
+* [ ] Finir l'envoi de mail (faire un template de mail et coder ce qu'il faut pour le remplir)
+* [ ] qualimetrie dev (externaliser la conf, gérer les exceptions, organiser les packages, sonarlint)
+* [ ] Mettre en place les tests (utilisation de testcontainer)
+* [ ] qualimetrie bdd (nomenclature et retours dba) 
+* [ ] faire les scripts de conf initale
+* [ ] envoi de mail retour à la normale
+* [ ] Temporiser l'envoi de mail (délai parametrable) 
+* [ ] Faire un template mail par début d'alerte
+* [ ] Faire un template mail par fin d'alerte (coupler les 2 dans la même table)
+* [ ] Faire une page diag et exploit (tester l'ouverture des flux itm, sms, mail ?)
+* [ ] Purger les alertes (6 mois), alarmes (7 jours)
+* [ ] Mettre à jour la façon de gérer les heures d'envoi de mail et de sms
+
+* [ ] envoi de sms
+* [ ] Gérer les astreintes
+
+### Autres
+
+* [ ] Faire une demande de bdd
+* [ ] Voir gilles barcelo pour les SMS
+* [ ] Verifier si les jo, jno sont positionnés sur les alertes ou sur les grouppes de diffusion
+* [ ] Mettre en place un projet JIRA
+* [x] Faire les demandes d'ouverture de port pour accéder à ITM (inutile)
+* [x] Faire le modèle de données et le mapping ORM (http://blog.paumard.org/cours/jpa/chap03-entite-entite.html)
+https://hub.docker.com/r/innovatorjapan/mysql-to-plantuml
+https://medium.com/coderscorner/connecting-to-mysql-through-docker-997aa2c090cc
+https://github.com/docker-library/mysql/issues/95
+
+
+* Mettre en pla ce l'envoi de mail et le templating thymeleaf 
+https://stackoverflow.com/questions/43598674/how-to-read-a-thymeleaf-template-from-db-in-thymeleaf-3-0-5(http://dolszewski.com/spring/sending-html-mail-with-spring-boot-and-thymeleaf/)
+
+
+* Mettre en place un scheduling pour les jobs appliinfos (consolidation d'alerte, envoi d'email, envoi de sms)
+- par quartz https://medium.com/@ChamithKodikara/spring-boot-2-quartz-2-scheduler-integration-a8eaaf850805
+- ou si pas besoin de persistence ou de modif dynamique plus simplement https://www.callicoder.com/spring-boot-task-scheduling-with-scheduled-annotation/
+
+* Spécifier l'interface avec teamit pour l'envoi de SMS
+* Faire le client soap ITM, trouver le wsdl itm (https://spring.io/guides/gs/consuming-web-service/)
+* Pour le monitoring, la gestion des propriétés, voir real-springboot-parent...
+* 1er temps partir sur springsecurity Utiliser keycloack (connecté au ldap de prod) pour la connexion au backend 
+
+
+Bien noter que la connexion teamit doit être sécurisée (mutual authentification)
+
+Choix de bdd mysql (plus facile à installer sur un poste de dev)
+https://hub.docker.com/r/innovatorjapan/mysql-to-plantuml
+
+
+
+Templating mail ou sms (Thymeleaf ou mustache)
+

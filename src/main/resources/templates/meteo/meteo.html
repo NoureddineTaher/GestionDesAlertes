@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Appli INFO</title>
+
+    <!-- include summernote css/js -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/summernote/summernote-bs4.css}" />
+
+</head>
+<body>
+<section layout:fragment="content">
+    <form action="#" th:action="@{/meteos/saveall}" th:object="${meteodto}" method="post">
+        <div class="container"></br>
+            <img src="/images/meteo.png" class="mr-1 ml-1 mb-3" alt="Groupe ADSN" /></span>
+            <div class="row">
+                <div class="form-group col-md-3 ">
+                </div>
+                <div class="form-group col-md-9 ">
+                    <h2>A LA UNE </h2>
+                </div>
+            </div>
+
+
+            <div class="row"  th:each="meteo1,itemStat  : ${meteodto.section1}">
+                <div class="form-group col-md-3 border_right">
+                    <input type="hidden" class="form-control" th:field="*{section1[__${itemStat.index}__].id}" />
+                    <input type="hidden" class="form-control" th:field="*{section1[__${itemStat.index}__].section}" />
+                </div>
+                <div class="form-group col-md-9 ">
+                    <textarea id="test" rows="12" style="color: #0a3f70;" class="summernote bleu-adsn" type="text"
+                              th:field="*{section1[__${itemStat.index}__].aLaUne}"></textarea>
+                </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="form-group col-md-3 ">
+                </div>
+                <div class="form-group col-md-9 ">
+                    <h2>METEO DU JOUR</h2>
+                </div>
+            </div>
+            <div class="row" th:each="meteo2,itemStat  : ${meteodto.section2}">
+                <div class="form-group col-md-3 border_right">
+                  <!--  <div th:replace="colorBox :: myColorBox(*{section2[__${itemStat.index}__].icone})"></div>-->
+                    <select th:field="*{section2[__${itemStat.index}__].icone}" id="colors2" name="colors" class="form-group custom-select" style="-webkit-appearance: unset;" >
+                        <option  th:selected=${'vert'==couleurs} th:value="'vert'" th:text="'vert'"></option>
+                        <option th:selected=${'jaune'==couleurs} th:value="'jaune'"  th:text="'jaune'"></option>
+                        <option  th:selected=${'rouge'==couleurs} th:value="'rouge'" th:text="'rouge'"></option>
+
+                    </select>
+
+                    <input type="hidden" class="form-control" th:field="*{section2[__${itemStat.index}__].id}" />
+                    <input type="hidden" class="form-control" th:field="*{section2[__${itemStat.index}__].section}" />
+                </div>
+                <div class="form-group col-md-9 ">
+                    <label class="col-form-label">Direction des Activités :</label>
+                    <textarea rows="5" class="summernote form-control " type="text"
+                              th:field="*{section2[__${itemStat.index}__].directionActivite}"></textarea>
+                </div>
+            </div>
+            <div class="row" th:each="meteo4,itemStat  : ${meteodto.section4}">
+                <div class="form-group col-md-3 border_right">
+                    <!--<div th:replace="colorBox :: myColorBox(*{section4[__${itemStat.index}__].icone})"></div>-->
+                    <select th:field="*{section4[__${itemStat.index}__].icone}" id="colors4" name="colors" class="form-group custom-select" style="-webkit-appearance: unset;" >
+                        <option  th:selected=${'vert'==couleurs} th:value="'vert'" th:text="'vert'"></option>
+                        <option th:selected=${'jaune'==couleurs} th:value="'jaune'"  th:text="'jaune'"></option>
+                        <option  th:selected=${'rouge'==couleurs} th:value="'rouge'" th:text="'rouge'"></option>
+
+                    </select>
+                    <input type="hidden" class="form-control" th:field="*{section4[__${itemStat.index}__].id}" />
+                    <input type="hidden" class="form-control" th:field="*{section4[__${itemStat.index}__].section}" />
+                </div>
+                <div class="form-group col-md-9 ">
+                    <label class="col-form-label">Direction de la relation client:</label>
+                    <textarea rows="5" class="summernote form-control " type="text"
+                              th:field="*{section4[__${itemStat.index}__].directionRelationClient}"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="form-group col-md-3 ">
+                </div>
+                <div class="form-group col-md-9 ">
+                    <h2>AGENDA DES OPERATIONS</h2>
+                </div>
+            </div>
+            <div class="row"  th:each="meteo3,itemStat : ${meteodto.section3}">
+                <div class="form-group col-md-3 border_right ">
+                    <!--<div  th:replace="pictogramBox :: myPictogramBox(*{section3[__${itemStat.index}__].icone})"></div>-->
+                    <select th:field="*{section3[__${itemStat.index}__].icone}"  id="x" name="x" class="form-group custom-select" style="-webkit-appearance: unset;" >
+                        <option value=""> </option>
+                        <option  th:selected= ${'vert'==couleur} th:value="'vert'" th:text="'vert - succès'"></option>
+                        <option  th:selected=${'bleu'==couleur} th:value="'bleu'" th:text="'bleu - en cours'"></option>
+                        <option th:selected=${'jaune'==couleur} th:value="'jaune'"  th:text="'jaune - heure dépassée'"></option>
+                        <option th:selected=${'violet'==couleur} th:value="'violet'"  th:text="'violet - reportée'"></option>
+                        <option th:selected=${'gris'==couleur} th:value="'gris'" th:text="'gris - retour arrière'"></option>
+                        <option  th:selected=${'rouge'==couleur} th:value="'rouge'" th:text="'rouge - incident'"></option>
+                    </select>
+                    <input type="hidden" class="form-control" th:field="*{section3[__${itemStat.index}__].id}" />
+                    <input type="hidden" class="form-control" th:field="*{section3[__${itemStat.index}__].section}" />
+                    </br>
+                </div>
+                <div class="form-group col-md-9 border">
+
+                    </br><input class="form-control" th:field="*{section3[__${itemStat.index}__].agendaPeriode}" /></br>
+                    <label class="col-form-label">Périmètre :</label>
+                    <input class="form-control " maxlength="200" th:field="*{section3[__${itemStat.index}__].agendaPerimetre}" />
+                    <p class="text-right"><small class="text-secondary">Vous ne pouvez pas dépasser 200 caractères </small></p></br>
+                    <label class="col-form-label">Nature d’intervention :</label>
+                    <input class="form-control" maxlength="200" th:field="*{section3[__${itemStat.index}__].agendaNatureIntervention}" />
+                    <p class="text-right"><small class="text-secondary">Vous ne pouvez pas dépasser 200 caractères </small></p></br>
+                    <label class="col-form-label">Impact :</label>
+                    <input class="form-control" th:field="*{section3[__${itemStat.index}__].agendaImpact}" maxlength="150" />
+                    <p class="text-right"><small class="text-secondary">Vous ne pouvez pas dépasser 150 caractères </small></p>
+                    </br>
+                </div>
+            </div>
+            <div th:align="right">
+            <Button  name="action" class="ext-decoration-none fas fa-plus glyphicon btn-lg btn-outline-dark" value="addameteo"></Button>
+            <Button  name="action" class="ext-decoration-none fas fa-minus glyphicon btn-lg btn-outline-dark"  value="delete"></Button></br></br>
+            </div>
+        </div>
+        <div id=save>
+            <Button  th:align="top" name="action" class="btn btn-success " >Sauvegarder</Button>
+            <Button  name="action" class="btn btn-success" value="prelook">Prévisualiser</Button></div>
+
+    </form>
+</section>
+<section layout:fragment="javascripts">
+</section>
+
+
+
+
+</body>
+
+
+
+<script>
+
+</script>
+
+</html>

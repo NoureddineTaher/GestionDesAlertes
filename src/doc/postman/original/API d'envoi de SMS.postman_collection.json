@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "d2d20b6f-9e26-4bff-a878-ba8d94f0941a",
+		"name": "API d'envoi de SMS",
+		"description": "Passerelle pour l'envoi de SMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Création d'une demande d'envoi de sms",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "api_key",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"<long>\",\n    \"to\": \"<string>\",\n    \"content\": \"<string>\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sms",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successful operation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_key",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"<long>\",\n    \"to\": \"<string>\",\n    \"content\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sms",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sms"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Invalid input",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_key",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"<long>\",\n    \"to\": \"<string>\",\n    \"content\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sms",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sms"
+							]
+						}
+					},
+					"status": "Method Not Allowed",
+					"code": 405,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Création d'une demande d'astreinte",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "api_key",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"<long>\",\n    \"message\": \"<string>\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/astreinte",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"astreinte"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Invalid input",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_key",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"<long>\",\n    \"message\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/astreinte",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"astreinte"
+							]
+						}
+					},
+					"status": "Method Not Allowed",
+					"code": 405,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "successful operation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_key",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"<long>\",\n    \"message\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/astreinte",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"astreinte"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "https://localhost/v1",
+			"type": "string"
+		}
+	]
+}

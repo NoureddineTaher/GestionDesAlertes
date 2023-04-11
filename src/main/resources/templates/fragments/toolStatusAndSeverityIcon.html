@@ -1,0 +1,20 @@
+<div  th:fragment="toolStatusAndSeverityIcon(status)">
+
+
+    <img class="statusIcon" th:if="${status =='Fatal_A'}" th:src="@{'/images/meteo/status/FA.png'}" />
+    <img class="statusIcon" th:if="${status =='Fatal'}" th:src="@{'/images/meteo/status/F_small.png'}" />
+
+    <img class="statusIcon" th:if="${status=='Critical'}" th:src="@{'/images/meteo/status/C_small.png'}" />
+
+    <img class="statusIcon" th:if="${status == 'Critical_A'}" th:src="@{'/images/meteo/status/CA.png'}" />
+
+
+    <img class="statusIcon" th:if="${status=='Minor'}" th:src="@{'/images/meteo/status/M_small.png'}" />
+    <img class="statusIcon" th:if="${status == 'Minor_A'}" th:src="@{'/images/meteo/status/MA.png'}" />
+
+    <img class="statusIcon" th:if="${status=='Warning' }" th:src="@{'/images/meteo/status/W_small.png'}" />
+    <img class="statusIcon" th:if="${status == 'Warning_A'}" th:src="@{'/images/meteo/status/WA.png'}" />
+    <img class="statusIcon" th:if="${status == 'OK'}" th:src="@{'/images/meteo/status/O_small.png'}" />
+
+    <img th:unless="${status}" th:src="@{'/images/meteo/status/O_small.png'}" />
+</div>

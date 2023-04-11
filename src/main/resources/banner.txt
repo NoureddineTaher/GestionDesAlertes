@@ -1,0 +1,19 @@
+_____________________________________________________________________________________________________________________________________________________
+  
+    wqwwwwwwm%   dqwwwwwwww%       pwwmwwmwb      qwm         wqd %qwwwwwwwp%   wwwwwwwwwwww wwwww       wmwwwwwwwwww      Bwwwwwwp  %qwwwwq     pwwww    
+  dmwwmmwwwmmmw  wwwmmmmwmmwq    Zwmwwwwmmmwwp    www         wwq pmwwmmwmwwwq  wwmmmmmmmmwwwwwwmmp      wwwwwwwwwwwmmd   qwwwwwwwmwdpwwwwwmw    wwwww    
+ mmwmw     Bwwq  qmw     dmmwq dwmmww     wwmmm   www         wwq pwmw     mwww wmw        wwwmmmwmQ     wwmwwmmmwmwmwmwwqwwmmwmwmwww0wmmmmwwww  wmmmw    
+wmww             qmw      mwmqpwww          qwmmd www         wwq pwmw      wmw wmw       %mwmwwmmwm     wwmww    wmwmmmwwwmmwwmwd   0wmmwwwmwmwbwmmmw    
+wmw        %%%   qmwwwwwwwmmw wmm            wwmw www         wwq pwmw%%%dwmmmq wwwmmmmw  mwmwmwwmmwm    wwmww      mwmmwqwmwmmmmwwmw0wmmwmwwmmmwmmmmw    
+wmw       wwwwmq qmwwwwmwwmq  wmm            qmwq www         wwq pwwwwwwmmmmZ  wmwmmmww wwwmwmBwwmwmm%  wwmww      wmmmww pwwmmwmmwmmwmmwwqmmwmwmwmmw    
+wmmp      wwmwww qmw   wwmmq  qwmm          pwwmk wmw        wwww pwwwmmmwq     wmw     wmwmmwwwwwmmmww  wwmww     wwwmwwdpww  bwmmmmmwmmww Bmmwmwwmmw    
+kwwwm%      mwww qmw    dwmmw  pwmww      %wwww   mmmwd    %wmwm  pwmw          wmw    dwwmwwwwwwwmwmmww wwmmwmmwmwwmmwwwwmmwwwmmwmmwwwmmww   pmwmmmmw    
+  wwwmmmqmwwwmmq qmw      wwww  bmmmwwmqmmmmwm     pmwmmwwwmmmm   pwmw          wwmww qwwmmww     wwwwmmwwwmmmmmmwwwwwm  dwwmmmmmwwmw0wmmww     mwwmmw    
+   %qwmwmmwmwwd  dww       qmmw   %qwmwwwwwqb       wwwwmwmmw%    wmww          wwwmm Zmmwmw       dwmmmqqwwwwwmwmwww%    %qqmmmmwwd wmwwww     %wwwww    
+ 
+ -----------------------------------------------------------------------------------------------------------------------------------------------------
+  
+ ${info.app.name} ${info.app.version} (Powered by Spring Boot ${spring-boot.version})
+ 
+ _____________________________________________________________________________________________________________________________________________________
+ 

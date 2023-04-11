@@ -1,0 +1,131 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE html>
+
+<html
+        xmlns=http://www.w3.org/1999/xhtml
+        xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+        xmlns:th=http://www.thymeleaf.org xmlns:padding-left="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+
+<head>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+    <link th:href="@{/css/graphicalCharts.css}" rel="stylesheet">
+
+</head>
+<body>
+<section layout:fragment="content">
+    <form action="#" th:action="@{/incidents/incidentPrelook/{num}(num=${incidentNumber})}" method="post" th:object="${incident}">
+        <div class="container" style="padding-top:5vh;margin-left:10vw;padding-bottom:10vh;">
+            <div class="row">
+                <div class="col-7">
+                    <div class="d-flex incident-form-control">
+                        <label class="mr-3" for="incident-objet" style="width:20vw"><strong>Objet  :  </strong>[COMMUNICATION SUR INTERNET]</label>
+                        <div class="d-flex flex-column">
+                            <input id="incident-objet" maxlength="200" th:field="*{incidentObjet}" class="objetIncident" type="text" style="width:25vw" th:oninput="onIncidentInputChange('incident-objet','objet')">
+                            <small id="objet" class="text-right">0/200</small>
+                        </div>
+                    </div>
+                    <div class="d-flex incident-form-control incidentDestination-div" >
+                        <label class="mr-3" for="incident-email" style="width:2vw"><strong>A :</strong></label>
+                        <input class=" incident-input"  value=""  id="incident-email" th:field="*{incidentDestination}" style="width:43vw"  th:oninput="validateEmailList()" required>
+                    </div>
+                    <small class="incidentEmailError" ></small>
+
+                    <p><strong>Cc  :</strong>@DEX.GDS</p>
+                    <div class="d-flex incident-form-control">
+                        <div class="d-flex">
+
+                            <label class="incident-chart-label" for="red-chart-radio-button"   id="red-chart"></label>
+                            <input class="radio-chart" id="red-chart-radio-button" th:field="*{incidentGraphicalCharter}" name="graphical-chart" value="Déclaration d'incident"  type="radio">
+                            <label class="incident-chart-label" for="yellow-chart-radio-button" id="yellow-chart"></label>
+                            <input class="radio-chart" id="yellow-chart-radio-button" th:field="*{incidentGraphicalCharter}" name="graphical-chart" value="En cours de traitement"  type="radio">
+                            <label class="incident-chart-label" for="green-chart-radio-button" id="green-chart"></label>
+                            <input class="radio-chart" id="green-chart-radio-button" th:field="*{incidentGraphicalCharter}" name="graphical-chart" value="Clôture d'incident"  type="radio">
+
+                        </div>
+                    </div>
+                    <div class="d-flex incident-form-control">
+                        <label class="mr-3" for="incident-description" style="width:9vw"><strong>Description :</strong></label>
+                        <div class="d-flex flex-column">
+                            <textarea  class="descriptionIncident" id="incident-description" maxlength="1000"  style="width:36vw"  th:field="*{description}" th:oninput="onIncidentInputChange('incident-description','description')"></textarea>
+                            <small id="description" class="text-right">0/1000</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <h3 style="padding-top:2vh;font-family:'Open sans';">Détails de l'interruption :</h3>
+                    <div class="incident-details-interruption">
+                        <div class="d-flex incident-form-control">
+                            <label class="mr-3" for="incident-nature" style="width:10vw"><strong>Nature de l'incident :</strong></label>
+                            <div class="d-flex flex-column">
+                                <input class="natureIncident" id="incident-nature" maxlength="250" type="text" style="width:31vw" th:field="*{incidentNature}" th:oninput="onIncidentInputChange('incident-nature','nature')">
+                                <small id="nature" class="text-right">0/250</small>
+                            </div>
+                        </div>
+                        <div class="d-flex incident-form-control ">
+                            <label class="mr-3" for="incident-applications" style="width:12vw"   ><strong>Applications concernées :</strong></label>
+                            <div class="d-flex flex-column">
+                                <input class="applicationIncident"  id="incident-applications" maxlength="250" type="text" style="width:29vw" th:field="*{incidentApplications}" th:oninput="onIncidentInputChange('incident-applications','application')">
+                                <small id="application" class="text-right">0/250</small>
+                            </div>
+                        </div>
+                        <div class="d-flex incident-form-control ">
+                            <label  class="mr-3" for="incident-environnement" style="width:10vw"   ><strong>Environnement :</strong></label>
+                            <div class="d-flex flex-column">
+                                <input class="EnvironementIncident" id="incident-environnement" maxlength="100" type="text" style="width:31vw"th:field="*{incidentEnvironment}" th:oninput="onIncidentInputChange('incident-environnement','environement')">
+                                <small id="environement" class="text-right">0/100</small>
+                            </div>
+                        </div>
+                        <div class="d-flex incident-form-control ">
+                            <label class="mr-3" for="incident-impact" style="width:10vw" ><strong>Impact de l'incident :</strong></label>
+                            <div class="d-flex justifycontent-between" >
+                                <select  class="form-select" style="width: 9vw; margin-right: 2vw;height: 3.6vh;">
+                                    <option>Perturbations</option>
+                                    <option>Rupture </option>
+                                </select>
+                                <div class="d-flex flex-column">
+                                    <input class="impactIncident" maxlength="250" id="incident-impact" type="text" style="width: 20vw;"  th:field="*{incidentImpactType}" th:oninput="onIncidentInputChange('incident-impact','impact')">
+                                    <small id="impact" class="text-right">0/250</small>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="d-flex incident-form-control ">
+                            <label class="mr-3" for="incident-debut" style="width:10vw"  ><strong>Début de l'incident :</strong></label>
+                            <div class="d-flex flex-column">
+                                <input class="debutIncident" id="incident-debut" type="text" maxlength="80" style="width:31vw" th:field="*{incidentStart}" th:oninput="onIncidentInputChange('incident-debut','debut')">
+                                <small id="debut" class="text-right">0/80</small>
+                            </div>
+                        </div>
+                        <div class="d-flex incident-form-control ">
+                            <label class="mr-3" for="incident-fin" style="width:12vw"><strong>Fin estimée de l'incident :</strong></label>
+                            <div class="d-flex flex-column">
+
+                                <input class="bdaInc" id="incident-fin" type="text" maxlength="80" style="width:29vw" th:field="*{incidentEnd}" th:oninput="onIncidentInputChange('incident-fin','coun')">
+                                <small id="coun" class="text-right">0/80</small>
+                            </div>
+                        </div>
+                        <div class="d-flex incident-form-control ">
+                            <label class="mr-3" for="incident-info" style="width:17vw"><strong>Informations complémentaires :</strong>PS Soft</label>
+                            <div class="d-flex flex-column">
+                                <input class="bdaIncident" id="incident-info" maxlength="200"  type="text" style="width:24vw"th:field="*{incidentComplementaryInfos}" th:oninput="onIncidentInputChange('incident-info','count')">
+                                <small id="count" class="text-right">0/200</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <Button  name="action" class="btn btn-success incident-creation-prelook" type="submit">Prévisualiser</Button>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </form>
+</section>
+<section layout:fragment="javascripts"></section>
+</body>
+
+</html>

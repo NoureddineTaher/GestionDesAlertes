@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+
+    <body>
+
+          <section class="ctnr" layout:fragment="content" style="height: 80vh" >
+              <div th:if="${miseAjourText}"
+                   th:insert="fragments/successForm :: successForm(buttonFunction,successMessage, buttonColor)"
+                   th:with="buttonFunction='Créer le bandeau d\'alerte mise à jour',successMessage='La mise à jour du bandeau d\'alerte a été effectuée',buttonColor='btn-success'">
+              </div>
+              <div th:if="${alertText}"
+                   th:insert="fragments/successForm :: successForm(buttonFunction, successMessage ,buttonColor)"
+                   th:with="buttonFunction='Créer le bandeau d\'alerte',successMessage='La création d\'un bandeau d\'alerte a été effectuée',buttonColor='btn-danger'">
+              </div>
+          </section>
+
+    </body>
+
+</html>

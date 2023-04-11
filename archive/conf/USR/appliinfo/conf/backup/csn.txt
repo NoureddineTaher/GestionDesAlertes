@@ -1,0 +1,13 @@
+TITLE = Autres
+COLS = 1
+
+ANC
+* CLOUD_ANC_Robot_Fatal
+* CLOUD_ANC_Exploit_Critical
+
+REVERSE PROXY NON REGLEMENTE
+* ManqueSituation
+
+WEBPASS
+* CLOUD_CRL_Bundle_Critical
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<body>
+<section layout:fragment="content">
+    <div class="container my-5">
+        <form action="#" th:action="@{/maintenances/update/{id}(id=${maintenanceDto.id})}" th:object="${maintenanceDto}" method="post">
+            <div class="row mb-5 d-flex justify-content-center">
+                <h2 class="text-center">Modification d'une Plage de Maintenance</h2></div>
+
+            <div class="row" > <!-- Ligne generale 4 champs -->
+
+                <div class="col-md-5  border-right"> <!-- Colonne champs : contient 4 lignes -->
+
+                    <div class="row">
+                        <div class="form-group col-md-10">
+                            <label for="alertName" class="col-form-label">Nom de l'Alerte</label>
+                            <input type="text" disabled="disabled" th:field="*{alert.name}" class="form-control " id="alertName"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-10">
+                            <label for="startTime" class="col-form-label">Date de debut</label>
+                            <input type="datetime-local" th:field="*{startTime}" class="form-control " id="startTime" step="60"/>
+                            <span th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-10">
+                            <label for="endTime" class="col-form-label">Date de fin</label>
+                            <input type="datetime-local" th:field="*{endTime}" class="form-control " id="endTime" step="60"/>
+                            <span th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-10">
+                            <label for="comments" class="col-form-label">Commentaires</label>
+                            <input type="text" th:field="*{comments}" class="form-control " id="comments" maxlength="255"/>
+                            <span th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div th:if="*{lastModifiedBy} != null ">
+                        <span >Mise a jour le </span> <span class="font-weight-bold" th:text="*{lastModifiedDate}"></span>
+                        <span >par </span><span class="font-weight-bold" th:text="*{lastModifiedBy}" ></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row"> <!-- Ligne Boutons Valider / Annuler -->
+                <div class="col-md-6 mt-5">
+                    <Button type="submit" name="action" class="btn btn-success" value="save">Valider</Button>
+                    <Button type="cancel" class="btn btn-danger" onclick="window.location='/maintenances';return false;">Annuler</Button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+
+<section layout:fragment="javascripts">
+    <script>
+
+    </script>
+
+</section>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Appli INFO</title>
+    <!-- include summernote css/js -->
+</head>
+<body>
+    <section layout:fragment="content">
+        <div class="container pt-5">
+            <div id="historique-title" class="d-flex justify-content-between">
+                <h3 class="m-0">Historique des Alertes</h3>
+                <select class="form-select" style="padding-left:1vw;border-radius:2px;" id="history-period-select">
+                    <option th:attr="selected=${period}==null or ${period}=='Tout'?'true' :'false'" >Tout</option>
+                    <option th:attr="selected=${period}=='30 jours'?'true' :'false'">30 jours</option>
+                    <option th:attr="selected=${period}=='7 jours'?'true' :'false'">7 jours</option>
+                    <option th:attr="selected=${period}=='24h'?'true' :'false'"> 24h</option>
+                </select>
+            </div>
+            <input type="search" placeholder="Recherche..." class="mt-3" id="historique-research-input">
+            <table class="table table-striped mt-4 mb-5" id="historique-table">
+                <thead style="background-color: #0a3f70;color: white;">
+                <tr>
+                    <th scope="col" style="width: 17%;text-align: center;">Date de création de l'alerte</th>
+                    <th scope="col" style="width: 17%;text-align: center;padding-bottom:25px">Date de fin de l'alerte</th>
+                    <th scope="col" style="width: 15%;text-align: center;padding-bottom:25px" >Nom de l'alerte</th>
+                    <th scope="col" style="width: 17%;text-align: center;padding-bottom:25px">Alarmes</th>
+                    <th scope="col" style="width: 40%;text-align: center;padding-bottom:25px">Notifications</th>
+                </tr>
+                </thead>
+                <tbody id="historique-table-body">
+                <tr  th:each="alertEvent: ${alertEvents}">
+                    <th scope="row" th:text="${#temporals.format(alertEvent.getStart(), 'dd/MM/yyyy HH:mm:ss')} ?:'-'"></th>
+                    <td th:text="${#temporals.format(alertEvent.getAlertEventEnd(), 'dd/MM/yyyy HH:mm:ss')} ?:'-'"></td>
+                    <td th:text="${alertEvent.getAlert().getName()}"></td>
+                    <td >
+                        <div th:each="alarmEvent: ${alertEvent.getAlarmEvents()}">
+                            <p th:text="${alarmEvent.getAlarm().getName()} ?:'-'"></p>
+                        </div>
+                    </td>
+                    <td >
+                        <div class="d-flex">
+                            <p>SMS :&nbsp;</p>
+                            <p th:text="${#temporals.format(alertEvent.getStartSmsSent(), 'dd/MM/yyyy HH:mm:ss')} ?:''"></p>
+                            <p>&nbsp; - &nbsp;</p>
+                            <p th:text="${#temporals.format(alertEvent.getEndSmsSent(), 'dd/MM/yyyy HH:mm:ss')} ?:'' "></p>
+                        </div>
+                        <div class="d-flex">
+                            <p>Mail :&nbsp;</p>
+                            <p th:text="${#temporals.format(alertEvent.getStartMailSent(), 'dd/MM/yyyy HH:mm:ss')} ?:''"></p>
+                            <p> &nbsp; - &nbsp; </p>
+                            <p th:text="${#temporals.format(alertEvent.getEndMailSent(), 'dd/MM/yyyy HH:mm:ss')} ?:''"></p>
+                        </div>
+                        <div class="d-flex">
+                            <p>Astreinte : &nbsp;</p>
+                            <p th:text="${#temporals.format(alertEvent.getAstreinteSent(), 'dd/MM/yyyy HH:mm:ss')} ?:'-'"></p>
+
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section layout:fragment="javascripts">
+        <script>
+				$(document).ready(function(){
+				  $("#historique-research-input").on("keyup", function() {
+				    var value = $(this).val().toLowerCase();
+				    $("#historique-table-body tr").filter(function() {
+				      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				    });
+				  });
+				  let periodSelectInput = document.getElementById("history-period-select")
+				periodSelectInput.addEventListener("input",(e)=>{
+				    	location.replace(`/historique/${e.target.value}`);
+				})
+				});
+
+
+
+			</script>
+    </section>
+</body>
+</html>

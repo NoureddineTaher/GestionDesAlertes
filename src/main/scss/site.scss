@@ -1,0 +1,169 @@
+// La ligne suivante est commentée car il ne faut pas charger les polices depuis l'exterieur
+// @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+
+// Import variables shared accross all CSS
+@import "helpers/_variables";
+
+// Import Bootstrap for Sass 
+@import "bootstrap/bootstrap";
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/open-sans-v17-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+    url('/fonts/open-sans-v17-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/fonts/open-sans-v17-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('/fonts/open-sans-v17-latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('/fonts/open-sans-v17-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('/fonts/open-sans-v17-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+html{
+  font-size: 14px;
+}
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5 {
+  font-family: "Open sans";
+}
+
+.bg-primary {
+  background-color: $adsn-blue !important; 
+}
+
+.btn-primary {
+  background-color: $adsn-blue !important; 
+}
+
+.btn-primary:hover {
+  color: $adsn-blue;
+  background-color: $adsn-gold !important;
+  border-color: $adsn-blue !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: $adsn-blue;
+  background-color: $adsn-light-gold !important;
+  border-color: $adsn-blue !important;
+}
+
+.bg-adsn-blue {
+  background-color: $adsn-blue; 
+}
+
+.bg-adsn-gold {
+  background-color: $adsn-gold; 
+}
+
+.bg-adsn-light-gold {
+  background-color: $adsn-light-gold; 
+}
+
+.bg-adsn-grey {
+  background-color: $adsn-grey; 
+}
+
+.text-adsn-blue {
+  color: $adsn-blue !important; 
+}
+
+.text-adsn-gold {
+  color: $adsn-gold !important; 
+}
+
+.text-adsn-light-gold {
+  color: $adsn-light-gold !important; 
+}
+
+.text-adsn-grey {
+  color: $adsn-grey; 
+}
+  
+.navbar {
+  padding: 0rem 1rem;
+  text-transform: uppercase;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+	color: $adsn-light-gold;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.navbar-dark .navbar-nav .nav-item.active {
+	color: $adsn-blue;
+	background-color: $adsn-gold;
+}
+
+.navbar-dark .navbar-nav .show>.nav-link, .navbar-dark .navbar-nav .active>.nav-link,
+	.navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .nav-link.active
+	{
+	color: $adsn-blue;
+}
+
+.navbar-nav .nav-item:hover .nav-link {
+    color: $adsn-blue;
+    background-color: $adsn-light-gold;
+}
+
+// Adapt rendering of brand in navbar for ADSN logo
+.navbar-brand {
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+#menu-header {
+	background: #fff;
+	border-top: $adsn-gold 5px solid;
+	border-bottom: $adsn-gold 1px solid;
+}
+
+#footer-legal {
+  background: $adsn-gold;
+  padding: 0 20px;
+  height: 31px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: $blue;
+}
+
+.jumbotron {
+    color: $white;
+    background-color: $adsn-blue;
+}
+
+.alert-primary {
+    color: #19243d;
+    background-color: $adsn-light-gold;
+    border-color: #c5cbd8;
+}
+
+.table-hover tbody tr:hover {
+    color: $adsn-blue;
+    background-color: $adsn-light-gold;
+}
+    
+.table .thead-dark th {
+    color: #fff;
+    background-color: $adsn-blue;
+    border-color: $adsn-light-gold;
+}
+
+.table {
+	color: $adsn-blue;
+  border: 1px solid;
+}
+

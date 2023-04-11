@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<body>
+<section layout:fragment="content">
+    <div class="container my-5">
+        <form action="#" th:action="@{/maintenances/addmaintenance}" th:object="${maintenanceDto}" method="post">
+            <div class="row mb-5 d-flex justify-content-center">
+            <h2 class="text-center">Ajout d'une Plage de Maintenance</h2></div>
+
+            <div class="row" > <!-- Ligne generale 3 champs + double colonne choix d'alertes -->
+
+                <div class="col-md-4 border-right"> <!-- Colonne champs : contient 3 lignes -->
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="startTime" class="col-form-label">Date de debut</label>
+                            <input type="datetime-local" th:field="*{startTime}" class="form-control " id="startTime" step="60"/>
+                            <span th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="endTime" class="col-form-label">Date de fin</label>
+                            <input type="datetime-local" th:field="*{endTime}" class="form-control " id="endTime" step="60"/>
+                            <span th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="comments" class="col-form-label">Commentaires</label>
+                            <input type="text" th:field="*{comments}" class="form-control " id="comments" maxlength="255"/>
+                            <span th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                 <div class="col-md-8 text-center  border-right"> <!-- Colonne dual listbox de choix d'alertes -->
+                     <h5 >Liste des Alertes a desactiver</h5>
+                     <div class="row d-flex justify-content-center">  <input type="hidden" id="listAlerts" name="listAlerts" th:field="*{alerts}"/>
+                         <div class="col-md-12 " >
+                             <select id="duallistbox_alerts" multiple="multiple" size="6" name="duallistbox_alerts" title="duallistbox_alerts">
+                                 <option th:each="alert : ${listAlerts}"
+                                         th:value="${alert.id}"
+                                         th:text="${alert.name}">
+                                 </option>
+                             </select>
+                             <span th:if="${#fields.hasErrors('alerts')}" th:errors="*{alerts}" class="text-danger"></span>
+                         </div>
+                     </div>
+                 </div>
+
+            </div>
+
+            <div class="row"> <!-- Ligne Boutons Valider / Annuler -->
+                <div class="col-md-6 mt-5">
+                    <Button type="submit" name="action" class="btn btn-success" value="save">Valider</Button>
+                    <Button type="cancel" class="btn btn-danger" onclick="window.location='/maintenances';return false;">Annuler</Button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+<section layout:fragment="javascripts">
+    <script>
+
+        var duallistbox = $('select[name="duallistbox_alerts"]')
+            .bootstrapDualListbox({
+                moveOnSelect: false,
+                moveOnDoubleClick : false
+            });
+
+        $("form").submit(
+            function(event) {
+                $("#listAlerts").val(
+                    $("#duallistbox_alerts").val());
+                return;
+            });
+    </script>
+
+</section>
+
+</body>
+</html>

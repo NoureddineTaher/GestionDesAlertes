@@ -1,0 +1,143 @@
+sequence APPINFO_SCH.ALARM_EVENT_SEQ créé(e).
+sequence APPINFO_SCH.ALARM_SEQ créé(e).
+sequence APPINFO_SCH.ALERT_EVENT_SEQ créé(e).
+sequence APPINFO_SCH.ALERT_SEQ créé(e).
+sequence APPINFO_SCH.CATEGORY_SEQ créé(e).
+sequence APPINFO_SCH.CONTACT_SEQ créé(e).
+sequence APPINFO_SCH.DIFFUSION_GROUP_SEQ créé(e).
+sequence APPINFO_SCH.JOB_EVENT_SEQ créé(e).
+table APPINFO_SCH.ALARM créé(e).
+Succès de l'élément comment on table appinfo_sch.alarm 'CONFIGURATION DES ALARMES'.
+table APPINFO_SCH.ALARM_EVENT créé(e).
+Succès de l'élément comment on table appinfo_sch.alarm_event 'EVÈNEMENTS D''ALARME'.
+table APPINFO_SCH.ALERT créé(e).
+Succès de l'élément comment on table appinfo_sch.alert 'CONFIGURATION DES ALERTES'.
+table APPINFO_SCH.ALERT_ALARMS créé(e).
+Succès de l'élément comment on table appinfo_sch.alert_alarms 'ASSOCIATION ALERT ALARM'.
+table APPINFO_SCH.ALERT_DIFFUSION_GROUPS créé(e).
+Succès de l'élément comment on table appinfo_sch.alert_diffusion_groups 'ASSOCIATION ALERT_DIFFUSION_GROUP'.
+table APPINFO_SCH.ALERT_EVENT créé(e).
+Succès de l'élément comment on table appinfo_sch.alert_event 'EVÈNEMENT D''ALERTE'.
+table APPINFO_SCH.ALERT_EVENT_ALARM_EVENTS créé(e).
+Succès de l'élément comment on table appinfo_sch.alert_event_alarm_events 'ASSOCIATION ALERT_EVENT ALARM_EVENT'.
+table APPINFO_SCH.CATEGORY créé(e).
+Succès de l'élément comment on table appinfo_sch.category 'CATÉGORIE D''ALERTE'.
+table APPINFO_SCH.CONTACT créé(e).
+Succès de l'élément comment on table appinfo_sch.contact 'CONTACT'.
+table APPINFO_SCH.DIFFUSION_GROUP créé(e).
+Succès de l'élément comment on table appinfo_sch.diffusion_group 'GROUPE DE DIFFUSION'.
+table APPINFO_SCH.DIFFUSION_GROUP_CONTACTS créé(e).
+Succès de l'élément comment on table appinfo_sch.diffusion_group_contacts 'ASSOCIATION CONTACT DIFFUSION_GROUP'.
+table APPINFO_SCH.JOB_EVENT créé(e).
+Succès de l'élément comment on table appinfo_sch.job_event 'EVÉNEMENT DE JOB'.
+table APPINFO_SCH.ALERT modifié(e).
+table APPINFO_SCH.ALERT_EVENT_ALARM_EVENTS modifié(e).
+table APPINFO_SCH.CATEGORY modifié(e).
+table APPINFO_SCH.DIFFUSION_GROUP modifié(e).
+table APPINFO_SCH.ALARM_EVENT modifié(e).
+table APPINFO_SCH.ALERT modifié(e).
+table APPINFO_SCH.ALERT_ALARMS modifié(e).
+table APPINFO_SCH.ALERT_ALARMS modifié(e).
+table APPINFO_SCH.ALERT_DIFFUSION_GROUPS modifié(e).
+table APPINFO_SCH.ALERT_DIFFUSION_GROUPS modifié(e).
+table APPINFO_SCH.ALERT_EVENT modifié(e).
+table APPINFO_SCH.ALERT_EVENT_ALARM_EVENTS modifié(e).
+table APPINFO_SCH.ALERT_EVENT_ALARM_EVENTS modifié(e).
+table APPINFO_SCH.DIFFUSION_GROUP_CONTACTS modifié(e).
+table APPINFO_SCH.DIFFUSION_GROUP_CONTACTS modifié(e).
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Succès de l'élément grant.
+Erreur commençant à la ligne: 80 de la commande -
+create synonym appinfo_uti.alarm_event_seq for appinfo_sch.alarm_event_seq
+Erreur à la ligne de commande: 80 Colonne: 1
+Rapport d'erreur -
+Erreur SQL : ORA-00955: ce nom d'objet existe déjà
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+Erreur commençant à la ligne: 81 de la commande -
+create synonym appinfo_uti.alarm_seq for appinfo_sch.alarm_seq
+Erreur à la ligne de commande: 81 Colonne: 1
+Rapport d'erreur -
+Erreur SQL : ORA-00955: ce nom d'objet existe déjà
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+Erreur commençant à la ligne: 82 de la commande -
+create synonym appinfo_uti.alert_event_seq for appinfo_sch.alert_event_seq
+Erreur à la ligne de commande: 82 Colonne: 1
+Rapport d'erreur -
+Erreur SQL : ORA-00955: ce nom d'objet existe déjà
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+Erreur commençant à la ligne: 83 de la commande -
+create synonym appinfo_uti.alert_seq for appinfo_sch.alert_seq
+Erreur à la ligne de commande: 83 Colonne: 1
+Rapport d'erreur -
+Erreur SQL : ORA-00955: ce nom d'objet existe déjà
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+Erreur commençant à la ligne: 84 de la commande -
+create synonym appinfo_uti.category_seq for appinfo_sch.category_seq
+Erreur à la ligne de commande: 84 Colonne: 1
+Rapport d'erreur -
+Erreur SQL : ORA-00955: ce nom d'objet existe déjà
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+Erreur commençant à la ligne: 85 de la commande -
+create synonym appinfo_uti.contact_seq for appinfo_sch.contact_seq
+Erreur à la ligne de commande: 85 Colonne: 1
+Rapport d'erreur -
+Erreur SQL : ORA-00955: ce nom d'objet existe déjà
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+Erreur commençant à la ligne: 86 de la commande -
+create synonym appinfo_uti.diffusion_group_seq for appinfo_sch.diffusion_group_seq
+Erreur à la ligne de commande: 86 Colonne: 1
+Rapport d'erreur -
+Erreur SQL : ORA-00955: ce nom d'objet existe déjà
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+Erreur commençant à la ligne: 87 de la commande -
+create synonym appinfo_uti.job_event_seq for appinfo_sch.job_event_seq
+Erreur à la ligne de commande: 87 Colonne: 1
+Rapport d'erreur -
+Erreur SQL : ORA-00955: ce nom d'objet existe déjà
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+synonym APPINFO_UTI.ALARM créé(e).
+synonym APPINFO_UTI.ALARM_EVENT créé(e).
+synonym APPINFO_UTI.ALERT créé(e).
+synonym APPINFO_UTI.ALERT_ALARMS créé(e).
+synonym APPINFO_UTI.ALERT_DIFFUSION_GROUPS créé(e).
+synonym APPINFO_UTI.ALERT_EVENT créé(e).
+synonym APPINFO_UTI.ALERT_EVENT_ALARM_EVENTS créé(e).
+synonym APPINFO_UTI.CATEGORY créé(e).
+synonym APPINFO_UTI.CONTACT créé(e).
+synonym APPINFO_UTI.DIFFUSION_GROUP créé(e).
+synonym APPINFO_UTI.DIFFUSION_GROUP_CONTACTS créé(e).
+synonym APPINFO_UTI.JOB_EVENT créé(e).

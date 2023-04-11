@@ -1,0 +1,50 @@
+drop table appinfo_sch.maintenance cascade constraints;
+drop table appinfo_sch.alarm cascade constraints;
+drop table appinfo_sch.alarm_event cascade constraints;
+drop table appinfo_sch.alert cascade constraints;
+drop table appinfo_sch.alert_alarms cascade constraints;
+drop table appinfo_sch.alert_diffusion_groups cascade constraints;
+drop table appinfo_sch.alert_event cascade constraints;
+drop table appinfo_sch.alert_event_alarm_events cascade constraints;
+drop table appinfo_sch.category cascade constraints;
+drop table appinfo_sch.contact cascade constraints;
+drop table appinfo_sch.diffusion_group cascade constraints;
+drop table appinfo_sch.diffusion_group_contacts cascade constraints;
+drop table appinfo_sch.job_event cascade constraints;
+drop table appinfo_sch.incident cascade constraints;
+
+drop sequence maintenance_seq;
+drop sequence alarm_event_seq;
+drop sequence alarm_seq;
+drop sequence alert_event_seq;
+drop sequence alert_seq;
+drop sequence category_seq;
+drop sequence contact_seq;
+drop sequence diffusion_group_seq;
+drop sequence job_event_seq;
+
+drop synonym appinfo_uti.maintenance;
+drop synonym appinfo_uti.alarm;
+drop synonym appinfo_uti.alarm_event;
+drop synonym appinfo_uti.alert;
+drop synonym appinfo_uti.alert_alarms;
+drop synonym appinfo_uti.alert_diffusion_groups;
+drop synonym appinfo_uti.alert_event;
+drop synonym appinfo_uti.alert_event_alarm_events;
+drop synonym appinfo_uti.category;
+drop synonym appinfo_uti.contact;
+drop synonym appinfo_uti.diffusion_group;
+drop synonym appinfo_uti.diffusion_group_contacts;
+drop synonym appinfo_uti.job_event;
+drop synonym appinfo_uti.incident;
+
+drop synonym appinfo_uti.maintenance_seq;
+drop synonym appinfo_uti.alarm_event_seq;
+drop synonym appinfo_uti.alarm_seq;
+drop synonym appinfo_uti.alert_event_seq;
+drop synonym appinfo_uti.alert_seq;
+drop synonym appinfo_uti.category_seq;
+drop synonym appinfo_uti.contact_seq;
+drop synonym appinfo_uti.diffusion_group_seq;
+drop synonym appinfo_uti.job_event_seq;
+

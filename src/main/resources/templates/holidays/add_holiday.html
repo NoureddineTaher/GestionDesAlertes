@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<body>
+<section layout:fragment="content">
+    <div class="container my-5">
+        <form action="#" th:action="@{/holidays/addholiday}" th:object="${holidayDto}" method="post">
+            <div class="row mb-5 d-flex justify-content-center">
+                <h2 class="text-center">Ajout d'un jour ferie ou chome</h2></div>
+
+            <div class="row"> <!-- Ligne generale 3 champs + double colonne choix d'alertes -->
+                <div class="col-md-3"></div>
+                <div class="col-md-6"> <!-- Colonne champs : contient 3 lignes -->
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="day" class="col-form-label">Jour</label>
+                            <input type="date" class="form-control" id="day" th:field="*{day}"/>
+                            <span th:if="${#fields.hasErrors('day')}" th:errors="*{day}" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+            <div class="row"> <!-- Ligne Boutons Valider / Annuler -->
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mt-5">
+                    <Button type="submit" name="action" class="btn btn-success" value="save">Valider</Button>
+                    <Button type="cancel" class="btn btn-danger" onclick="window.location='/holidays';return false;">
+                        Annuler
+                    </Button>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+<footer layout:fragment="footerContent" id="main-footer">
+    <div id="footer-legal" class="fixed-bottom">
+        © GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+    </div>
+</footer>
+</body>
+</html>

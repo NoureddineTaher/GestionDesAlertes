@@ -1,0 +1,25 @@
+<h1><?= $conf['title'] ?></h1>
+<table>
+<?php
+$i = 0;
+foreach ($conf['apps'] as $k => $v) {
+   if (count($v) == 0) continue;
+
+   if ($i % $cols == 0)
+      echo "<tr>\n";
+
+   echo "<td>\n";
+   echo "<div class='app'><img src='img/". $apps_color[$k] .".png'>$k</div><div class='sit'>\n";
+   foreach ($v as $j) {
+      echo "<div class='" . $situations_color[$j] . "'>$j</div>\n";
+   }
+   echo "</div>\n";
+   echo "</td>\n";
+
+   if ($i % $cols == $cols-1)
+      echo "</tr>\n";
+
+   ++$i;
+}
+?>
+</table>

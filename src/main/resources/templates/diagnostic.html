@@ -1,0 +1,67 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE html>
+
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+	
+	<head>
+		<title>Appliinfo: Diagnostic</title>
+	</head>
+
+    <body>
+	    <section layout:fragment="content">
+	    	<div class="container">
+	           <div class="row">
+	             <div class="col"></div>
+	             <div class="col-md-10">
+	             
+	             		<div class="my-4 d-flex mb-3 align-items-center rounded text-white bg-primary w-100">
+						  <div class="p-1 ml-3">
+						  	<span class="h4"><span class="text-adsn-grey">D</span>iagnostic de sante</span>
+						  </div>
+						</div>
+								
+						<div class="table-responsive">
+		                    <table class="table table-sm table-fix-header table-striped table-hover">
+		                        <thead class="text-center thead-dark">
+		                            <tr>
+		                                <th>Module</th>
+		                                <th>Status</th>
+										<th style="width:16vw"></th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                            <tr th:each="healthValue: ${healthValues}" >
+		                                <td th:text="${healthValue.key}" class="font-weight-bold text-uppercase text-center"></td>                    
+		                                <td>
+		                                    <div th:switch="${healthValue.value.status.code}" class="text-center">
+		                                        <i th:case="UP" class="fas fa-check-circle fa-2x"></i>
+		                                        <i th:case="DOWN" class="fas fa-times-circle fa-2x"></i>
+		                                        <i th:case="*" class="fas fa-exclamation-triangle fa-2x"></i></div>
+		                                </td>
+										<td>
+											<div th:if="${healthValue.key=='SMS'}">
+												<div  class="d-flex justify-content-center">
+													<p class="font-weight-bold m-0">Solde SMS  :&nbsp;&nbsp;</p>
+													<p class="m-0" th:text="${remainingSMS}"></p>
+												</div>
+											</div>
+										</td>
+		                               </tr> 
+		                        </tbody>
+		                    </table>
+	                    </div>
+	               	</div>
+	                <div class="col"></div>
+	            </div>            
+	      </div>       
+	   </section>
+		<footer layout:fragment="footerContent" id="main-footer">
+			<div id="footer-legal" class="fixed-bottom">
+				© GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+			</div>
+		</footer>
+	</body>
+</html>

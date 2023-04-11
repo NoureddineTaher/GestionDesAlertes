@@ -1,0 +1,39 @@
+TITLE = Pôle Immobilier
+COLS = 1
+
+BAROMETRE
+* CLOUD_Barometre_Robot_Fatal
+
+EVALU@NOT
+* CLOUD_EVALUANOT_Robot_Fatal
+* Evaluanot_Critical
+
+IMMOBILIER.NOTAIRES
+* Test_Exploit_Immobilier
+* Tomcat_Immobilier_Memory_Warnin
+* CLOUD_METASITE_IMMO_Critical
+* REAL_PS2I_Log_Critical
+* CLOUD_INOTR_TestURL_Critical
+* CLOUD_IMMDCRT_TestURL_Critical
+
+PASSERELLE IMMO
+* CLOUD_PS2I_Log_Critical
+* CLOUD_PS2I_Stat_Critical
+
+PERVAL
+* CLOUD_PERVAL_Robot_Fatal
+* Test_Exploit_Perval_FCB
+* TestExploitPosh_Perval_FCB
+* CLOUD_PERVAL_TestURL_Critical
+* CLOUD_STATPERVAL_TestURL_Critic
+
+PEVA
+* CLOUD_PEVA_Robot_Fatal
+
+SAS VA
+* CLOUD_Statistiques_Immo_Critica
+
+STATS EXTRA
+* CLOUD_STATEXTRA_Robot_Fatal
+* CLOUD_STATEXTRA_Adonix_Critical
+

@@ -1,0 +1,77 @@
+TITLE = Infrastructure de confiance
+
+HSM PROTECCIO
+* REAL_HSMProteccio_Etat_Critical
+
+HSM LUNA
+* Real_HSM_CriticalEvent_CRITICAL
+* Real_HSM_NotRunning_CRITICAL
+
+KSTAMP
+* Kstamp_Error_Response_File_Crit
+* Kstamp_Fatal
+* REAL_KSTAMP_DS_Critical
+* REAL_KSTAMP_HAPROXY_Critical
+* REAL_KSTAMP_HSS_Critical
+* REAL_KSTAMP_HTTPD_Critical
+* REAL_KSTAMP_KA_Critical
+* REAL_HAKSTAMP_Stats_Critical
+
+LANTIME
+* REAL_Lantime_EtatNTP_Critical
+* REAL_Lantime_ModeGPS_Critical
+
+PKI
+* REAL_PKI_Service_ALLDOWN
+* REAL_PKI_Service_ALLUP
+
+REVERSE PROXY SSL REGLEMENTE
+* ManqueSituation 
+
+SACRE Internet
+* Test_Exploit_Sacre_Internet_blo
+
+SACRE Intranet
+* Test_Exploit_Sacre_CMS_bloquant
+* Test_Exploit_Sacre_Admin_critic
+* REAL_SACRE_IntraLog_Critical
+* REAL_SacreSSL_Robot_Fatal
+* SacreSSL_Warning
+* REAL_Sacre_Acc_Robot_Fatal
+* REAL_Sacre_Revoc_Robot_Fatal
+* SacreExploit_Critical
+* SacreExploit_Warning
+
+SITE PREUVE ELECTRONIQUE
+* REAL_PreuveElect_Robot_Fatal
+
+SVSU
+* SVSUFOBOExploit_Critical
+* SVSUFOBOMICENExploit_Critical
+* SVSUMICENExploit_Critical
+* SVSuExploit_Critical
+* REAL_SVS_Exploit_Critical
+* REAL_SVSU_LogFileAgent_Critical
+
+WEBPASS
+* CRL_Expired
+* CRL_Expired_soon
+* CRL_Not_Found
+* REAL_CRL_Bundle_Critical
+
+WS OCSP
+* REAL_OCSP_TestExploit_Critical
+* REAL_OCSP_TestExploit_Warning
+* REAL_OcspResponder_LogFileExcep
+* Test_Exploit_WSOCSP
+* REAL_OCSP_JAVA_Critical
+* REAL_OCSP_HAPROXY_Critical
+* REAL_OCSP_HTTPD_Critical
+* REAL_OCSP_KA_Critical
+
+WS OID
+* REAL_WSOID_Robot_Fatal
+* REAL_WSOID_LogFile_Critical
+* REAL_WSOID_Exploit_Critical
+* Wsoid_Warning
+

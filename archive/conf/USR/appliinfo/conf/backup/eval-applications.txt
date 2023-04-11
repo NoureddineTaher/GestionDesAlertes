@@ -1,0 +1,56 @@
+TITLE = Applications Métier
+COLS = 1
+
+ANFI
+* REAL_ANF_Exploit_Eval
+* REAL_ANF_WS_Robot_Eval
+
+CJN
+* REAL_PortailCJN_Exploit_Eval
+
+ETAT CIVIL
+* REAL_SatEC_Exploit_Eval
+
+FRONTAL
+* REAL_FRONTAL_Service_Eval
+
+MICEN
+* REAL_MicenEval_Exploit_Critical
+* WsRmn_Micen_Eval_Critical
+* Micen_Ecaase_Eval_Critical
+
+PLANETE
+* REAL_PlaneteV3_TestSMB_Eval
+* REAL_PlaneteV3_Log_Eval
+* REAL_PlaneteV3_Exploit_Eval
+* REAL_PlaneteV3_Robot_Eval
+
+SATELLITE SAFER
+* REAL_SatelliteSafer_Exploit_Eva
+
+SATELLITE TELEACTE
+* REAL_SatTAC_Exploit_Eval
+
+SASI
+* REAL_SASI_Exploit_Eval
+
+SVSU
+* REAL_SVSU_Exploit_Eval
+* REAL_SVSU_Log_Eval
+* REAL_SVSU_Robot_Eval
+
+TDT
+* REAL_TDT_TestBatch_Eval
+* REAL_TDT_TestServeur_Eval
+
+TTS_PROXY
+* Tts_Proxy_Eval_Critical
+
+WSRMN IBAN
+* WsRmn_Iban_Eval_Critical
+
+WSOID
+* REAL_WSOID_Exploit_Eval
+* REAL_WSOID_LogFile_Eval
+* REAL_WSOID_Robot_Eval
+

@@ -1,0 +1,183 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE html>
+
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+	
+    <body>
+	    <section layout:fragment="content">
+	    	<div th:switch="${maintenances}" class="container">
+	            <div class="row">
+	            	<div class="col"></div>
+	                <div class="col-md-12">
+	                    <h2 th:case="null">Aucune Maintenance planifiee!</h2>
+	                    <div th:case="*">
+	                    
+	                    	<div class="my-4 d-flex mb-3 align-items-center rounded text-white bg-primary w-100">
+							  <div class="p-1 ml-3">
+							  	<span class="h4">Maintenances planifiées</span>
+							  </div>
+							<div class="p-1 mr-1 ml-auto">
+								<a
+										href="/maintenances/archived"
+										data-toggle="tooltip"
+										data-placement="top"
+										title="Inclure les maintenances archivees dans la liste"
+										class="btn btn-sm btn-info btn-outline-light">
+			                    	<span class="fa-stack" >
+		                        		<em class="fas fa-archive fa-stack-2x pr-1"></em>
+		                        	</span>
+								</a>
+								<a
+										href="/maintenances/addmaintenance"
+										data-toggle="tooltip"
+										data-placement="top"
+										title="Planifier une maintenance"
+										class="btn btn-sm btn-primary btn-outline-light">
+			                    	<span class="fa-stack" >
+		                        		<em class="fas fa-clock fa-stack-2x pr-1"></em>
+		                        		<em class="fas fa-plus fa-stack-1x ml-2"></em>
+		                        	</span>
+								</a>
+							  </div>
+							</div>
+							
+							<p class="d-flex align-items-start w-100">
+								 <input id="searchTableInput" class="w-100" type="text" placeholder="Recherche...">
+							</p>
+	                       
+	                       	<div class="table-responsive">
+		                        <table class="table table-fix-header table-sm table-striped table-hover">
+		                            <thead class="thead-dark">
+		                                <tr>
+		                                    <th style="width: 23%">Nom de l'Alerte</th>
+											<th style="width: 24%">Plage de Maintenance</th>
+		                                    <th style="width: 15%">Commentaire</th>
+											<th style="width: 16%">Date de mise a jour</th>
+											<th  style="width: 16%">Utilisateur</th>
+
+
+		                                    <!--<th class="text-center">Supprimer</th>-->
+											<th class ="no-sort" style="width: 6%">
+												<span class="text-decoration-none fas fa-pencil-alt glyphicon btn-sm"></span>
+												<span class="text-decoration-none fas fa-trash-alt glyphicon btn-sm trash-group-icon" ></span>
+											</th>
+											<th  style="display:none;">Id</th>
+		                                </tr>
+		                            </thead>
+		                            <tbody id="maintenancesTable" >
+		                                <tr th:each="maintenance : ${maintenances}">
+		                                    <td class="align-middle" th:text="${#strings.toUpperCase(maintenance.alert.name)}"></td>
+											<td class="align-middle" th:text="${maintenance.startTime} + '  -  ' + ${maintenance.endTime}"></td>
+		                                    <td class="align-middle" th:text="${maintenance.comments}"></td>
+											<td class="align-middle" th:text="${maintenance.lastModifiedDate}"></td>
+											<td class="align-middle" th:text="${maintenance.lastModifiedBy}"></td>
+		                                    <td class="align-middle min">
+												<a
+														class="text-decoration-none fas fa-pencil-alt glyphicon btn-sm btn-outline-success"
+														th:href="@{/maintenances/update/{id}(id=${maintenance.id})}"
+														data-toggle="tooltip" data-placement="top"
+														title="Modifier la maintenance">
+												</a>
+												<span
+														class="cursor-pointer fas fa-trash-alt glyphicon btn-sm btn-outline-danger"
+														th:dataId="${maintenance.id}"
+														th:dataUrl="@{/maintenances/delete/{id}(id=${maintenance.id})}"
+														th:dataName="'Maintenance planifiee sur Alerte ' + ${maintenance.alert.name} + ' - Plage horaire : ' + ${maintenance.startTime} + '  -  ' + ${maintenance.endTime}"
+														data-toggle="tooltip"
+														data-placement="top"
+														title="Supprimer la maintenance"
+														onclick="confirmDelete(this.getAttribute('dataId'),this.getAttribute('dataName'),this.getAttribute('dataUrl'));">
+												</span>
+		                                    </td>
+											<td class="maintenance-id" th:text="${maintenance.id}"></td>
+		                                </tr>
+		                            </tbody>
+		                        </table>
+		                     </div>
+	                    </div>                          
+	                </div>
+	               <div class="col"></div>
+	            </div>
+				<div class="row">
+
+				</div>
+	        </div>
+    	</section>
+
+    	<section layout:fragment="javascripts">
+		   <script type="text/javascript">
+
+
+		  $(document).ready(function () {
+
+				  let trashGroupIcon = document.querySelector(".trash-group-icon");
+				  let maintenanceIds = [];
+				  let Ids = document.querySelectorAll(".maintenance-id");
+				  Ids.forEach((id) => maintenanceIds.push(id.innerHTML));
+				  let content = "<ul><br>";
+				  Ids.forEach((id) => {
+					content +="<li>"+
+					  id.parentElement.children[0].innerHTML +
+					  " : " +
+					  id.parentElement.children[1].innerHTML +
+					  " </li>";
+				  });
+				  content+="</ul>"
+
+				  $("#searchTableInput").on("keyup", function () {
+				  	content = "<ul><br>"
+					var value = $(this).val().toLowerCase();
+					$("#maintenancesTable tr").filter(function () {
+					  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+					});
+
+					let maintenanceIdsDisplayed = [];
+
+					Ids.forEach((id) => {
+					  if (id.parentElement.style.display !== "none") {
+						maintenanceIdsDisplayed.push(id.innerHTML);
+						content +="<li>"+
+					  id.parentElement.children[0].innerHTML +
+					  " : " +
+					  id.parentElement.children[1].innerHTML +
+					  " </li>";
+					  }
+					});
+					content+="</ul>"
+					maintenanceIds = maintenanceIdsDisplayed;
+				  });
+
+				  trashGroupIcon.addEventListener("click", () => {
+				  		if(maintenanceIds.length){
+				  				let name =content;
+								openModal(
+								"Attention",
+								"Voulez vous vraiment supprimer les maintenances planifiées sur :" + name,
+								true,
+								"Valider",
+								function () {
+								  sendRequestForGroupDelete("/maintenances/deleteByGroup/",maintenanceIds )
+								},
+								true
+							  );
+
+				  		}
+
+
+				  });
+				});
+
+				function sendRequestForGroupDelete(url , body) {
+					let idsTosend = body.join("-")
+
+					location.replace(url+idsTosend)
+				}
+
+		    </script>
+	    </section>
+
+    </body>
+</html>

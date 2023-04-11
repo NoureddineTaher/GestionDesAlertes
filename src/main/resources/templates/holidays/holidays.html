@@ -1,0 +1,100 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE html>
+
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<body>
+<section layout:fragment="content">
+    <div th:switch="${holidays}" class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-md-10">
+                <h2 th:case="null">Aucun jour ferie ou chome!</h2>
+                <div th:case="*">
+
+                    <div class="my-4 d-flex mb-3 align-items-center rounded text-white bg-primary w-100">
+                        <div class="p-1 ml-3">
+                            <span class="h4"><span class="text-adsn-grey">J</span>ours feries ou chomes</span>
+                        </div>
+                        <div class="p-1 mr-1 ml-auto">
+                            <a
+                                    href="/holidays/addholiday"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Ajouter un jour férié ou chomé"
+                                    class="btn btn-sm btn-primary btn-outline-light">
+                                <i class="fas fa-calendar-plus fa-fw"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <p class="d-flex align-items-start w-100">
+                        <input id="searchTableInput" class="w-100" type="text" placeholder="Recherche..."/>
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-fix-header table-sm table-striped table-hover">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>Jour</th>
+                                <th class ="no-sort">
+                                    <span class="text-decoration-none fas fa-pencil-alt glyphicon btn-sm"></span>
+                                    <span class="text-decoration-none fas fa-trash-alt glyphicon btn-sm"></span>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody id="holidaysTable">
+                            <tr th:each="holiday : ${holidays}" >
+                                <td class="align-middle" th:text="${holiday.displayDay()}"></td>
+                                <td class="align-middle min">
+                                    <a
+                                            class="text-decoration-none fas fa-pencil-alt glyphicon btn-sm btn-outline-success"
+                                            th:href="@{/holidays/update/{id}(id=${holiday.id})}"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="Modifier le jour férié ou chomé">
+                                    </a>
+                                    <span
+                                            class="cursor-pointer fas fa-trash-alt glyphicon btn-sm btn-outline-danger"
+                                            th:dataId="${holiday.id}"
+                                            th:dataUrl="@{/holidays/delete/{id}(id=${holiday.id})}"
+                                            th:dataName="'Jour férie ou chomé: ' + ${holiday.displayDay()}"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Supprimer le jour férié ou chomé"
+                                            onclick="confirmDelete(this.getAttribute('dataId'),this.getAttribute('dataName'),this.getAttribute('dataUrl'));">
+												</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+</section>
+<footer layout:fragment="footerContent" id="main-footer">
+    <div id="footer-legal" class="fixed-bottom">
+        © GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+    </div>
+</footer>
+
+<section layout:fragment="javascripts">
+    <script>
+        $(document).ready(function(){
+            $("#searchTableInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#holidaysTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</section>
+</body>
+</html>

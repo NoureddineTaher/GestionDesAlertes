@@ -1,0 +1,72 @@
+TITLE = Composant Infrastructure 
+COLS = 1
+
+DEPOT REDHAT
+* REAL_RHEL_Log_Critical
+
+VMWARE ESX
+* REAL_Resource_Pool_Memory_High
+* REAL_Server_Receive_Rate_High_C
+* REAL_Server_Transmit_Rate_High
+* REAL_Cluster_Bad_Status_Critica
+* REAL_Cluster_CPU_Util_High_Crit
+* REAL_Cluster_Critical_Event_Cri
+* REAL_Cluster_Memory_Util_High_C
+* REAL_Collection_Error_Critical
+* REAL_Datastore_Bad_Status_Criti
+* REAL_Datastore_Critical_Event
+* REAL_Datastore_Usage_High_Criti
+* REAL_Datastore_Usage_High_Warni
+
+HARDWARE ILO
+* REAL_ILO_Env_Critical
+* REAL_ILO_LogDrv_Critical
+* REAL_ILO_Mem_Critical
+* REAL_ILO_PhyDrv_Critical
+* REAL_ILO_Sys_Critical
+
+HSM LUNA
+* Real_HSM_CriticalEvent_CRITICAL
+* Real_HSM_NotRunning_CRITICAL
+
+HSM PROTECCIO
+* Adefinir
+
+CONTROLEUR DE DOMAINE
+* ADefinir
+
+LANTIME
+* REAL_Lantime_EtatNTP_Critical
+* REAL_Lantime_ModeGPS_Critical
+* REAL_Lantime_Uptime_Critical
+
+PROXY
+* ADefinir
+
+PUPPET
+* ADefinir
+
+FOREMAN
+* REAL_Foreman_Service_Critical
+
+REPLICATION DFS
+* ADefinir
+
+SAM
+* REAL_SAM_Robot_Fatal
+
+SAUVEGARDE Netbackup
+* REAL_Sauvegarde_Critical
+
+STOCKAGE 3PAR
+* REAL_3Par_Critical
+
+STOCKAGE IBRIX
+* Ibrix_Filesystem_Space_Prod
+* Ibrix_Filesystem_Space_Prod_W
+* Ibrix_Job_Replication_Fatal
+* Ibrix_Task_Stopping
+
+WSUS
+* ADefinir
+

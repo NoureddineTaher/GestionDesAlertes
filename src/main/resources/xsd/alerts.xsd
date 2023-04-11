@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified" targetNamespace=""
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="DATA">
+		<xsd:complexType mixed="true">
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" name="ROW">
+					<xsd:complexType mixed="true">
+						<xsd:sequence>
+							<xsd:element minOccurs="0" name="HORIGINNODE"
+								type="xsd:normalizedString" />
+							<xsd:element minOccurs="0" name="HNODE"
+								type="xsd:normalizedString" />
+							<xsd:element minOccurs="0" name="HDELTASTAT"
+								type="xsd:normalizedString" />
+							<xsd:element minOccurs="0" name="HSITNAME"
+								type="xsd:normalizedString" />
+							<xsd:element minOccurs="0" name="HGBLTMSTMP"
+								type="xsd:long" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

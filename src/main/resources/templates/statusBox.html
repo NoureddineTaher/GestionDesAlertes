@@ -1,0 +1,20 @@
+
+<div  th:fragment="myStatusBox(statues,severity, reference)">
+
+
+    <img class="statusIcon" th:if="${severity =='Fatal' and statues == 'A'}" th:src="@{'/images/meteo/status/FA.png'}" />
+    <img class="statusIcon" th:if="${severity =='Fatal' and statues != 'A'}" th:src="@{'/images/meteo/status/F_small.png'}" />
+
+
+    <img th:if="${severity=='Critical' and statues != 'A'}" th:src="@{'/images/meteo/status/C_small.png'}" />
+    <img class="statusIcon" th:if="${severity == 'Critical' and statues== 'A'}" th:src="@{'/images/meteo/status/CA.png'}" />
+
+
+    <img th:if="${severity=='Minor' and statues != 'A'}" th:src="@{'/images/meteo/status/M_small.png'}" />
+    <img class="statusIcon" th:if="${severity == 'Minor' and statues== 'A'}" th:src="@{'/images/meteo/status/MA.png'}" />
+
+    <img th:if="${severity=='Warning' and statues != 'A'}" th:src="@{'/images/meteo/status/W_small.png'}" />
+    <img class="statusIcon" th:if="${severity == 'Warning' and statues== 'A'}" th:src="@{'/images/meteo/status/WA.png'}" />
+
+    <img th:unless="${severity}" th:src="@{'/images/meteo/status/O_small.png'}" />
+</div>

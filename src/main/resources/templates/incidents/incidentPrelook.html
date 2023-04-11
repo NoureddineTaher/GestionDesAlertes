@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      xmlns:padding-left="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+    <link th:href="@{/css/graphicalCharts.css}" rel="stylesheet">
+
+</head>
+<body >
+<section layout:fragment="content">
+    </br></br></br>
+    <form action="#" th:action="@{/incidents/send/{id}(id=${incident.id})}" method="post" th:object="${incident}" id="prelookForm">
+        <div class="container">
+            <label class="mr-3" ><strong>[COMMUNICATION SUR INCIDENT] - PLANETE - Production -  </strong></label>
+            <strong>
+            <label class="col-form-label" th:text="${incident.incidentObjet}"  ></label>
+            </strong>
+            <div class="d-flex">
+                <div class="orange-cg d-flex justify-content-center align-items-center">
+                     <p style="margin-bottom: 0;margin-left: 10px;">CG</p>
+                     <span class="dot-cg"></span>
+                </div>
+                <div style="padding-left:1.5vw">
+                    <p  style="margin-bottom: 0;">Communication GDS  </p>
+                    <div class="d-flex" id="prelook-destinaion-div">
+                            <p style="margin-bottom: 0;">À  </p>
+                            <div class="pt-2 pl-1 pr-1 d-flex justify-content-center align-items-start">
+                                <span class="dot"></span>
+                            </div>
+                            <p style="margin-bottom: 0;">Communication GDS &nbsp;&nbsp;</p>
+
+                            <div class="d-flex" th:each="destination : ${destinationList}">
+                            <img height="15" width="15" src="/images/add.png" style="margin-top : 4px">
+                            <strong><p th:text="${destination}" style="marging-bottom:0" ></p> </strong>
+                                <strong>; &nbsp;&nbsp;</strong>
+                            </div>
+                    </div>
+                    <div class="d-flex">
+                        <p>Cc&nbsp;</p>
+                        <img height="15" width="15" src="/images/add.png" style="margin-top : 4px">
+                        <p><strong>@DEX.GDS</strong></p>
+                    </div>
+            </div>
+        </div>
+        <div class="container bleu-adsn">
+            <div class="d-flex incident-form-control">
+                <img  src="/images/declaration-inc.png" class="mr-1 ml-1 mb-5" th:if="${incident.incidentGraphicalCharter == 'Déclaration d''incident'}"/>
+                <img  src="/images/cloture_incident.png" class="mr-1 ml-1 mb-5" th:if="${incident.incidentGraphicalCharter == 'Clôture d''incident'}"/>
+                <img  src="/images/suivi-inc.png" class="mr-1 ml-1 mb-5" th:if="${incident.incidentGraphicalCharter == 'En cours de traitement'}"/>
+            </div>
+            <hr style="border :1px solid rgba(0, 0, 0, 0.1);">
+            <div id="prelook-incident-details-div" onclick="backToEdit()">
+            <div class="pb-5 pt-3">
+                <div th:text="${incident.description}" class="bottom" style="white-space:break-spaces;padding-left: 80px"></div>
+            </div>
+            <div>
+                <p style="font-size:11pt;font-family:Calibri,sans-serif;margin:0;">
+                    <b>
+                        <u>
+                            <span style="color:#0A3F70;font-size:14pt;font-family:Tahoma,sans-serif;font-variant:small-caps;letter-spacing:-1.0pt;"> DETAILS DE L’INTERRUPTION </span>
+                        </u>
+                    </b>
+                </p>
+                 <p style="font-size:11pt;font-family:Calibri,sans-serif;margin:0;">
+                     <span style="color:#203864;font-family:Tahoma,sans-serif;" >&nbsp;</span>
+                 </p>
+                <div class="container p-2" id="prelook-details-div">
+                    <div class="d-flex">
+                        <p  class="preview-incident-detail">Nature de l'incident</p>
+                        <p class="preview-incident-detail-value bottom"th:text="${incident.incidentNature}"></p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="preview-incident-detail">Applications concernées</p>
+                        <p class="preview-incident-detail-value bottom" th:text="${incident.incidentApplications}"></p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="preview-incident-detail">Environnement</p>
+                        <p class="preview-incident-detail-value bottom" th:text="${incident.incidentEnvironment}"></p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="preview-incident-detail">Impact de l'incident</p>
+                        <p  class="preview-incident-detail-value bottom" th:text="${incident.incidentImpactType}"></p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="preview-incident-detail">Debut de l'incident</p>
+                        <p class="preview-incident-detail-value font-weight-bold bottom" th:text="${incident.incidentStart}"></p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="preview-incident-detail">Fin estimée de l'incident</p>
+                        <p class="preview-incident-detail-value font-weight-bold bottom" th:text="${incident.incidentEnd}"></p>
+                    </div>
+                    <div class="d-flex">
+                        <p class="preview-incident-detail">Informations complémentaires</p>
+                        <p class="preview-incident-detail-value font-weight-bold bottom" th:text="${incident.incidentComplementaryInfos}"></p>
+                    </div>
+
+                </div>
+            </div>
+            <div>
+            </div>
+
+            </div></div></div>
+        <div class=" container d-flex justify-content-between mt-5">
+            <button id="back-prelook-button" class="btn btn-primary prelook-button" >Revenir à édition</button>
+            <button type="button" id="incident-send-mail-button" class="btn btn-primary prelook-button" >Envoyer </button>
+        </div>
+    </form>
+</section>
+<section layout:fragment="javascripts">
+    <script th:inline="javascript">
+     var graphicalCharterMessage = [[${incident.incidentGraphicalCharter}]];
+     var backPrelookButton = document.getElementById("back-prelook-button")
+     var incidentSendMailButton = document.getElementById("incident-send-mail-button")
+
+
+     function backToEdit(){
+        localStorage.setItem('graphicalCharterMessage', graphicalCharterMessage);
+        history.back()
+
+     }
+
+     if(backPrelookButton){
+        backPrelookButton.addEventListener("click",(e)=>{
+        backToEdit()
+        e.stopPropagation();
+        e.preventDefault();
+     })
+     }
+
+     if(incidentSendMailButton){
+        incidentSendMailButton.addEventListener("click",(e)=>{
+
+                 localStorage.removeItem('graphicalCharterMessage');
+                document.forms["prelookForm"].submit();
+
+
+
+
+
+     })
+     }
+
+    </script>
+</section>
+</body>
+</html>

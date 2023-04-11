@@ -1,0 +1,253 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE html>
+
+<html
+        xmlns=http://www.w3.org/1999/xhtml
+        xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+        xmlns:th=http://www.thymeleaf.org xmlns:padding-left="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Appli INFO</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo-ADSN.png" />
+    <!-- Precharger la font pour éviter le lag d'affichage des icones au chargement des pages -->
+    <link rel="preload" as="font" href="/css/fontawesome-free/webfonts/fa-solid-900.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/fonts/open-sans-v17-latin-regular.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/fontawesome-free/css/all.min.css" th:href="@{css/fontawesome-free/css/all.min.css}" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"  th:href="@{css/bootstrap.min.css}" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/site.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-duallistbox.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/slider.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/dataTables.bootstrap4.min.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{css/style.css}" />
+
+</head>
+<body>
+<section layout:fragment="content">
+    <div class=" pt-5 pl-5 pr-5">
+        <div class="d-flex mb-2">
+            <label class="mr-3" for="historique-research" style="width:10vw" ><strong>Périmètre :</strong></label>
+            <div class="d-flex justify-content-between" >
+                <select  class="form-select" style="width: 9vw; margin-right: 2vw;height: 3.6vh;">
+                    <option><strong>SI notaires </strong></option>
+                    <option></option>
+                </select>
+                <label class="mb-0"><strong>Rechercher:</strong> </label>
+                <input type="search"  style="width: 20vw;"  class="ml-2" id="historique-research">
+            </div>
+        </div>
+        <p class="text-center font-weight-bold mb-0" id="historique-meteo" >
+            Recherche(en jours ouvrés)
+        </p>
+        <div class="d-flex" id="historique-table"  >
+            <div class="meteo-history-day-div pl-2">
+                <a class="meteo-history-day-link">Actuelle</a>
+            </div>
+            <div class="meteo-history-day-div" th:each="i : ${#numbers.sequence( 1, 30)}"
+               >
+                <a class="meteo-history-day-link"th:text="'J-'+${i}" href="#"></a>
+            </div>
+
+        </div>
+        <br/>
+        <img  src="/images/meteo.png" class="mr-1 ml-1 mb-3 mt-3 w-100"  /></span>
+        <br/>
+    <strong>
+        <label class="col-form-label" th:text="${meteodto.getSubjectMail()}"  ></label>
+    </strong>
+    <div class="d-flex ">
+        <div class="red-cg d-flex justify-content-center align-items-center">
+            <p style="margin-bottom: 0;margin-left: 10px;">CG</p>
+            <span class="dot-cg"></span>
+        </div>
+        <div style="padding-left:1.5vw">
+            <p  style="margin-bottom: 0;">Communication GDS  </p>
+            <div class="d-flex" id="prelook-destinaion-div">
+                <p style="margin-bottom: 0;">À  </p>
+                <div class="pt-2 pl-1 pr-1 d-flex justify-content-center align-items-start">
+                    <span class="dot"></span>
+                </div>
+                <p style="margin-bottom: 0;">Communication GDS &nbsp;&nbsp;</p>
+
+                <div class="d-flex" th:each="destination : ${destinationList}">
+                    <img height="15" width="15" src="/images/add.png" style="margin-top : 4px">
+                    <strong><p th:text="${destination}" style="marging-bottom:0" ></p> </strong>
+                    <strong>; &nbsp;&nbsp;</strong>
+                </div>
+            </div>
+            <div class="d-flex">
+                <p>Cc&nbsp;</p>
+                <img height="15" width="15" src="/images/add.png" style="margin-top : 4px">
+                <p><strong>@DEX.GDS</strong></p>
+            </div>
+        </div>
+    </div>
+        <form action="#"  th:object="${meteodto}">
+
+            <!--    <form action="#" th:action="@{/meteos/saveall}" th:object="${meteodto}" method="post">-->
+            <br />
+            <div >
+                <img src="/images/meteo.png" class="mr-1 ml-1 mb-5" alt="Groupe ADSN" /></span>
+                <h2>A LA UNE </h2>
+                <div class="row" th:each="meteo1  : ${meteodto.section1}">
+
+                    <div class="form-group col-md-9 ">
+                        <div  rows="12" type="text" style="border: none; height: auto;" class="form-control bleu-adsn"
+
+                        >
+                            [(${meteo1.aLaUne})]
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div >
+                <h2>METEO DU JOUR</h2>
+                <div>
+                    <img src="/images/img_1.png" class="mr-1 ml-1" alt="Groupe ADSN" />
+
+                </div></br>
+
+                <div class="row meteo-aplat" th:onclick="|window.location.href='/meteos'|"
+                     th:each="meteo2 : ${meteodto.section2}">
+                    <div class="form-group "></br>
+                        <div th:replace="colorBoxprevisualisation :: myColorBoxPrelook(${meteo2.icone})"></div>
+                    </div>
+                    <div class="form-group col-md-10 ">
+                        <label class="col-form-label h7">Direction des Activités :</label></br>
+
+                        <div  rows="12" type="text" style="border: none; height: auto;background-color: #F3F3F3;" class="form-control bleu-adsn"
+
+                        >
+                            [(${meteo2.directionActivite})]
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row meteo-aplat" th:onclick="|window.location.href='/meteos'|"
+                     th:each="meteo4 : ${meteodto.section4}">
+                    <div class="form-group">
+                        <div th:replace="colorBoxprevisualisation :: myColorBoxPrelook(${meteo4.icone})"></div>
+
+                    </div>
+                    <div class="form-group col-md-10 ">
+                        <label class="col-form-label h7">Direction de la relation client:</label></br>
+                        <div  rows="12" type="text" style="border: none; height: auto;background-color: #F3F3F3;" class="form-control bleu-adsn"
+
+                        >
+                            [(${meteo4.directionRelationClient})]
+
+                        </div>
+                    </div>
+                </div>
+                </br><!--<img src="/images/legende_meteo.png" class="mr-1 ml-1" alt="Groupe ADSN" width="601"
+                      height="138" /></br></br>-->
+                <table class="meteo-history-table">
+                    <tr>
+                        <td class="legende-image">
+                            <img  th:align="right" src="/images/Picto-vert-resized.png"  />
+                        </td>
+                        <td >
+                            <p  class="legend-description">Toutes les applications sont disponibles</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  class="legende-image">
+                            <img  th:align="right" src="/images/Picto-Jaune-resized.png"  />
+                        </td>
+                        <td>
+                            <p  class="legend-description">Applications ou fonctionnalités disponibles en mode dégradé</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  class="legende-image">
+                            <img  th:align="right" src="/images/Picto-Rouge-resized.png"   />
+                        </td>
+                        <td>
+                            <p class="legend-description">Applications ou fonctionnalités indisponibles</p>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <br>
+            </div>
+            <div >
+                <h2>AGENDA DES OPERATIONS </h2>
+                <div class="d-flex" th:each="meteo3 : ${meteodto.section3}">
+                    <div class="form-group bleu-adsn">
+                        <div th:replace="pictogramBoxPrevisualisation :: myPictogramBoxPrelook(${meteo3.icone})"></div>
+                    </div>
+                    <div class="form-group col-md-10 bleu-adsn">
+                        <label class="h8" th:text="${meteo3.agendaPeriode}"></label></br>
+                        <label class="col-form-label" th:text="${meteo3.agendaPerimetre}"></label></br>
+                        <label class="h7">Nature d’intervention : </label>
+                        <label class="col-form-label" th:text="${meteo3.agendaPerimetre}"></label></br>
+                        <label class="h7">Impact : </label>
+                        <label class="col-form-label" th:text="${meteo3.agendaImpact}"></label>
+                        </br>
+                    </div>
+                </div>
+                </br>
+                <table class="meteo-history-table">
+                    <tr>
+                        <td class="legende-image">
+                            <img  th:align="right" src="/images/Picto-vert-resized.png"  />
+                        </td>
+                        <td >
+                            <p  class="legend-description">Opération réalisée avec succès</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  class="legende-image">
+                            <img  th:align="right" src="/images/Picto-Jaune-resized.png"  />
+                        </td>
+                        <td>
+                            <p  class="legend-description">Opération en cours</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  class="legende-image">
+                            <img  th:align="right" src="/images/Picto-Bleu-resized.png"   />
+                        </td>
+                        <td>
+                            <p class="legend-description">Opération en cours - dépassement de l'heure prévue</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  class="legende-image">
+                            <img  th:align="right" src="/images/Picto-violet-resized.png"   />
+                        </td>
+                        <td>
+                            <p class="legend-description">Opération reportée ou annulée</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  class="legende-image">
+                            <img  th:align="right" src="/images/Picto-Gris-resized.png"   />
+                        </td>
+                        <td>
+                            <p class="legend-description">Opération ayant nécessité un retour arrière</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  class="legende-image">
+                            <img  th:align="right" src="/images/Picto-Rouge-resized.png"   />
+                        </td>
+                        <td>
+                            <p class="legend-description">Opération ayant provoqué un incident</p>
+                        </td>
+                    </tr>
+                </table>
+                </br>
+                </br></br>
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+<section layout:fragment="javascripts"></section>
+</body>
+
+</html>

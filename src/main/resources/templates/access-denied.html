@@ -1,0 +1,40 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE html>
+
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+<section layout:fragment="content">
+    <div class="container my-5">
+        <div class="jumbotron text-center">
+            <div class="d-flex justify-content-center align-items-center">
+                <img width="30" height="30" th:src="@{'/images/sens-interdit.png'}" style="margin-right:0.5vw;">
+                <h1 style="margin-bottom:0;">Authentification requise pour accéder à ce menu</h1>
+            </div>
+            
+            
+            <h2 sec:authorize="isAuthenticated()">Vous n'etes pas autorise a visiter cette page.</h2>
+            <h2 sec:authorize="!isAuthenticated()">Vous n'etes pas autorise a acceder a cette application .Veuillez contacter votre manager.</h2>
+
+            <div class="error-details"></div>
+
+            <div class="error-actions">
+                <a sec:authorize="isAuthenticated()" href="/" class="btn btn-primary btn-lg"><span
+                        class="fas fa-home"></span> Retour a l'accueil </a>
+                <a sec:authorize="!isAuthenticated()" href="/login" class="btn btn-primary btn-lg"><span
+                        class="fas fa-home"></span> Accéder à la page de connexion </a>
+            </div>
+        </div>
+    </div>
+</section>
+<footer layout:fragment="footerContent" id="main-footer">
+    <div id="footer-legal" class="fixed-bottom">
+        © GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+    </div>
+</footer>
+</body>
+</html>

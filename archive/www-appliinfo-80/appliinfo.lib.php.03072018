@@ -1,0 +1,176 @@
+<?php
+$itm_server = 'http://s601lxitm01:1920';
+$itm_user = 'appli.soapitm1';
+$itm_pass = '%B02uMS?=DNIav!';
+
+$cols = 3;
+$prefix = str_replace('/index.php', '', str_replace($_SERVER['DOCUMENT_ROOT'], '', $_SERVER['SCRIPT_FILENAME']));
+date_default_timezone_set('Europe/Paris');
+
+
+/* Load configuration from file */
+
+function ReadConf($conffile)
+{
+   if (!file_exists("conf/$conffile.txt")) {
+      return FALSE;
+   }
+
+   $apps = array();
+   $children = array();
+
+   $fh = fopen("conf/$conffile.txt", 'r');
+   $app = '???';
+   while (($line = fgets($fh)) !== FALSE) {
+      $line = preg_replace('/[\r\n]/', '', $line);
+      if (preg_match('/^[\*-]?\s+(.+)/', $line, $regs)) {
+         array_push($apps[$app], $regs[1]);
+      }
+      elseif (preg_match('/^x\s+(.+)/', $line, $regs) && file_exists("conf/${regs[1]}.txt")) {
+         array_push($children, $regs[1]);
+      }
+      elseif (preg_match('/^\s*TITLE\s*=\s*(.+)/', $line, $regs)) {
+         $title = $regs[1];
+      }
+      elseif (preg_match('/^\s*COLS\s*=\s*(\d+)/', $line, $regs)) {
+         $cols = $regs[1];
+      }
+      elseif (preg_match('/^(.+)/', $line, $regs)) {
+         $app = $regs[1];
+         $apps[$app] = array();
+      }
+   }
+   fclose($fh);
+   return count($children) ? array('children' => $children, 'title' => $title) : array('apps' => $apps, 'cols' => $cols, 'title' => $title);
+}
+
+
+/* Load data from ITM */
+
+function LoadSeverities($itm_server, $itm_user, $itm_pass)
+{
+   global $severities;
+
+   /* Prepare connection to ITM */
+
+   $ch = curl_init();
+   curl_setopt($ch, CURLOPT_URL, "$itm_server///cms/soap/");
+   curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+   curl_setopt($ch, CURLOPT_POST, TRUE);
+   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
+
+   /* Fetch ITM situations severity */
+
+   $xml_request = "
+   <SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">
+     <soap:Header xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"/>
+     <SOAP-ENV:Body>
+       <CT_Get>
+         <userid>$itm_user</userid>
+         <password>$itm_pass</password>
+         <table>O4SRV.ISITSTSH</table>
+         <sql>SELECT SITNAME, SITINFO FROM O4SRV.TSITDESC</sql>
+       </CT_Get>
+     </SOAP-ENV:Body>
+   </SOAP-ENV:Envelope>
+   ";
+
+   curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_request);
+
+   $severities = array();
+
+   if (($xml_response = curl_exec($ch)) === FALSE) {
+      return FALSE;
+   }
+
+   $xml_response = preg_replace('/<([\/\d\w-]+):([\d\w-]+)( xmlns:.+?)?>/i', '<\1-\2>', $xml_response);
+   $xml = simplexml_load_string($xml_response);
+   if ($xml->{'SOAP-ENV-Body'}->{'SOAP-ENV-Fault'}->faultstring != '') {
+      return FALSE;
+   }
+   foreach ($xml->{'SOAP-ENV-Body'}->{'SOAP-CHK-Success'}->TABLE->DATA->ROW as $name => $row) {
+      $severities[(string)$row->HSITNAME] = preg_match("/SEV=(.*?)(;|$)/", (string)$row->SITINFO, $regs) ? $regs[1][0] : 'U';
+   }
+
+   return TRUE;
+}
+
+function LoadFaultySituations($itm_server, $itm_user, $itm_pass)
+{
+   global $faulty_situations;
+
+   /* Prepare connection to ITM */
+
+   $ch = curl_init();
+   curl_setopt($ch, CURLOPT_URL, "$itm_server///cms/soap/");
+   curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+   curl_setopt($ch, CURLOPT_POST, TRUE);
+   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
+
+   /* Fetch ITM situations status */
+
+   $xml_request = "
+   <SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\">
+     <soap:Header xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"/>
+     <SOAP-ENV:Body>
+       <CT_Get>
+         <userid>$itm_user</userid>
+         <password>$itm_pass</password>
+         <table>O4SRV.ISITSTSH</table>
+         <sql>SELECT GBLTMSTMP, SITNAME, DELTASTAT, NODE, ORIGINNODE FROM O4SRV.ISITSTSH WHERE DELTASTAT='Y' </sql>
+       </CT_Get>
+     </SOAP-ENV:Body>
+   </SOAP-ENV:Envelope>
+   ";
+
+   curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_request);
+
+   $faulty_situations = array();
+
+   if (($xml_response = curl_exec($ch)) === FALSE) {
+      return FALSE;
+   }
+
+   $xml_response = preg_replace('/<([\/\d\w-]+):([\d\w-]+)( xmlns:.+?)?>/i', '<\1-\2>', $xml_response);
+   $xml = simplexml_load_string($xml_response);
+   if ($xml->{'SOAP-ENV-Body'}->{'SOAP-ENV-Fault'}->faultstring != '') {
+      return FALSE;
+   }
+   foreach ($xml->{'SOAP-ENV-Body'}->{'SOAP-CHK-Success'}->TABLE->DATA->ROW as $name => $row) {
+      array_push($faulty_situations, (string)$row->HSITNAME);
+   }
+
+   $faulty_situations = array_unique($faulty_situations);
+   return TRUE;
+}
+
+
+/* Compute applications and situations color */
+
+function ComputeColors($apps)
+{
+   global $severities;
+   global $faulty_situations;
+   global $situations_color;
+   global $apps_color;
+
+   $apps_color = array();
+   if (!isset($situations_color))
+      $situations_color = array();
+   foreach ($apps as $k => $v) {
+      $colors = '';
+      foreach ($v as $j) {
+         if (!isset($situations_color[$j]))
+            $situations_color[$j] = in_array($j, $faulty_situations) ? (isset($severities[$j]) ? $severities[$j] : 'U') : 'O';
+         $colors .= $situations_color[$j];
+      }
+      foreach (array('F', 'C', 'M', 'W', 'U', 'O') as $c) {
+         $apps_color[$k] = 'O';
+         if (strpos($colors, $c) !== FALSE) {
+            $apps_color[$k] = $c;
+            break;
+         }
+      }
+   }
+}
+?>

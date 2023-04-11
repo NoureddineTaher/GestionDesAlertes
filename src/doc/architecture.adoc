@@ -1,0 +1,123 @@
+:encoding: utf-8
+:lang: fr
+:numbered:
+:toc: 
+:toc-title: Sommaire
+:imagesdir: images
+
+= Dossier d'architecture du projet AppliInfo
+
+== Les acteurs
+
+[plantuml,actors,png]
+--
+:Administrateur: << Humain >>
+:AppliInfo: << Application >>
+
+:Groupe de diffusion: as diffusion << Humain >>
+:Contact: << Humain >>
+
+diffusion <--o Contact : composer de 
+
+--
+
+== Les cas d'utilisation
+
+[IMPORTANT]
+====
+Il est demandé de tracer les changements de donnés du paramétrage. 
+TODO vérifier si c'est important
+====
+
+[plantuml,usecases,png]
+--
+:Administrateur: << Humain >>
+Administrateur -left-> (Gérer la liste des contacts)
+Administrateur --> (Gérer les groupes de diffusion)
+Administrateur --> (Gérer les applications)
+Administrateur -> (Configurer les alertes)
+
+--
+
+//TODO Les 3 uses cases n'en font qu'un avec des includes...
+[plantuml,usecases-appliinfo,png]
+--
+:AppliInfo: << Application >>
+
+AppliInfo -left-> (Consolider les alertes)
+AppliInfo --> (Envoyer les alertes par mail)
+AppliInfo --> (Déclencher une astreinte - A définir - )
+AppliInfo -> (Demande l'envoi de SMS pour alerter des contacts)
+AppliInfo -up-> (Purger les alertes)
+--
+
+== Les composants
+[plantuml,components,png]
+--
+cloud Intranet {
+    package "ADSN" {
+        database BDD
+        BDD --> [AppliInfo]
+        [ITM] -> [AppliInfo]
+        [AppliInfo] -> [Serveur Mail]
+    }
+}
+
+cloud Internet {
+
+    package TeamIT {
+        [Serveur SMS]
+    }
+
+}
+[AppliInfo] --> [Serveur SMS] : TLS
+
+--
+
+[IMPORTANT]
+====
+Des données sensibles seront amenées à circuler entre le réseau ADSN et TeamIT, il fadra que ce lien soit sécurisé par une connexion TLS avec authentification mutuelle.
+====
+
+== Le modèle de données
+
+////plantuml::modele.pu[format=svg, alt="Modèle de donnée", width=100%]
+
+plantuml::modele.pu[format=png, alt="Modèle de donnée"]
+
+Volumetrie ?
+
+////
+On ne doit pas envoyer plus d'un mail, ou plus d'un sms par durée parametrable
+
+TODO Filtrer sur les severites aussi ?
+
+
+Récupère la liste des situations 
+- ouvertes (deltastat = y)
+- acquittées (deltstat = a)
+- reouvertes (deltstat = e)
+
+Limite à 32 caractère pour le nom des situations
+<HGBLTMSTMP>1190513123305002</HGBLTMSTMP> heure de declenchement de l'alarme itm (ou situation)
+<HSITNAME>REAL_CDM_HEAP_Critical</HSITNAME> Nom de l'alarme itm nomenclature (REAL(REAL, Linux, cloud)_Nom appli concernée_type de test(exploit, ...)_severite(critical, ...)
+<HDELTASTAT>Y</HDELTASTAT> statut (y,a,e)
+<HNODE>TEMSPP2</HNODE> nom de la passerelle ITM
+<HORIGINNODE>CDM:n201lxboeidd01:10</HORIGINNODE> serveur qui a generer l'alarm (instance de l'agent(optionnel):serveur:numero agent de surveillance)
+////
+
+== Les choix d'architecture
+
+https://github.com/joelparkerhenderson/architecture_decision_record
+
+Pourquoi développer sa propre application?
+Pourquoi ne pas utiliser un wsdl pour l'interface soap avec ITM?
+Pourquoi ne pas s'appuyer sur Cabestan?
+
+
+== Les références
+
+https://www.ibm.com/support/knowledgecenter/SSTFXA_6.2.2.1/com.ibm.itm.doc_6.2.2fp1/itm_admin.pdf[Documentation ITM Tivoli server]
+
+https://docs.oracle.com/cd/E19340-01/820-6767/aeqex/index.html[Manipuler des messages soap sans wsdl]
+

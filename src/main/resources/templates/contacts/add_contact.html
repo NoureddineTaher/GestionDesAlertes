@@ -1,0 +1,57 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE html>
+
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+	
+    <body>
+    	<section layout:fragment="content">
+			<div class="container my-5">
+            	<h2 class="mb-5 text-center">Ajout d'un Contact</h2>
+            	<div class="row">
+	            	<div class="col"></div>
+	                <div class="col-md-6">
+						<form action="#" th:action="@{/contacts/addcontact}" th:object="${contactDto}" method="post">
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="name" class="col-form-label">Nom</label>
+									<input type="text" th:field="*{name}" class="form-control " id="name"/>
+									<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="name" class="col-form-label">Prenom</label>
+									<input type="text" th:field="*{firstname}" class="form-control" id="firstname"/>
+									<span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="text-danger"></span>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="email" class="col-form-label">Email</label>
+									<input type="text" th:field="*{email}" class="form-control" id="email"/>
+									<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="name" class="col-form-label">Telephone</label>
+									<input type="text" th:field="*{phone}" class="form-control" id="phone"/>
+									<span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger"></span>
+								</div>							
+							</div>
+							<div class="row">
+								<div class="col-md-6 mt-5">
+									<Button type="submit" name="action" class="btn btn-success" value="save">Valider</Button>
+									<button type="cancel" class="btn btn-danger" onclick="window.location='/contacts';return false;">Annuler</button>
+								</div>
+							</div>    
+						</form>
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+		</section>
+		<footer layout:fragment="footerContent" id="main-footer">
+			<div id="footer-legal" class="fixed-bottom">
+				© GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+			</div>
+		</footer>
+    </body>
+</html>

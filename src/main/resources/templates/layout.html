@@ -1,0 +1,411 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head layout:fragment="head">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Appli INFO</title>
+	<link rel="icon" type="image/x-icon" href="/images/logo-ADSN.png" />
+
+	<!-- Precharger la font pour éviter le lag d'affichage des icones au chargement des pages -->
+	<link rel="preload" as="font" href="/css/fontawesome-free/webfonts/fa-solid-900.woff2" type="font/woff2"
+		  crossorigin="anonymous">
+
+	<link rel="preload" as="font" href="/fonts/open-sans-v17-latin-regular.woff2" type="font/woff2"
+		  crossorigin="anonymous">
+
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/fontawesome-free/css/all.min.css}" crossorigin="anonymous" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" crossorigin="anonymous" />
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/site.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-duallistbox.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/slider.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/dataTables.bootstrap4.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+	<link th:href="@{/css/graphicalCharts.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+	<div class="toast-header">
+		<img src="/images/logo-groupeADSN.png" class="rounded mr-2" alt="logo-adsn" >
+		<strong class="mr-auto">hyperviseur</strong>
+		<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="toast-body text-center h5" id="toast-text">
+		Le bandeau d'alerte a été clôturé
+	</div>
+</div>
+<section layout:fragment="javascripts"></section>
+<!-- The Navigation menu -->
+<div layout:fragment="navigation" class="sticky-top">
+	<div id="menu-header">
+		<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-adsn-blue">
+                <span class="navbar-brand">
+                    <img src="/images/logo-groupeADSN.png" class="mr-1 ml-1" alt="Groupe ADSN" /></span>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar01"
+					aria-controls="navbar01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbar01">
+				<!-- Left -->
+				<ul class="nav navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" id="nav-home-icon" href="/"><span class="fas fa-home fa-fw" id="icone-home"></span><span
+							class="sr-only"></span></a></li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/maintenances" id="navbar-lien-maintenances">Maintenances</a>
+					</li>
+					<li class="nav-item dropdown" >
+						<a class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false"
+						   href="/communication" id="communication">COMMUNICATION</a>
+
+						<ul class="dropdown-menu dropright p-0">
+
+							<li class="nav-item dropdown-submenu">
+
+								<a class="nav-link dropdown-toggle" href="#" id="navbar-lien-meteo" >METEO</a>
+
+								<ul class="dropdown-menu p-0">
+									<li class="nav-item "><a class="nav-link " href="/meteos" id="navbar-lien-it-notaires">I.T. NOTAIRES</a></li>
+									<li class="nav-item"><a class="nav-link grey" href="#" id="navbar-lien-si-groupe">S.I. GROUPE</a></li>
+								</ul>
+							</li>
+
+							<li class="nav-item dropdown-submenu dropright">
+
+								<a class="nav-link dropdown-toggle" href="#" id="navbar-lien-bandeau-alerte">BANDEAU ALERTE</a>
+
+								<ul class="dropdown-menu p-0">
+									<li class="nav-item"><a class="nav-link" th:href="@{/bdalerte/{bdaItem}(bdaItem = ${'creation'})}" id="creation">CREATION</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/bdalerte/{bdaItem}(bdaItem=${'miseAjour'})}" id="miseAjour">MISE A JOUR</a></li>
+									<li class="nav-item"><a class="nav-link" role="button" th:onclick="finClotureAction()" id="finCloture" >FIN/CLOTURE</a></li>
+
+								</ul>
+							</li>
+
+							<li class="nav-item dropdown-submenu dropright">
+								<a class="nav-link dropdown-toggle" href="#" id="creation-incident">INCIDENTS</a>
+								<ul class="dropdown-menu p-0">
+									<li class="nav-item dropdown-submenu">
+										<a class="nav-link dropdown-toggle " href="#"
+										   id="multilevelDropdownMenuIncident">CREATION INCIDENT</a>
+										<ul class="dropdown-menu  m-0 p-0" id="incidents-menu" aria-labelledby="navbarDropdown">
+											<li class="nav-item"><a class="nav-link" th:href="@{/incident-creation/{num}(num=1)}" id="incident-1">1</a></li>
+											<li class="nav-item"><a class="nav-link" th:href="@{/incident-creation/{num}(num=2)}" id="incident-2">2</a></li>
+											<li class="nav-item"><a class="nav-link" th:href="@{/incident-creation/{num}(num=3)}" id="incident-3">3</a></li>
+											<li class="nav-item"><a class="nav-link" th:href="@{/incident-creation/{num}(num=4)}" id="incident-4">4</a></li>
+										</ul>
+									</li>
+									<li class="nav-item dropdown-submenu dropright">
+										<a class="nav-link dropdown-toggle "
+										   id="multilevelDropdownMenu3">SUIVI/FIN INCIDENT</a>
+										<ul class="dropdown-menu m-0 p-0" id="suivi-fin-menu" aria-labelledby="navbarDropdown">
+											<li class="nav-item"><a class="nav-link" th:href="@{/incident-follow/{id}(id=1)}" id="suivi-fin-1">1</a></li>
+											<li class="nav-item"><a class="nav-link" th:href="@{/incident-follow/{id}(id=2)}" id="suivi-fin-2">2</a></li>
+											<li class="nav-item"><a class="nav-link" th:href="@{/incident-follow/{id}(id=3)}" id="suivi-fin-3">3</a></li>
+											<li class="nav-item"><a class="nav-link" th:href="@{/incident-follow/{id}(id=4)}" id="suivi-fin-4">4</a></li>
+										</ul>
+									</li>
+								</ul>
+
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown" id="config-link-div">
+						<a class="nav-link dropdown-toggle config-link" href="#" id="configuration" role="button"
+						   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Configuration</a>
+						<ul class="dropdown-menu m-0 p-0" id="config-menu" aria-labelledby="navbarDropdown">
+							<li class="nav-item"><a class="nav-link" href="/contacts" id="conf-contacts">Contacts</a></li>
+							<li class="nav-item"><a class="nav-link" href="/diffusions" id="conf-diffusion">Diffusion</a></li>
+							<li class="nav-item"><a class="nav-link" href="/categories" id="conf-categories">Categories</a></li>
+							<li class="nav-item"><a class="nav-link" href="/alarms" id="conf-alarmes">Alarmes</a></li>
+							<li class="nav-item"><a class="nav-link" href="/alerts" id="conf-alertes">Alertes</a></li>
+							<li class="nav-item"><a class="nav-link" href="/holidays" id="conf-feries">Feries</a></li>
+							<li class="nav-item"><a class="nav-link" href="/profiles" id="conf-profils">Profils</a></li>
+						</ul>
+					</li>
+
+					<li class="nav-item" id="historique-link-div">
+						<a class="nav-link historique-link" href="/historique" id="historique" role="button"
+						   aria-haspopup="true" aria-expanded="false">Historique</a>
+					</li>
+
+				</ul>
+				<!-- Right -->
+				<ul class="navbar-nav ml-auto">
+
+					<li class="nav-item" id="aide-link-div">
+						<a class="nav-link historique-link text-center" onClick="aideClickHandler()"  id="aide" role="button"
+						   aria-haspopup="true" aria-expanded="false">AIDE</a>
+					</li>
+					<li class="nav-item dropdown"  >
+						<a class="nav-link dropdown-toggle  " href="#" id="information" role="button"
+						   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">INFORMATION</a>
+						<ul class="dropdown-menu dropright m-0 p-0 " id="status" >
+
+							<li class="nav-item">
+								<a type="button" class="nav-link dropdown-item dropdown-toggle " href="#" data-toggle="dropdown" id="statut-si" aria-haspopup="true" aria-expanded="false">
+									STATUT SIs
+								</a>
+
+								<ul class="dropdown-menu" id="status-submenu">
+									<li class="nav-item">
+										<a
+												id="statut-si-notaires"
+												class="dropdown-item nav-link"
+												th:href="@{/information/status(domain = 'adsn')}"
+										>Services Notaires</a
+										>
+									</li>
+									<li class="nav-item">
+										<a
+												id="statut-sieo"
+												class="dropdown-item nav-link"
+												th:href="@{/information/status(domain = 'dex-sieo')}"
+										>Outils</a
+										>
+									</li>
+									<li class="nav-item">
+										<a
+												id="statut-siei"
+												class="dropdown-item nav-link"
+												th:href="@{/information/status(domain = 'dex-siei')}"
+										>Infrastructure</a
+										>
+									</li>
+									<li class="nav-item">
+										<a
+												id="pole-numèrique"
+												class="dropdown-item nav-link"
+												th:href="@{/information/status(domain = 'pole-numerique')}"
+										>POLE NUMERIQUE</a
+										>
+									</li>
+
+								</ul>
+							</li>
+                            <li class="nav-item dropdown-submenu dropright">
+                                <a type="button" class="nav-link dropdown-item dropdown-toggle
+                                 " href="#" data-toggle="dropdown" id="statut-meteo" aria-haspopup="true" aria-expanded="false">
+                                    METEO
+                                </a>
+                                <ul class="dropdown-menu p-0">
+                                    <li class="nav-item"><a class="nav-link"  href="meteo/historique" id="historiqueMeteo">HISTORIQUE</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#" id="maj">MAJ INCIDENTS</a></li>
+                                </ul>
+                            </li>
+						</ul>
+
+
+					</li>
+
+
+					<li class="nav-item"><a class="nav-link mr-3" href="/diagnostic">Diagnostic</a></li>
+					<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="/logout"
+																			  id="menu-logout">Deconnexion</a></li>
+					<li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link" href="/login"
+																			   id="menu-login">Connexion</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+
+<!-- The content -->
+<div>
+	<section layout:fragment="content">
+		<p>Mettre le contenu de la page ici</p>
+	</section>
+</div>
+
+<!-- Workaround for footer overlapping table scrollbar -->
+<div class="container">
+	<div class="row">&nbsp;</div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="dialog" th:fragment="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title" id="dialog-title"></h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body">
+				<p id="dialog-content"></p>
+			</div>
+
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" id="dialog-button-action"></button>
+				<button type="button" class="btn btn-danger" id="dialog-button-cancel"
+						data-dismiss="modal">Annuler</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div ></div>
+<!-- The Footer-->
+<footer layout:fragment="footerContent" id="main-footer" th:if="${#httpServletRequest.requestURI}!='/information/status'">
+	<div id="footer-legal" class="fixed-bottom">
+
+		<span style="padding-left:4vw">© GROUPE ADSN – Tous droits réservés - 2022</span>  <span style="padding-right:1vw" th:text="${version}? ${version}: ${applicationVersion}" id="version-span" class ="versionApps"></span> <span  class ="versionApps">Version-</span>
+	</div>
+</footer>
+<div class="d-flex align-items-center date-footer" th:if="${#httpServletRequest.requestURI}=='/information/status'">
+	<div class="col-10"><p id="information-date-text" ></p></div>
+	<div class="col-2" style="padding-right:1.5vw">
+		<span th:text="${applicationVersion}" class ="versionApps"></span>
+		<span  class ="versionApps">Version-</span>
+	</div>
+</div>
+
+
+<!-- Load JavaScript at the end -->
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/js/jquery.bootstrap-duallistbox.js"></script>
+<script type="text/javascript" src="/js/jquery.floatThead.min.js"></script>
+<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="/js/summernote-bs4.js"></script>
+<script type="text/javascript" src="/js/customJs.js"></script>
+
+
+
+
+<!-- Workaround pour bug du tooltip qui clignote dans un tableau contenant 1 seule ligne
+Voir: https://getbootstrap.com/docs/4.3/components/tooltips/#usage
+-->
+<script>
+	//$.fn.tooltip.Constructor.Default.boundary = "window";
+
+	function hideDropdown(element) {
+		if ($(element).hasClass('show')) {
+			$(element).click();
+		}
+	}
+</script>
+<div> <section layout:fragment="javascripts"></section></div>
+<script th:inline="javascript">
+
+     var applicationVersion = [[${applicationVersion}]];
+     var alertText = [[${alertText}]];
+     var cloture = [[${cloture}]];
+     var miseAjourText = [[${miseAjourText}]];
+
+      var lastMiseAjourDateInfraConfiance = [[${lastMiseAjourDateInfraConfiance}]];
+      var lastMiseAjourDateAppMetiers = [[${lastMiseAjourDateAppMetiers}]];
+      var lastMiseAjourDateAppReseau = [[${lastMiseAjourDateAppReseau}]];
+        var lastMiseAjourDate={
+				 "Applications Réseau": lastMiseAjourDateAppReseau,
+				 "Applications Métier":lastMiseAjourDateAppMetiers,
+				 "Infrastructure de confiance":lastMiseAjourDateInfraConfiance
+				 }
+	 let communication =document.getElementById("communication");
+	 let miseAjour=document.getElementById("miseAjour");
+	 let finCloture=document.getElementById("finCloture")
+	 let bandeau=document.querySelector(".bandeau")
+	 let bandeauText=document.getElementById("bandeau-text")
+	 let submitAlerte= document.getElementById("submit-alerte")
+	 let success =document.getElementById("success")
+
+
+	 communication.addEventListener("mouseover",()=>{
+	 			if (!alertText && !miseAjourText){
+	 				finCloture.classList.add("inactive-grey");
+	 			}
+	 			 else{
+	 				finCloture.classList.remove("inactive-grey")
+	 			}
+
+	 		})
+	 if(bandeauText){
+	     if(alertText){
+	     	bandeau.removeAttribute("hidden");
+			bandeau.style.backgroundColor="red"
+	     	bandeauText.innerHTML=alertText
+	     }
+	     else if(miseAjourText){
+	     	bandeau.removeAttribute("hidden");
+            bandeau.style.backgroundColor = "#EEA525"
+	     	bandeauText.innerHTML = miseAjourText
+	     }
+	     else{
+	     	bandeau.setAttribute("hidden","true");
+	     	}
+
+	 }
+	 if(cloture && bandeau){
+	 	bandeau.removeAttribute("hidden");
+	 	bandeau.style.backgroundColor = "#0a3f70";
+	 	}
+	function onInputDiffusionList() {
+
+        let sendMailButton = document.getElementById("send-mail-button");
+        let diffusionGroupDiv = document.getElementById("diffusion-group-div");
+        let diffusionGroupError = document.getElementById("diffusionGroupError");
+        const reguarExpMail = /^([_a-zA-Z0-9-.]+)@([_a-zA-Z0-9-.]+).([a-zA-Z]{2,5})$/;
+
+        const reguarExpGroup = /^@([_a-zA-Z0-9-])/;
+
+        let isError = false;
+        let diffusionListElement = document.getElementById("list-diffusion");
+        let list = diffusionListElement.value;
+        if (list.trim()[0] === "[" && list.trim()[list.trim().length - 1] === "]") {
+            let diff = list.substring(1, list.length - 1).split(",");
+            isError = diff.find(
+            (element) =>
+                !reguarExpMail.test(element.trim()) &&
+                !reguarExpGroup.test(element.trim())
+            )
+            ? true
+            : false;
+        } else {
+            isError =
+            !reguarExpMail.test(diffusionListElement.value.trim()) &&
+            !reguarExpGroup.test(diffusionListElement.value.trim())
+                ? true
+                : false;
+        }
+        if (isError) {
+            sendMailButton.setAttribute("disabled", true);
+            diffusionGroupDiv.style.marginBottom = "0px";
+            diffusionGroupError.style.display = "inline";
+        } else {
+            sendMailButton.removeAttribute("disabled");
+            diffusionGroupDiv.style.marginBottom = "14px";
+            diffusionGroupError.style.display = "none";
+        }
+}
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

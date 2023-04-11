@@ -1,0 +1,8 @@
+     <SOAP-ENV:Body>
+       <CT_Get>
+         <userid>appli.soapitm2</userid>
+         <password>1tDrCP4B=GyM</password>
+         <table>O4SRV.ISITSTSH</table>
+         <sql>SELECT SITNAME, SITINFO FROM O4SRV.TSITDESC</sql>
+       </CT_Get>
+     </SOAP-ENV:Body>   

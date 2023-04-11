@@ -1,0 +1,105 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE html>
+
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<body>
+<section layout:fragment="content">
+    <div th:switch="${profiles}" class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-md-10">
+                <h2 th:case="null">Aucun profil</h2>
+                <div th:case="*">
+
+                    <div class="my-4 d-flex mb-3 align-items-center rounded text-white bg-primary w-100">
+                        <div class="p-1 ml-3">
+                            <span class="h4"><span class="text-adsn-grey">P</span>rofil Utilisateurs</span>
+                        </div>
+                        <div class="p-1 mr-1 ml-auto">
+                            <a
+                                    href="/profiles/addprofile"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Ajouter un profil"
+                                    class="btn btn-sm btn-primary btn-outline-light">
+                                    <span class="fa-stack" >
+                                        <i class="fas fa-user-tag fa-stack-2x pr-1"></i>
+                                        <i style="bottom: 3.2px" class="fas fa-plus fa-stack-1x ml-2"></i>
+                                    </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <p class="d-flex align-items-start w-100">
+                        <input id="searchTableInput" class="w-100" type="text" placeholder="Recherche..."/>
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-fix-header table-sm table-striped table-hover">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>Nom</th>
+                                <th>Description</th>
+                                <th class ="no-sort">
+                                    <span class="text-decoration-none fas fa-pencil-alt glyphicon btn-sm"></span>
+                                    <span class="text-decoration-none fas fa-trash-alt glyphicon btn-sm"></span>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody id="profilesTable">
+                            <tr th:each="profile : ${profiles}" >
+                                <td class="align-middle" th:text="${profile.getName()}"></td>
+                                <td class="align-middle" th:text="${profile.getDescription()}"></td>
+                                <td class="align-middle min">
+                                    <a
+                                            class="text-decoration-none fas fa-pencil-alt glyphicon btn-sm btn-outline-success"
+                                            th:href="@{/profiles/update/{id}(id=${profile.id})}"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="Modifier le profil">
+                                    </a>
+                                    <span
+                                            class="cursor-pointer fas fa-trash-alt glyphicon btn-sm btn-outline-danger"
+                                            th:dataId="${profile.id}"
+                                            th:dataUrl="@{/profiles/delete/{id}(id=${profile.id})}"
+                                            th:dataName="'Profil: ' + ${profile.getName()}"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Supprimer le profil"
+                                            onclick="confirmDelete(this.getAttribute('dataId'),this.getAttribute('dataName'),this.getAttribute('dataUrl'));">
+												</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+</section>
+<footer layout:fragment="footerContent" id="main-footer">
+    <div id="footer-legal" class="fixed-bottom">
+        © GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+    </div>
+</footer>
+
+<section layout:fragment="javascripts">
+    <script>
+        $(document).ready(function(){
+            $("#searchTableInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#profilesTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</section>
+</body>
+</html>

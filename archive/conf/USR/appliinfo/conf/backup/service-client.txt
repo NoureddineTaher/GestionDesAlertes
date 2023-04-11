@@ -1,0 +1,32 @@
+TITLE = Applications Réseau 
+
+APPLICATIONS RR3
+* CheckRadius_Critical
+* CheckRadius_Warning
+* REAL_TACACSS_Etat_Critical
+
+DECO
+* REAL_DECO_Robot_Fatal
+
+MA MIGRATION
+* REAL_MAMIGRATION_Robot_Fatal
+
+MON ESPACE REAL
+* REAL_MERExploit_Robot_Fatal
+* REAL_MERAuth_Robot_Fatal
+
+ONE PROVISIO
+* OneProvisioLogin2
+
+PIMS
+* PimsHome_Critical
+* PimsAuth
+* Test_Exploit_Pims
+
+SI GESTION
+* REAL_SIGestion_Robot_Fatal
+* REAL_SIGestion_Exploit_Critical
+
+VISIO
+* REAL_VISIO_Robot_Critical
+* REAL_VISIO_SIP_Critical

@@ -1,0 +1,13 @@
+
+<div  th:fragment="myPictogramBox(couleur)">
+            <select   id="x" name="x" class="form-group custom-select" style="-webkit-appearance: unset;" >
+                <option value=""> </option>
+                <option  th:selected= ${'vert'==couleur} th:value="'vert'" th:text="'vert -succès'"></option>
+                <option  th:selected=${'bleu'==couleur} th:value="'bleu'" th:text="'bleu - en cours'"></option>
+                <option th:selected=${'jaune'==couleur} th:value="'jaune'"  th:text="'jaune - heure dépassée'"></option>
+                <option th:selected=${'violet'==couleur} th:value="'violet'"  th:text="'violet - reportée'"></option>
+                <option th:selected=${'gris'==couleur} th:value="'gris'" th:text="'gris - retour arrière'"></option>
+                <option  th:selected=${'rouge'==couleur} th:value="'rouge'" th:text="'rouge - incident'"></option>
+            </select>
+
+</div>

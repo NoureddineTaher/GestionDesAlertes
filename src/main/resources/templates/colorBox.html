@@ -1,0 +1,10 @@
+<div th:fragment="myColorBox(couleurs)">
+    <select  id="colors" name="colors" class="form-group custom-select" style="-webkit-appearance: unset;" >
+        <option value=""> </option>
+        <option  th:selected=${'vert'==couleurs} th:value="'vert'" th:text="'vert'"></option>
+        <option th:selected=${'jaune'==couleurs} th:value="'jaune'"  th:text="'jaune'"></option>
+        <option  th:selected=${'rouge'==couleurs} th:value="'rouge'" th:text="'rouge'"></option>
+
+    </select>
+
+</div>

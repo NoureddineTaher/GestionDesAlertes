@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+    <meta charset="UTF-8" />
+    <link th:href="@{/css/graphicalCharts.css}" rel="stylesheet">
+</head>
+<body>
+<div class="d-flex" th:fragment="graphicalCharts">
+
+    <label for="red-chart-radio-button" id="red-chart"></label>
+    <input class="radio-chart" id="red-chart-radio-button" name="graphical-chart" type="radio">
+    <label for="yellow-chart-radio-button" id="yellow-chart"></label>
+    <input class="radio-chart" id="yellow-chart-radio-button" name="graphical-chart" type="radio">
+    <label for="green-chart-radio-button" id="green-chart"></label>
+    <input class="radio-chart" id="green-chart-radio-button" name="graphical-chart" type="radio">
+
+</div>
+
+</body>
+</html>

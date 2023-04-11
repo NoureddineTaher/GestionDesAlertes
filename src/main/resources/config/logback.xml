@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+        <property name="HOME_LOG" value="{{app.home}}/logs" />
+
+        <appender name="FILE-ROLLING"
+                class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${HOME_LOG}/appli-info.log</file>
+
+                <rollingPolicy
+                        class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                        <fileNamePattern>${HOME_LOG}/archive/appli-info.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+                        <maxHistory>60</maxHistory>
+                </rollingPolicy>
+
+                <encoder>
+                        <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</pattern>
+                </encoder>
+        </appender>
+
+        <appender name="STDOUT"
+                class="ch.qos.logback.core.ConsoleAppender">
+                <encoder>
+                        <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n</pattern>
+                </encoder>
+        </appender>
+
+        <logger name="fr.real.supervision" level="{{log.level}}" />
+
+        <root level="debug">
+                <appender-ref ref="FILE-ROLLING" />
+        </root>
+</configuration>

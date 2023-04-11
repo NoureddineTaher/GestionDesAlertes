@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<body>
+<section layout:fragment="content">
+    <div class="container my-5">
+        <form action="#" th:action="@{/profiles/update/{id}(id=${profileDto.id})}" th:object="${profileDto}"
+              method="post">
+            <div class="row mb-5 d-flex justify-content-center">
+                <h2 class="text-center">Modification d'un profil</h2></div>
+
+            <div class="row"> <!-- Ligne generale  -->
+
+                <div class="col-md-3"></div>
+                <div class="col-md-6"> <!-- Colonne champs  -->
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="name" class="col-form-label">Nom</label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}"/>
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="description" class="col-form-label">Description</label>
+                            <input type="text" class="form-control" id="description" th:field="*{description}"/>
+                            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                                  class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
+
+            <div class="row"> <!-- Ligne fonctionnalites -->
+                <div class="col-md-3"></div>
+                <div class="col-md-6"> <!-- Colonne champs  -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center" scope="col">Type</th>
+                                <th class="text-center" scope="col">Fonctionnalite</th>
+                                <th class="text-center" scope="col">Lecture</th>
+                                <th class="text-center" scope="col">Ecriture</th>
+                            </tr>
+                        </thead>
+                        <tr th:each="profileFunctionalityDto, stat : ${profileDto.profileFunctionalitiesDto}">
+                            <td>
+                                <p th:text="${functionalityService.findTypeById(profileFunctionalityDto.functionalityDtoId)}"/>
+                            </td>
+                            <td>
+                                <p th:text="${functionalityService.findNameById(profileFunctionalityDto.functionalityDtoId)}"/>
+                            </td>
+                            <td>
+                                <input class="d-block m-auto" type="checkbox" th:field="*{profileFunctionalitiesDto[__${stat.index}__].read}"/>
+                            </td>
+                            <td>
+                                <input class="d-block m-auto" type="checkbox"
+                                       th:field="*{profileFunctionalitiesDto[__${stat.index}__].write}"/>
+                                <input type="hidden" th:field="*{profileFunctionalitiesDto[__${stat.index}__].id}"/>
+                                <input type="hidden"
+                                       th:field="*{profileFunctionalitiesDto[__${stat.index}__].profileDtoId}"/>
+                                <input type="hidden"
+                                       th:field="*{profileFunctionalitiesDto[__${stat.index}__].functionalityDtoId}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+            <div class="row"> <!-- Ligne Boutons Valider / Annuler -->
+                <div class="col-md-3"></div>
+                <div class="col-md-6 mt-5">
+                    <Button type="submit" name="action" class="btn btn-success" value="save">Valider</Button>
+                    <Button type="cancel" class="btn btn-danger" onclick="window.location='/profiles';return false;">
+                        Annuler
+                    </Button>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+<footer layout:fragment="footerContent" id="main-footer">
+    <div id="footer-legal" class="fixed-bottom">
+        © GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+    </div>
+</footer>
+</body>
+</html>

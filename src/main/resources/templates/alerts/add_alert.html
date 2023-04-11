@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+    <body>
+   		<section layout:fragment="content">
+			<div class="container my-4">
+				<form action="#" th:action="@{/alerts/addalert}" th:object="${alertdto}" method="post">
+	            <div class="row mb-5 d-flex justify-content-center">
+	            <h2 class="text-center">Ajout d'une Alerte</h2></div>
+	            <div class="row" >
+		            <div class="col-md-7 border-right">
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label for="name" class="col-form-label">Nom</label>
+								<input type="text" th:field="*{name}" class="form-control " id="name"/>
+								<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label for="description" class="col-form-label">Description</label>
+								<input type="text" th:field="*{description}" class="form-control " id="description"/>
+								<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="row  mt-3">
+							<div class="col-md-12">
+								<h5 class="text-center mb-4">Liste des Alarmes</h5>
+								<input type="hidden" id="listAlarms" name="listAlarms" th:field="*{alarms}"/>
+								<select id="duallistbox_alarms"   multiple="multiple" size="15" name="duallistbox_alarms" title="duallistbox_alarms">
+									<option th:each="alarm : ${listAlarms}"
+											th:value="${alarm.id}"
+											th:text="${alarm.name}">
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+		            <div class="col-md-5">
+						<div class="row" style="margin-bottom: 63px">
+							<div class="form-group col-md-12">
+								<label for="category" class="col-form-label">Categorie</label>
+								<select id="category" class="form-group custom-select" style="-webkit-appearance: unset;" th:field="*{category}">
+									<option th:each="category : ${listCategories}"
+											th:value="${category.id}"
+											th:text="${category.name}">
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="row liste_diffusion">
+							<div class="col-md-12">
+								<h5 class="text-center mb-4"  >Liste de Diffusion</h5>
+								<input type="hidden" id="listDiffusionGroups" name="listDiffusionGroups" th:field="*{diffusionGroups}"/>
+								<select id="duallistbox_diffusionGroups"   multiple="multiple" size="15" name="duallistbox_diffusionGroups" title="duallistbox_diffusionGroups">
+									<option th:each="diffGroup : ${listDiffusionGroups}"
+											th:value="${diffGroup.id}"
+											th:text="${diffGroup.name}">
+									</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<hr/>
+					<div class="row" >
+						<div class="col-md-4 border-right">
+							<div class="text-center  mt-3">
+								<span class="title_information badge badge-primary mb-3 ">Communication Mail</span>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="startSubject" class="col-form-label">Objet du mail de debut d'Alerte</label>
+									<input type="text" th:field="*{startSubject}" class="form-control " id="startSubject" maxlength="512"/>
+									<span th:if="${#fields.hasErrors('startSubject')}" th:errors="*{startSubject}" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="startBody" class="col-form-label">Corps du mail de debut d'Alerte</label>
+									<textarea name="startBody" rows="2" th:field="*{startBody}" class="form-control " id="startBody" maxlength="512"/>
+									<span th:if="${#fields.hasErrors('startBody')}" th:errors="*{startBody}" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="endSubject" class="col-form-label">Objet du mail de fin d'Alerte</label>
+									<input type="text" th:field="*{endSubject}" class="form-control " id="endSubject" maxlength="512"/>
+									<span th:if="${#fields.hasErrors('endSubject')}" th:errors="*{endSubject}" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="endBody" class="col-form-label">Corps du mail de fin d'Alerte</label>
+									<textarea name="endBody" rows="2" th:field="*{endBody}" class="form-control " id="endBody" maxlength="512"/>
+									<span th:if="${#fields.hasErrors('endBody')}" th:errors="*{endBody}" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 text-center">
+									<button class="btn btn-sm btn-primary mb-3" id ="add_more_buttonMail" >Mail <em class="fas fa-plus fa-xxl"></em></button>
+									<input id="sizeHoursWhenMailIsAllowed" name="sizeHoursWhenMailIsAllowed" type="hidden" th:value="${alertdto.hoursWhenMailIsAllowed == null}? 0 : ${#lists.size(alertdto.hoursWhenMailIsAllowed)}">
+									<span class="input_fieldsMail_container_part">
+							             <div class="row " th:each="mailAllowed, itemStat : *{hoursWhenMailIsAllowed}">
+							        		 <select class="form-group" th:field="*{hoursWhenMailIsAllowed[__${itemStat.index}__].day}">
+			   									 <option th:each="day : ${listOfDays}"
+														 th:value="${day}"
+														 th:text="${day.getDisplayName(T(java.time.format.TextStyle).FULL, T(java.util.Locale).FRENCH)}">
+			    								</option>
+											</select>
+							        		<input type="hidden" th:field="*{hoursWhenMailIsAllowed[__${itemStat.index}__].minHour}" th:value="${mailAllowed.minHour}"/>
+							        		<input type="hidden" th:field="*{hoursWhenMailIsAllowed[__${itemStat.index}__].maxHour}" th:value="${mailAllowed.maxHour}"/>
+							        		<div class="form-group  col-md-8" >
+							        			<span id="time-range" >
+							        				de  <span  th:id="slider-timeMail+*{__${itemStat.index}__}" th:text="${mailAllowed.minHourFormated}" class="font-italic"></span>
+							        				a	<span th:text="${mailAllowed.maxHourFormated}" th:id="slider-timeMail+*{__${itemStat.index}__}+'a'" class="font-italic">
+							        				</span>
+					    									<span class="sliders_step1">
+					       									<div th:id="slider-rangeMail+*{__${itemStat.index}__}"></div>
+					    									</span>
+												</span>
+											</div><a href="#" class="remove_field" style="margin-left:10px;"><em class="color-blue fas fa-times fa-s"></em></a>
+						   	             </div>
+									</span>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-md-4 border-right  ">
+							<div class="text-center mt-3">
+								<span class="title_information badge badge-primary mb-3">Communication SMS</span>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="startSms" class="col-form-label">SMS de debut d'Alerte</label>
+									<input type="text" th:field="*{startSms}" class="form-control " id="startSms" maxlength="512"/>
+									<span th:if="${#fields.hasErrors('startSms')}" th:errors="*{startSms}" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="endSms" class="col-form-label">SMS de fin d'Alerte</label>
+									<input type="text" th:field="*{endSms}" class="form-control " id="endSms" maxlength="512"/>
+									<span th:if="${#fields.hasErrors('endSms')}" th:errors="*{endSms}" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row sms_creneau">
+								<div class="col-md-12 text-center" >
+									<button class="btn btn-sm btn-primary mb-3" id ="add_more_buttonSms" >Sms <em class="fas fa-plus fa-xxl"></em></button>
+									<input id="sizeHoursWhenSmsIsAllowed" name="sizeHoursWhenSmsIsAllowed" type="hidden" th:value="${alertdto.hoursWhenSmsIsAllowed == null}? 0 : ${#lists.size(alertdto.hoursWhenSmsIsAllowed)}">
+									<span class="input_fieldsSms_container_part">
+										<div class="row ml-1" th:each="smsAllowed, itemStat : *{hoursWhenSmsIsAllowed}">
+												<select class="form-group" th:field="*{hoursWhenSmsIsAllowed[__${itemStat.index}__].day}">
+													<option th:each="day : ${listOfDays}"
+															th:value="${day}"
+															th:text="${day.getDisplayName(T(java.time.format.TextStyle).FULL, T(java.util.Locale).FRENCH)}">
+													</option>
+												</select>
+												<input type="hidden" th:field="*{hoursWhenSmsIsAllowed[__${itemStat.index}__].minHour}" th:value="${smsAllowed.minHour}"/>
+												<input type="hidden" th:field="*{hoursWhenSmsIsAllowed[__${itemStat.index}__].maxHour}" th:value="${smsAllowed.maxHour}"/>
+												<div class="form-group  col-md-8" >
+													<span id="time-range" >
+														de  <span  th:id="slider-timeSms+*{__${itemStat.index}__}" th:text="${smsAllowed.minHourFormated}" class="font-italic"></span>
+														a	<span th:text="${smsAllowed.maxHourFormated}" th:id="slider-timeSms+*{__${itemStat.index}__}+'a'" class="font-italic"></span>
+														<span class="sliders_step1">
+															<div th:id="slider-rangeSms+*{__${itemStat.index}__}"></div>
+														</span>
+													</span>
+												</div>
+												<a href="#" class="remove_field" style="margin-left:10px;"><em class="color-blue fas fa-times fa-s"></em></a>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4 ">
+							<div class="text-center mt-3">
+								<span class="title_information badge badge-primary mb-3">Communication Astreinte</span>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label for="astreinte" class="col-form-label">Astreinte</label>
+									<input type="text" th:field="*{astreinte}" class="form-control " id="astreinte" maxlength="512"/>
+									<span th:if="${#fields.hasErrors('astreinte')}" th:errors="*{astreinte}" class="text-danger" ></span>
+								</div>
+							</div>
+							<div class="row astreinte_creneau" >
+								<div class="col-md-12 text-center">
+									<button class="btn btn-sm btn-primary mb-3" id ="add_more_buttonAstreinte" >Astreinte <em class="fas fa-plus fa-xxl"></em></button>
+									<input id="sizeHoursWhenAstreinteIsAllowed" name="sizeHoursWhenAstreinteIsAllowed" type="hidden" th:value="${alertdto.hoursWhenAstreinteIsAllowed == null}? 0 : ${#lists.size(alertdto.hoursWhenAstreinteIsAllowed)}">
+									<span class="input_fieldsAstreinte_container_part">
+										<div class="row ml-1" th:each="astreinteAllowed, item : *{hoursWhenAstreinteIsAllowed}">
+											<select class="form-group" th:field="*{hoursWhenAstreinteIsAllowed[__${item.index}__].day}">
+												<option th:each="day : ${listOfDays}"
+														th:value="${day}"
+														th:text="${day.getDisplayName(T(java.time.format.TextStyle).FULL, T(java.util.Locale).FRENCH)}">
+												</option>
+											</select>
+											<input type="hidden" th:field="*{hoursWhenAstreinteIsAllowed[__${item.index}__].minHour}" th:value="${astreinteAllowed.minHour}"/>
+											<input type="hidden" th:field="*{hoursWhenAstreinteIsAllowed[__${item.index}__].maxHour}" th:value="${astreinteAllowed.maxHour}"/>
+											<div class="form-group  col-md-8" >
+												<span id="time-range" >
+													de  <span  th:id="slider-timeAstreinte+*{__${item.index}__}" th:text="${astreinteAllowed.minHourFormated}" class="font-italic"></span>
+													a	<span th:text="${astreinteAllowed.maxHourFormated}" th:id="slider-timeAstreinte+*{__${item.index}__}+'a'" class="font-italic"></span>
+													<span class="sliders_step1">
+														<div th:id="slider-rangeAstreinte+*{__${item.index}__}"></div>
+													</span>
+												</span>
+											</div>
+											 <a href="#" class="remove_field" style="margin-left:10px;"><em class="color-blue fas fa-times fa-s"></em></a>
+										</div>
+							        </span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr/>
+				<div class="row">
+					<div class="col-md-6 mt-5">										
+						<Button type="submit" name="action" class="btn btn-success" value="save">Valider</Button>
+						<Button type="cancel" class="btn btn-danger" onclick="window.location='/alerts';return false;">Annuler</Button>
+					</div>
+				</div>    
+				</form>
+				
+	    	</div>
+    	</section>
+		<footer layout:fragment="footerContent" id="main-footer">
+			<div id="footer-legal" class="fixed-bottom">
+				© GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+			</div>
+		</footer>
+    	
+    	<section layout:fragment="javascripts">
+   	 		<script>
+				var duallistbox = $('select[name="duallistbox_diffusionGroups"]')
+						.bootstrapDualListbox({
+							  moveOnSelect: false,
+							  moveOnDoubleClick: false
+							});
+				
+				var duallistbox2 = $('select[name="duallistbox_alarms"]')
+				.bootstrapDualListbox({
+					  moveOnSelect: false,
+					  moveOnDoubleClick: false
+					});
+
+				$("form").submit(
+						function(event) {
+							$("#listDiffusionGroups").val(
+									$("#duallistbox_diffusionGroups").val());
+							$("#listAlarms").val(
+									$("#duallistbox_alarms").val());
+							return;
+						});					
+			</script>
+				
+			<script>
+			    $(document).ready(function() {
+			    	dynmicfields();
+			    	//sliderHours();
+			    	/*<![CDATA[*/
+			    	var size=([[${alertdto.hoursWhenMailIsAllowed == null}? 0 : ${#lists.size(alertdto.hoursWhenMailIsAllowed)}]]);	    	
+			    	for (var i = 0; i < size; i++) {	    		
+			    		sliderHours(i,'Mail');
+			    	}
+			    	var size=([[${alertdto.hoursWhenSmsIsAllowed == null}? 0 : ${#lists.size(alertdto.hoursWhenSmsIsAllowed)}]]);	    	
+			    	for (var i = 0; i < size; i++) {	    		
+			    		sliderHours(i,'Sms');
+			    	}
+			    	var size=([[${alertdto.hoursWhenAstreinteIsAllowed == null}? 0 : ${#lists.size(alertdto.hoursWhenAstreinteIsAllowed)}]]);	    	
+			    	for (var i = 0; i < size; i++) {	    		
+			    		sliderHours(i,'Astreinte');
+			    	}
+			    	/*]]>*/	
+				});
+			</script>
+		</section>
+  	</body>
+</html>

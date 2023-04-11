@@ -1,0 +1,93 @@
+swagger: "2.0"
+info:
+  description: "Passerelle pour l'envoi de SMS"
+  version: "1.0.0"
+  title: "API d'envoi de SMS"
+host: "localhost"
+basePath: "/v1"
+tags:
+- name: "sms"
+  description: "La gestion des SMS"
+- name: "astreinte"
+  description: "La gestion des astreintes"
+schemes:
+- "https"
+- "http"
+paths:
+  /sms:
+    post:
+      tags:
+      - "sms"
+      summary: "Création d'une demande d'envoi de sms"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "SMS à envoyer"
+        required: true
+        schema:
+          $ref: "#/definitions/Sms"
+      responses:
+        200:
+          description: "successful operation"
+        405:
+          description: "Invalid input"
+      security:
+      - api_key: []
+  /astreinte:
+    post:
+      tags:
+      - "astreinte"
+      summary: "Création d'une demande d'astreinte"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "SMS à envoyer"
+        required: true
+        schema:
+          $ref: "#/definitions/Astreinte"
+      responses:
+        200:
+          description: "successful operation"
+        405:
+          description: "Invalid input"
+      security:
+      - api_key: []
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Sms:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Identifiant de transaction unique généré par l'appelant"
+      to:
+        type: "string"
+        description: "Numéro du destinataire"
+      content: 
+        type: "string"
+        description: "Contenu du message"
+  Astreinte:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        description: "Identifiant de transaction unique généré par l'appelant"
+      message:
+        type: "string"
+        description: "Message pour le destinataire de l'astreinte"

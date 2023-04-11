@@ -1,0 +1,12 @@
+<h2><a href="<?= $child ?>/"><?= $childconf['title'] ?></a></h2>
+<?php
+foreach ($childconf['apps'] as $k => $v) {
+   if (count($v) == 0) continue;
+
+   echo "<div class='app'><img src='img/". $apps_color[$k] .".png'>$k</div><div class='sit'>\n";
+   foreach ($v as $j) {
+      echo "<div class='" . $situations_color[$j] . "'>$j</div>\n";
+   }
+   echo "</div>\n";
+}
+?>

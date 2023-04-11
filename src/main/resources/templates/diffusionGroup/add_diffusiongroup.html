@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+	
+    <body>
+    	<section layout:fragment="content">
+			<div class="container my-5">
+	            <h2 class="mb-5  text-center">Ajout de Liste de Diffusion</h2>
+	            <div class="row">
+	            <div class="col"></div>
+	               <div class="col-md-6">
+	                    <form action="#" th:action="@{/diffusions/addDiffusionGroup}" th:object="${diffusionGroupDto}" method="post">                    
+	                        <div class="row">
+	                            <div class="form-group col-md-6">
+	                                <label for="name" class="col-form-label">Nom</label>
+	                                <input type="text" th:field="*{name}" class="form-control" id="name"/>
+	                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+	                            </div>
+								<div class="form-group col-md-6">
+	                                <label for="description" class="col-form-label">Description</label>
+	                                <input type="text" th:field="*{description}" class="form-control" id="description"/>
+	                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+	                            </div>							
+	                        </div>
+	                         <hr />
+	                         <div class="row ">  <input type="hidden" id="listContacts" name="listContacts" th:field="*{contacts}"/>
+	                         <div class="col-md-12">                      	
+	                        	 <select id="duallistbox_contacts"   multiple="multiple" size="10" name="duallistbox_contacts" title="duallistbox_contacts">
+		    						<option th:each="contact : ${listcontacts}"
+										th:value="${contact.id}"
+										th:text="${#strings.toUpperCase(contact.name)} +' '+ ${#strings.capitalize(contact.firstname)}">
+									</option>
+	  							</select>  
+	  							</div>                      	
+	                        </div>
+	                      
+	                        <div class="row">
+								<div class="col-md-6 mt-5">										
+									<Button type="submit" name="action" class="btn btn-success" value="save">Valider</Button>
+									<Button type="cancel" class="btn btn-danger" onclick="window.location='/diffusions';return false;">Annuler</Button>
+								</div>
+							</div>                            
+	                    </form>
+				</div>
+	               <div class="col">
+	              </div>
+	            </div>
+	              
+	        </div>
+	    </section>
+		<footer layout:fragment="footerContent" id="main-footer">
+			<div id="footer-legal" class="fixed-bottom">
+				© GROUPE ADSN – Tous droits réservés  - 2022 <span th:text="${version}" class ="versionApps"></span> <span class ="versionApps">Version-</span>
+			</div>
+		</footer>
+	    <section layout:fragment="javascripts">
+	    	<script>
+				var duallistbox = $('select[name="duallistbox_contacts"]')
+						.bootstrapDualListbox({
+							  nonSelectedListLabel: 'non selectionne',
+							  selectedListLabel: 'selectionne',
+							  moveOnSelect: false,
+							  moveOnDoubleClick: false
+							});
+
+				$("form").submit(
+						function(event) {
+							$("#listContacts").val(
+									$("#duallistbox_contacts").val());
+							return;
+						});
+
+				// handleMoveValidation("duallistbox_contacts");
+				
+			</script>
+	    </section>
+    
+    </body>
+</html>
